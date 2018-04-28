@@ -1849,6 +1849,121 @@ Func SDL_UpdateYUVTexture($tex,$xSDL_Rect,$yplane,$ypit,$uplane,$upit,$vplane,$v
    Return $xSDL_UpdateYUVTexture[0]
 EndFunc
 
+;Pixel Functions
+
+Func SDL_AllocFormat($pix)
+   Local $xSDL_AllocFormat = DllCall($SDL,"ptr:cdecl","SDL_AllocFormat","uint",$pix)
+   Return $xSDL_AllocFormat[0]
+EndFunc
+
+Func SDL_AllocPalette($cols)
+   Local $xSDL_AllocPalette = DllCall($SDL,"ptr:cdecl","SDL_AllocPalette","int",$cols)
+   Return $xSDL_AllocPalette[0]
+EndFunc
+
+Func SDL_CalculateGammaRamp($gam,$ram)
+   Local $xSDL_CalculateGammaRamp = DllCall($SDL,"none","SDL_CalculateGammaRamp","float",$gam,"ptr",$ram)
+   Return $xSDL_CalculateGammaRamp[0]
+EndFunc
+
+Func SDL_FreeFormat($mat)
+   Local $xSDL_FreeFormat = DllCall($SDL,"none","SDL_FreeFormat","ptr",$mat)
+   Return $xSDL_FreeFormat[0]
+EndFunc
+
+Func SDL_FreePalette($pal)
+   Local $xSDL_FreePalette = DllCall($SDL,"none","SDL_FreePalette","ptr",$pal)
+   Return $xSDL_FreePalette[0]
+EndFunc
+
+Func SDL_GetPixelFormatName($mat)
+   Local $xSDL_GetPixelFormatName = DllCall($SDL,"ptr:cdecl","SDL_GetPixelFormatName","uint",$mat)
+   Return $xSDL_GetPixelFormatName[0]
+EndFunc
+
+Func SDL_GetRGB($pix,$mat,$r,$g,$b)
+   Local $xSDL_GetRGB = DllCall($SDL,"none","SDL_GetRGB","uint",$pix,"ptr",$mat,"ptr",$r,"ptr",$g,"ptr",$b)
+   Return $xSDL_GetRGB[0]
+EndFunc
+
+Func SDL_GetRGBA($pix,$matr,$r,$g,$b,$a)
+   Local $xSDL_GetRGBA = DllCall($SDL,"none","SDL_GetRGBA","uint",$pix,"ptr",$mat,"ptr",$r,"ptr",$g,"ptr",$b,"ptr",$a)
+   Return $xSDL_GetRGBA[0]
+EndFunc
+
+Func SDL_MapRGB($mat,$r,$g,$b)
+   Local $xSDL_MapRGB = DllCall($SDL,"uint:cdecl","SDL_MapRGB","ptr",$mat,"uint",$r,"uint",$g,"uint",$b)
+   Return $xSD_MapRGB[0]
+EndFunc
+
+Func SDL_MapRGBA($mat,$r,$g,$b,$a)
+   Local $xSDL_MapRGBA = DllCall($SDL,"uint:cdecl","SDL_MapRGBA","ptr",$mat,"uint",$r,"uint",$g,"uint",$b,"uint",$a)
+   Return $xSDL_MapRGBA[0]
+EndFunc
+
+Func SDL_MasksToPixelFormatEnum($bpp,$r,$g,$b,$a)
+   Local $xSDL_MasksToPixelFormatEnum = DllCall($SDL,"uint:cdecl","SDL_MasksToPixelFormatEnum","int",$bpp,"uint",$r,"uint",$g,"uint",$b,"uint",$a)
+   Return $xSDL_MasksToPixelFormatEnum[0]
+EndFunc
+
+Func SDL_PixelFormatEnumToMasks($mat,$bpp,$r,$g,$b,$a)
+   Local $xSDL_PixelFormatEnumToMasks = DllCall($SDL,"bool:cdecl","SDL_PixelFormatEnumToMasks","uint",$mat,"ptr",$bpp,"ptr",$r,"ptr",$g,"ptr",$b,"ptr",$a)
+   Return $xSDL_PixelFormatEnumToMasks[0]
+EndFunc
+
+Func SDL_SetPaletteColors($pal,$col,$first,$co2)
+   Local $xSDL_SetPaletteColors = DllCall($SDL,"int:cdecl","SDL_SetPaletteColors","ptr",$pal,"ptr",$col,"int",$first,"int",$col2)
+   Return $xSDL_SetPaletteColors[0]
+EndFunc
+
+Func SDL_SetPixelFormatPalette($mat,$pal)
+   Local $xSDL_SetPixelFormatPalette = DllCall($SDL,"int:cdecl","SDL_SetPixelFormatPalette","ptr",$mat,"ptr",$pal)
+   Return $xSDL_SetPixelFormatPalette[0]
+EndFunc
+
+;Rect functions
+Func SDL_EnclosePoints($pt,$count,$xSDL_Rect,$xSDL_Rect2)
+   Local $xSDL_EnclosePoints = DllCall($SDL,"bool:cdecl","SDL_EnclosePoints","ptr",$pt,"int",$count,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",DllStructGetPtr($xSDL_Rect2))
+   Return $xSDL_EnclosePoints[0]
+EndFunc
+
+Func SDL_HasIntersection($xSDL_Rect,$xSDL_Rect2)
+   Local $xSDL_HasIntersection = DllCall($SDL,"bool:cdecl","SDL_HasIntersection","ptr",DllStructGetPtr($xSDL_Rect),"ptr",DllStructGetPtr($xSDL_Rect2))
+   Return $xSDL_HasIntersection[0]
+EndFunc
+
+Func SDL_IntersectRect($xSDL_Rect,$xSDL_Rect2,$xSDL_Rect3)
+   Local $xSDL_IntersectRect = DllCall($SDL,"bool:cdecl","SDL_IntersectRect","ptr",DllStructGetPtr($xSDL_Rect),"ptr",DllStructGetPtr($xSDL_Rect2),"ptr",DllStructGetPtr($xSDL_Rect3))
+   Return $xSDL_IntersectRect[0]
+EndFunc
+
+Func SDL_IntersectRectAndLine($xSDL_Rect,$x,$y,$x2,$y2)
+   Local $xSDL_IntersectRectAndLine = DllCall($SDL,"bool:cdecl","SDL_IntersectRectAndLine","ptr",DllStructGetPtr($xSDL_Rect),"ptr",$x,"ptr",$y,"ptr",$x2,"ptr",$y2)
+   Return $xSDL_IntersectRectAndLine[0]
+EndFunc
+
+Func SDL_PointInRect($xSDL_Rect,$xSDL_Rect2)
+   Local $xSDL_PointInRect = DllCall($SDL,"bool:cdecl","SDL_PointInRect","ptr",DllStructGetPtr($xSDL_Rect),"ptr",DllStructGetPtr($xSDL_Rect2))
+   Return $xSDL_PointInRect[0]
+EndFunc
+
+Func SDL_RectEmpty($xSDL_Rect)
+   Local $xSDL_RectEmpty = DllCall($SDL,"bool:cdecl","SDL_RectEmpty","ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_RectEmpty[0]
+EndFunc
+
+Func SDL_RectEquals($xSDL_Rect,$xSDL_Rect2)
+   Local $xSDL_RectEquals = DllCall($SDL,"bool:cdecl","SDL_RectEquals","ptr",DllStructGetPtr($xSDL_Rect,"ptr",DllStructGetPtr($xSDL_Rect2))
+   Return $xSDL_RectEquals[0]
+EndFunc
+
+Func SDL_UnionRect($xSDL_Rect,$xSDL_Rect2,$xSDL_Rect3)
+   Local $xSDL_UnionRect = DllCall($SDL,"none","SDL_UnionRect","ptr",DllStructGetPtr($xSDL_Rect),"ptr",DllStructGetPtr($xSDL_Rect2),"ptr",DllStructGetPtr($xSDL_Rect3))
+   Return $xSDL_UnionRect[0]
+EndFunc
+
+;Surface Functions
+
 ;Get Platform
 Func SDL_GetPlatform()
    Local $xSDL_GetPlatform = DllCall($SDL,"ptr:cdecl","SDL_GetPlatform")
