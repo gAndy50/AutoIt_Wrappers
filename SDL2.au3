@@ -950,18 +950,18 @@ EndFunc
 
 ;SDL Window Funcs
 Func SDL_CreateWindow($title,$x,$y,$w,$h,$flags)
-   Local $xSDL_CreateWindow = DllCall($SDL,"ptr","SDL_CreateWindow","ptr",$title,"int",$x,"int",$y,"int",$w,"int",$h,"uint",$flags)
+   Local $xSDL_CreateWindow = DllCall($SDL,"ptr:cdecl","SDL_CreateWindow","ptr",$title,"int",$x,"int",$y,"int",$w,"int",$h,"uint",$flags)
    Return $xSDL_CreateWindow[0]
 EndFunc
 
 Func SDL_CreateWindowAndRenderer($w,$h,$flags,$win,$ren)
-   Local $xSDL_CreateWindowAndRenderer = DllCall($SDL,"int","SDL_CreateWindowAndRenderer","int",$w,"int",$h,"uint",$flags,"ptr",$win,"ptr",$ren)
+   Local $xSDL_CreateWindowAndRenderer = DllCall($SDL,"int:cdecl","SDL_CreateWindowAndRenderer","int",$w,"int",$h,"uint",$flags,"ptr",$win,"ptr",$ren)
    Return $xSDL_CreateWindowAndRenderer[0]
 EndFunc
 
 Func SDL_CreateWindowFrom($data)
-   $xSDL_CreateWindowFrom = DllCall($SDL,"ptr","SDL_CreateWindowFrom","ptr",$data)
-   Return $xSDL_CreateWindowFrom
+   Local $xSDL_CreateWindowFrom = DllCall($SDL,"ptr:cdecl","SDL_CreateWindowFrom","ptr",$data)
+   Return $xSDL_CreateWindowFrom[0]
 EndFunc
 
 Func SDL_DestroyWindow($win)
@@ -977,7 +977,7 @@ Func SDL_EnableScreenSaver()
 EndFunc
 
 Func SDL_GL_CreateContext($win)
-   $xSDL_GL_CreateContext = DllCall($SDL,"ptr","SDL_GL_CreateContext","ptr",$win)
+  Local $xSDL_GL_CreateContext = DllCall($SDL,"ptr:cdecl","SDL_GL_CreateContext","ptr",$win)
    Return $xSDL_GL_CreateContext[0]
 EndFunc
 
@@ -986,48 +986,48 @@ Func SDL_GL_DeleteContext($context)
 EndFunc
 
 Func SDL_GL_ExtensionSupported($extension)
-   $xSDL_GL_ExtensionSupported = DllCall($SDL,"bool","SDL_GL_ExtensionSupported","ptr",$extension)
+   Local $xSDL_GL_ExtensionSupported = DllCall($SDL,"bool:cdecl","SDL_GL_ExtensionSupported","ptr",$extension)
    Return $xSDL_GL_ExtensionSupported[0]
 EndFunc
 
 Func SDL_GL_GetAttribute($attr,$value)
-   $xSDL_GL_GetAttribute = DllCall($SDL,"int","SDL_GL_GetAttribute","ptr",$attr,"int",$value)
-   Return $xSDL_GL_GetAttribute
+   Local $xSDL_GL_GetAttribute = DllCall($SDL,"int:cdecl","SDL_GL_GetAttribute","ptr",$attr,"int",$value)
+   Return $xSDL_GL_GetAttribute[0]
 EndFunc
 
 Func SDL_GL_GetCurrentContext()
-   $xSDL_GL_GetCurrentContext = DllCall($SDL,"ptr","SDL_GL_GetCurrentContext")
-   Return $xSDL_GL_GetCurrentContext
+   Local $xSDL_GL_GetCurrentContext = DllCall($SDL,"ptr:cdecl","SDL_GL_GetCurrentContext")
+   Return $xSDL_GL_GetCurrentContext[0]
 EndFunc
 
 Func SDL_GL_GetCurrentWindow()
-   $xSDL_GL_GetCurrentWindow = DllCall($SDL,"ptr","SDL_GL_GetCurrentWindow"
-   Return $xSDL_GL_GetCurrentWindow
+   Local $xSDL_GL_GetCurrentWindow = DllCall($SDL,"ptr:cdecl","SDL_GL_GetCurrentWindow"
+   Return $xSDL_GL_GetCurrentWindow[0]
 EndFunc
 
 Func SDL_GL_GetDrawableSize($win,$w,$h)
-   $xSDL_GL_GetDrawableSize = DllCall($SDL,"none","SDL_GL_GetDrawableSize","ptr",$win,"ptr",$w,"ptr",$h)
-   Return $xSDL_GL_GetDrawableSize
+   Local $xSDL_GL_GetDrawableSize = DllCall($SDL,"none","SDL_GL_GetDrawableSize","ptr",$win,"ptr",$w,"ptr",$h)
+   Return $xSDL_GL_GetDrawableSize[0]
 EndFunc
 
 Func SDL_GL_GetProcAddress($proc)
-   $xSDL_GL_GetProcAddress = DllCall($SDL,"ptr","SDL_GL_GetProcAddress","ptr",$proc)
-   Return $xSDL_GL_GetProcAddress
+  Local $xSDL_GL_GetProcAddress = DllCall($SDL,"ptr:cdecl","SDL_GL_GetProcAddress","ptr",$proc)
+   Return $xSDL_GL_GetProcAddress[0]
 EndFunc
 
 Func SDL_GL_GetSwapInterval()
-   $xSDL_GL_GetSwapInterval = DllCall($SDL,"int","SDL_GL_GetSwapInterval")
-   Return $xSDL_GL_GetSwapInterval
+   Local $xSDL_GL_GetSwapInterval = DllCall($SDL,"int:cdecl","SDL_GL_GetSwapInterval")
+   Return $xSDL_GL_GetSwapInterval[0]
 EndFunc
 
 Func SDL_GL_LoadLibrary($path)
-   $xSDL_GL_LoadLibrary = DllCall($SDL,"int","SDL_GL_LoadLibrary","ptr",$path)
-   Return $xSDL_GL_LoadLibrary
+   Local $xSDL_GL_LoadLibrary = DllCall($SDL,"int:cdecl","SDL_GL_LoadLibrary","ptr",$path)
+   Return $xSDL_GL_LoadLibrary[0]
 EndFunc
 
 Func SDL_GL_MakeCurrent($win,$context)
-   $xSDL_GL_MakeCurrent = DllCall($SDL,"int","SDL_GL_MakeCurrent","ptr",$win,"ptr",$context)
-   Return $xSDL_GL_MakeCurrent
+   Local $xSDL_GL_MakeCurrent = DllCall($SDL,"int:cdecl","SDL_GL_MakeCurrent","ptr",$win,"ptr",$context)
+   Return $xSDL_GL_MakeCurrent[0]
 EndFunc
 
 Func SDL_GL_ResetAttributes()
@@ -1035,13 +1035,13 @@ Func SDL_GL_ResetAttributes()
 EndFunc
 
 Func SDL_GL_SetAttribute($attr,$value)
-   $xSDL_GL_SetAttribute = DllCall($SDL,"int","SDL_GL_SetAttribute","ptr",$attr,"int",$value)
-   Return $xSDL_GL_SetAttribute
+   Local $xSDL_GL_SetAttribute = DllCall($SDL,"int:cdecl","SDL_GL_SetAttribute","ptr",$attr,"int",$value)
+   Return $xSDL_GL_SetAttribute[0]
 EndFunc
 
 Func SDL_GL_SetSwapInterval($interval)
-   $xSDL_GL_SetSwapInterval = DllCall($SDL,"int","SDL_GL_SetSwapInterval","int",$interval)
-   Return $xSDL_GL_SetSwapInterval
+   Local $xSDL_GL_SetSwapInterval = DllCall($SDL,"int:cdecl","SDL_GL_SetSwapInterval","int",$interval)
+   Return $xSDL_GL_SetSwapInterval[0]
 EndFunc
 
 Func SDL_GL_SwapWindow($win)
@@ -1053,122 +1053,122 @@ Func SDL_GL_UnloadLibrary()
 EndFunc
 
 Func SDL_GetClosestDisplayMode($display,$mode,$closest)
-   $xSDL_GetClosestDisplayMode = DllCall($SDL,"ptr","SDL_GetClosestDisplayMode","int",$display,"ptr",$mode,"ptr",$closest)
-   Return $xSDL_GetClosestDisplayMode
+   Local $xSDL_GetClosestDisplayMode = DllCall($SDL,"ptr:cdecl","SDL_GetClosestDisplayMode","int",$display,"ptr",$mode,"ptr",$closest)
+   Return $xSDL_GetClosestDisplayMode[0]
 EndFunc
 
 Func SDL_GetCurrentDisplayMode($display,$mode)
-   $xSDL_GetCurrentDisplayMode = DllCall($SDL,"int","SDL_GetCurrentDisplayMode","int",$display,"ptr",$mode)
-   Return $xSDL_GetCurrentDisplayMode
+  Local $xSDL_GetCurrentDisplayMode = DllCall($SDL,"int:cdecl","SDL_GetCurrentDisplayMode","int",$display,"ptr",$mode)
+   Return $xSDL_GetCurrentDisplayMode[0]
 EndFunc
 
 Func SDL_GetCurrentVideoDriver()
-   $xSDL_GetCurrentVideoDriver = DllCall($SDL,"ptr","SDL_GetCurrentVideoDriver")
+   $xSDL_GetCurrentVideoDriver = DllCall($SDL,"ptr:cdecl","SDL_GetCurrentVideoDriver")
 EndFunc
 
 Func SDL_GetDesktopDisplayMode($display,$mode)
-   $xSDL_GetDesktopDisplayMode = DllCall($SDL,"int","SDL_GetDesktopDisplayMode","int",$display,"ptr",$mode)
-   Return $xSDL_GetDesktopDisplayMode
+   Local $xSDL_GetDesktopDisplayMode = DllCall($SDL,"int:cdecl","SDL_GetDesktopDisplayMode","int",$display,"ptr",$mode)
+   Return $xSDL_GetDesktopDisplayMode[0]
 EndFunc
 
 Func SDL_GetDisplayBounds($display,$xSDL_Rect)
-   $xSDL_GetDesktopDisplayMode = DllCall($SDL,"int","SDL_GetDisplayBounds","int",$display,"ptr",DllStructGetPtr($xSDL_Rect))
-   Return $xSDL_GetDesktopDisplayMode
+  Local $xSDL_GetDesktopDisplayMode = DllCall($SDL,"int:cdecl","SDL_GetDisplayBounds","int",$display,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_GetDesktopDisplayMode[0]
 EndFunc
 
 Func SDL_GetDisplayDPI($display,$ddpi,$hdpi,$vdpi)
-   $xSDL_GetDisplayDPI = DllCall($SDL,"int","SDL_GetDisplayDPI","int",$display,"ptr",$ddpi,"ptr",$hdpi,"ptr",$vdpi)
-   Return $xSDL_GetDisplayDPI
+  Local $xSDL_GetDisplayDPI = DllCall($SDL,"int:cdecl","SDL_GetDisplayDPI","int",$display,"ptr",$ddpi,"ptr",$hdpi,"ptr",$vdpi)
+   Return $xSDL_GetDisplayDPI[0]
 EndFunc
 
 Func SDL_GetDisplayMode($display,$modeIndex,$mode)
-   $xSDL_GetDisplayMode = DllCall($SDL,"int","SDL_GetDisplayMode","int",$display,"int",$modeIndex,"ptr",$mode)
-   Return $xSDL_GetDisplayMode
+  Local $xSDL_GetDisplayMode = DllCall($SDL,"int:cdecl","SDL_GetDisplayMode","int",$display,"int",$modeIndex,"ptr",$mode)
+   Return $xSDL_GetDisplayMode[0]
 EndFunc
 
 Func SDL_GetDisplayName($display)
-   $xSDL_GetDisplayName = DllCall($SDL,"ptr","SDL_GetDisplayName","int",$display)
-   Return $xSDL_GetDisplayName[
+  Local $xSDL_GetDisplayName = DllCall($SDL,"ptr:cdecl","SDL_GetDisplayName","int",$display)
+   Return $xSDL_GetDisplayName[0]
 EndFunc
 
 Func SDL_GetDisplayUsableBounds($display,$xSDL_Rect)
-   $xSDL_GetDisplayUsableBounds = DllCall($SDL,"int","SDL_GetDisplayUsableBounds","int",$display,"ptr",DllStructGetPtr($xSDL_Rect))
-   Return $xSDL_GetDisplayUsableBounds
+   Local $xSDL_GetDisplayUsableBounds = DllCall($SDL,"int:cdecl","SDL_GetDisplayUsableBounds","int",$display,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_GetDisplayUsableBounds[0]
 EndFunc
 
 Func SDL_GetGrabbedWindow()
-   $xSDL_GetGrabbedWindow = DllCall($SDL,"ptr","SDL_GetGrabbedWindow")
-   Return $xSDL_GetGrabbedWindow
+   Local $xSDL_GetGrabbedWindow = DllCall($SDL,"ptr:cdecl","SDL_GetGrabbedWindow")
+   Return $xSDL_GetGrabbedWindow[0]
 EndFunc
 
 Func SDL_GetNumDisplayModes($display)
-   $xSDL_GetNumDisplayModes = DllCall($SDL,"int","SDL_GetNumDisplayModes","int",$display)
-   Return $xSDL_GetNumDisplayModes
+   Local $xSDL_GetNumDisplayModes = DllCall($SDL,"int:cdecl","SDL_GetNumDisplayModes","int",$display)
+   Return $xSDL_GetNumDisplayModes[0]
 EndFunc
 
 Func SDL_GetNumVideoDisplays()
-   $xSDL_GetNumVideoDisplays = DllCall($SDL,"int","SDL_GetNumVideoDisplays")
-   Return $xSDL_GetNumVideoDisplays
+   Local $xSDL_GetNumVideoDisplays = DllCall($SDL,"int:cdecl","SDL_GetNumVideoDisplays")
+   Return $xSDL_GetNumVideoDisplays[0]
 EndFunc
 
 Func SDL_GetNumVideoDrivers()
-   $xSDL_GetNumVideoDrivers = DllCall($SDL,"int","SDL_GetNumVideoDrivers")
-   Return $xSDL_GetNumVideoDrivers
+   Local $xSDL_GetNumVideoDrivers = DllCall($SDL,"int:cdecl","SDL_GetNumVideoDrivers")
+   Return $xSDL_GetNumVideoDrivers[0]
 EndFunc
 
 Func SDL_GetVideoDriver($index)
-   $xSDL_GetVideoDriver = DllCall($SDL,"ptr","SDL_GetVideoDriver",$index)
-   Return $xSDL_GetVideoDriver
+  Local $xSDL_GetVideoDriver = DllCall($SDL,"ptr:cdecl","SDL_GetVideoDriver",$index)
+   Return $xSDL_GetVideoDriver[0]
 EndFunc
 
 Func SDL_GetWindowBordersSize($win,$top,$left,$bottom,$right)
-   $xSDL_GetWindowBordersSize = DllCall($SDL,"int","SDL_GetWindowBordersSize","ptr",$win,"ptr",$top,"ptr",$left,"ptr",$bottom,"ptr",$right)
-   Return $xSDL_GetWindowBordersSize
+  Local $xSDL_GetWindowBordersSize = DllCall($SDL,"int:cdecl","SDL_GetWindowBordersSize","ptr",$win,"ptr",$top,"ptr",$left,"ptr",$bottom,"ptr",$right)
+   Return $xSDL_GetWindowBordersSize[0]
 EndFunc
 
 Func SDL_GetWindowBrightness($win)
-   $xSDL_GetWindowBrightness = DllCall($SDL,"float","SDL_GetWindowBrightness","ptr",$win)
-   Return $xSDL_GetWindowBrightness
+   Local $xSDL_GetWindowBrightness = DllCall($SDL,"float:cdecl","SDL_GetWindowBrightness","ptr",$win)
+   Return $xSDL_GetWindowBrightness[0]
 EndFunc
 
 Func SDL_GetWindowData($win,$name)
-   $xSDL_GetWindowData = DllCall($SDL,"ptr","SDL_GetWindowData","ptr",$win,"ptr",$name)
-   Return $xSDL_GetWindowData
+   Local $xSDL_GetWindowData = DllCall($SDL,"ptr:cdecl","SDL_GetWindowData","ptr",$win,"ptr",$name)
+   Return $xSDL_GetWindowData[0]
 EndFunc
 
 Func SDL_GetWindowDisplayIndex($win)
-   $xSDL_GetWindowDisplayIndex = DllCall($SDL,"int","SDL_GetWindowDisplayIndex","ptr",$win)
-   Return $xSDL_GetWindowDisplayIndex
+  Local $xSDL_GetWindowDisplayIndex = DllCall($SDL,"int:cdecl","SDL_GetWindowDisplayIndex","ptr",$win)
+   Return $xSDL_GetWindowDisplayIndex[0]
 EndFunc
 
 Func SDL_GetWindowDisplayMode($win,$mode)
-   $xSDL_GetWindowDisplayMode = DllCall($SDL,"int","SDL_GetWindowDisplayMode","ptr",$win,"ptr",$mode)
-   Return $xSDL_GetWindowDisplayMode
+  Local $xSDL_GetWindowDisplayMode = DllCall($SDL,"int:cdecl","SDL_GetWindowDisplayMode","ptr",$win,"ptr",$mode)
+   Return $xSDL_GetWindowDisplayMode[0]
 EndFunc
 
 Func SDL_GetWindowFlags($win)
-   $xSDL_GetWindowFlags = DllCall($SDL,"uint","SDL_GetWindowFlags","ptr",$win)
-   Return $xSDL_GetWindowFlags
+   Local $xSDL_GetWindowFlags = DllCall($SDL,"uint:cdecl","SDL_GetWindowFlags","ptr",$win)
+   Return $xSDL_GetWindowFlags[0]
 EndFunc
 
 Func SDL_GetWindowFromID($id)
-   $xSDL_GetWindowFromID = DllCall($SDL,"ptr","SDL_GetWindowFromID","uint",$id)
-   Return $xSDL_GetWindowFromID
+  Local $xSDL_GetWindowFromID = DllCall($SDL,"ptr:cdecl","SDL_GetWindowFromID","uint",$id)
+   Return $xSDL_GetWindowFromID[0]
 EndFunc
 
 Func SDL_GetWindowGammaRamp($win,$r,$g,$b)
-   $xSDL_GetWindowGammaRamp = DllCall($SDL,"int","SDL_GetWindowGammaRamp","ptr",$win,"ptr",$r,"ptr",$g,"ptr",$b)
-   Return $xSDL_GetWindowGammaRamp
+   Local $xSDL_GetWindowGammaRamp = DllCall($SDL,"int:cdecl","SDL_GetWindowGammaRamp","ptr",$win,"ptr",$r,"ptr",$g,"ptr",$b)
+   Return $xSDL_GetWindowGammaRamp[0]
 EndFunc
 
 Func SDL_GetWindowGrab($win)
-   $xSDL_GetWinowGrab = DllCall($SDL,"bool","SDL_GetWindowGrab","ptr",$win)
-   Return $xSDL_GetWindowGrab
+ Local  $xSDL_GetWinowGrab = DllCall($SDL,"bool:cdecl","SDL_GetWindowGrab","ptr",$win)
+   Return $xSDL_GetWindowGrab[0]
 EndFunc
 
 Func SDL_GetWindowID($win)
-   $xSDL_GetWindowID = DllCall($SDL,"uint","SDL_GetWindowID","ptr",$win)
-   Return $xSDL_GetWindowID
+  Local $xSDL_GetWindowID = DllCall($SDL,"uint:cdecl","SDL_GetWindowID","ptr",$win)
+   Return $xSDL_GetWindowID[0]
 EndFunc
 
 Func SDL_GetWindowMaximumSize($win,$w,$h)
@@ -1180,13 +1180,13 @@ Func SDL_GetWindowMinimumSize($win,$w,$h)
 EndFunc
 
 Func SDL_GetWindowOpacity($win,$opacity)
-   $xSDL_GetWindowOpacity = DllCall($SDL,"int","SDL_GetWindowOpacity","ptr",$win,"ptr",$opacity)
-   Return $xSDL_GetWindowOpacity
+  Local $xSDL_GetWindowOpacity = DllCall($SDL,"int:cdecl","SDL_GetWindowOpacity","ptr",$win,"ptr",$opacity)
+   Return $xSDL_GetWindowOpacity[0]
 EndFunc
 
 Func SDL_GetWindowPixelFormat($win)
-   $xSDL_GetWindowPixelFormat = DllCall($SDL,"uint","SDL_GetWindowPixelFormat","ptr",$win)
-   Return $xSDL_GetWindowPixelFormat
+  Local $xSDL_GetWindowPixelFormat = DllCall($SDL,"uint:cdecl","SDL_GetWindowPixelFormat","ptr",$win)
+   Return $xSDL_GetWindowPixelFormat[0]
 EndFunc
 
 Func SDL_GetWindowPosition($win,$x,$y)
@@ -1198,18 +1198,18 @@ Func SDL_GetWindowSize($win,$w,$h)
 EndFunc
 
 Func SDL_GetWindowSurface($win)
-   $xSDL_GetWindowSurface = DllCall($SDL,"ptr","SDL_GetWindowSurface","ptr",$win)
-   Return $xSDL_GetWindowSurface
+   Local $xSDL_GetWindowSurface = DllCall($SDL,"ptr:cdecl","SDL_GetWindowSurface","ptr",$win)
+   Return $xSDL_GetWindowSurface[0]
 EndFunc
 
 Func SDL_GetWindowTitle($win)
-   $xSDL_GetWindowTitle = DllCall($SDL,"ptr","SDL_GetWindowTitle","ptr",$win)
-   Return $xSDL_GetWindowTitle
+  Local $xSDL_GetWindowTitle = DllCall($SDL,"ptr:cdecl","SDL_GetWindowTitle","ptr",$win)
+   Return $xSDL_GetWindowTitle[0]
 EndFunc
 
 Func SDL_GetWindowWMInfo($win,$info)
-   $xSDL_GetWindowWMInfo = DllCall($SDL,"bool","SDL_GetWindowWMInfo","ptr",$win,"ptr",$info)
-   Return $xSDL_GetWindowWMInfo
+   Local $xSDL_GetWindowWMInfo = DllCall($SDL,"bool:cdecl","SDL_GetWindowWMInfo","ptr",$win,"ptr",$info)
+   Return $xSDL_GetWindowWMInfo[0]
 EndFunc
 
 Func SDL_HideWindow($win)
@@ -1217,8 +1217,8 @@ Func SDL_HideWindow($win)
 EndFunc
 
 Func SDL_IsScreenSaverEnabled()
-   $xSDL_IsScreenSaverEnabled = DllCall($SDL,"bool","SDL_IsScreenSaverEnabled")
-   Return $xSDL_IsScreenSaverEnabled
+   Local $xSDL_IsScreenSaverEnabled = DllCall($SDL,"bool:cdecl","SDL_IsScreenSaverEnabled")
+   Return $xSDL_IsScreenSaverEnabled[0]
 EndFunc
 
 Func SDL_MaximizeWindow($win)
@@ -1242,28 +1242,28 @@ Func SDL_SetWindowBordered($win,$border)
 EndFunc
 
 Func SDL_SetWindowBrightness($win,$bright)
-   $xSDL_SetWindowBrightness = DllCall($SDL,"int","SDL_SetWindowBrightness","ptr",$win,"float",$bright)
-   Return $xSDL_SetWindowBrightness
+   Local $xSDL_SetWindowBrightness = DllCall($SDL,"int:cdecl","SDL_SetWindowBrightness","ptr",$win,"float",$bright)
+   Return $xSDL_SetWindowBrightness[0]
 EndFunc
 
 Func SDL_SetWindowData($win,$name,$data)
-   $xSDL_SetWindowData = DllCall($SDL,"ptr","SDL_SetWindowData","ptr",$win,"ptr",$name,"ptr",$data)
-   Return $xSDL_SetWindowData
+   Local $xSDL_SetWindowData = DllCall($SDL,"ptr:cdecl","SDL_SetWindowData","ptr",$win,"ptr",$name,"ptr",$data)
+   Return $xSDL_SetWindowData[0]
 EndFunc
 
 Func SDL_SetWindowDisplayMode($win,$mode)
-   $xSDL_SetWindowDisplayMode = DllCall($SDL,"int","SDL_SetWindowDisplayMode","ptr",$win,"ptr",$mode)
-   Return $xSDL_SetWindowDisplayMode
+   Local $xSDL_SetWindowDisplayMode = DllCall($SDL,"int:cdecl","SDL_SetWindowDisplayMode","ptr",$win,"ptr",$mode)
+   Return $xSDL_SetWindowDisplayMode[0]
 EndFunc
 
 Func SDL_SetWindowFullscreen($win,$flags)
-   $xSDL_SetWindowFullscreen = DllCall($SDL,"int","SDL_SetWindowFullscreen","ptr",$win,"uint",$flags)
-   Return $xSDL_SetWindowFullscreen
+   Local $xSDL_SetWindowFullscreen = DllCall($SDL,"int:cdecl","SDL_SetWindowFullscreen","ptr",$win,"uint",$flags)
+   Return $xSDL_SetWindowFullscreen[0]
 EndFunc
 
 Func SDL_SetWindowGammaRamp($win,$r,$g,$b)
-   $xSDL_SetWindowGammaRamp = DllCall($SDL,"int","SDL_SetWindowGammaRamp","ptr",$win,"ptr",$r,"ptr",$g,"ptr",$b)
-   Return $xSDL_SetWindowGammaRamp
+   Local $xSDL_SetWindowGammaRamp = DllCall($SDL,"int:cdecl","SDL_SetWindowGammaRamp","ptr",$win,"ptr",$r,"ptr",$g,"ptr",$b)
+   Return $xSDL_SetWindowGammaRamp[0]
 EndFunc
 
 Func SDL_SetWindowGrab($win,$grab)
@@ -1271,8 +1271,8 @@ Func SDL_SetWindowGrab($win,$grab)
 EndFunc
 
 Func SDL_SetWindowHitTest($win,$cb,$dat)
-   $xSDL_SetWindowHitTest = DllCall($SDL,"int","SDL_SetWindowHitTest","ptr",$win,"ptr",$cb,"ptr",$dat)
-   Return $xSDL_SetWindowHitTest
+   Local $xSDL_SetWindowHitTest = DllCall($SDL,"int:cdecl","SDL_SetWindowHitTest","ptr",$win,"ptr",$cb,"ptr",$dat)
+   Return $xSDL_SetWindowHitTest[0]
 EndFunc
 
 Func SDL_SetWindowIcon($win,$icon)
@@ -1280,8 +1280,8 @@ Func SDL_SetWindowIcon($win,$icon)
 EndFunc
 
 Func SDL_SetWindowInputFocus($win)
-   $xSDL_SetWindowInputFocus = DllCall($SDL,"int","SDL_SetWindowInputFocus","ptr",$win)
-   Return $xSDL_SetWindowInputFocus
+   Local $xSDL_SetWindowInputFocus = DllCall($SDL,"int:cdecl","SDL_SetWindowInputFocus","ptr",$win)
+   Return $xSDL_SetWindowInputFocus[0]
 EndFunc
 
 Func SDL_SetWindowMaximumSize($win,$w,$h)
@@ -1293,13 +1293,13 @@ Func SDL_SetWindowMinimumSize($win,$w,$h)
 EndFunc
 
 Func SDL_SetWindowModalFor($win,$win2)
-   $xSDL_SetWindowModalFor = DllCall($SDL,"int","SDL_SetWindowModalFor","ptr",$win,"ptr",$win2)
-   Return $xSDL_SetWindowModalFor
+   Local $xSDL_SetWindowModalFor = DllCall($SDL,"int:cdecl","SDL_SetWindowModalFor","ptr",$win,"ptr",$win2)
+   Return $xSDL_SetWindowModalFor[0]
 EndFunc
 
 Func SDL_SetWindowOpacity($win,$opacity)
-   $xSDL_SetWindowOpacity = DllCall($SDL,"int","SDL_SetWindowOpacity","ptr",$win,"float",$opacity)
-   Return $xSDL_SetWindowOpacity
+  Local $xSDL_SetWindowOpacity = DllCall($SDL,"int:cdecl","SDL_SetWindowOpacity","ptr",$win,"float",$opacity)
+   Return $xSDL_SetWindowOpacity[0]
 EndFunc
 
 Func SDL_SetWindowPosition($win,$x,$y)
@@ -1319,13 +1319,13 @@ Func SDL_SetWindowTitle($win,$title)
 EndFunc
 
 Func SDL_ShowMessageBox($mb,$id)
-   $xSDL_ShowMessageBox = DllCall($SDL,"int","SDL_ShowMessageBox","ptr",$mb,"ptr",$id)
-   Return $xSDL_ShowMessageBox
+ Local $xSDL_ShowMessageBox = DllCall($SDL,"int:decl","SDL_ShowMessageBox","ptr",$mb,"ptr",$id)
+   Return $xSDL_ShowMessageBox[0]
 EndFunc
 
 Func SDL_ShowSimpleMessageBox($flags,$title,$msg,$win)
-   $xSDL_ShowSimpleMessageBox = DllCall($SDL,"int","SDL_ShowSimpleMessageBox","uint",$flags,"ptr",$title,"ptr",$msg,"ptr",$win)
-   Return $xSDL_ShowSimpleMessageBox
+   Local $xSDL_ShowSimpleMessageBox = DllCall($SDL,"int:cdecl","SDL_ShowSimpleMessageBox","uint",$flags,"ptr",$title,"ptr",$msg,"ptr",$win)
+   Return $xSDL_ShowSimpleMessageBox[0]
 EndFunc
 
 Func SDL_ShowWindow($win)
@@ -1333,17 +1333,17 @@ Func SDL_ShowWindow($win)
 EndFunc
 
 Func SDL_UpdateWindowSurface($win)
-   Local $xSDL_UpdateWindowSurface = DllCall($SDL,"int","SDL_UpdateWindowSurface","ptr",$win)
+   Local $xSDL_UpdateWindowSurface = DllCall($SDL,"int:cdecl","SDL_UpdateWindowSurface","ptr",$win)
    Return $xSDL_UpdateWindowSurface[0]
 EndFunc
 
 Func SDL_UpdateWindowSurfaceRects($win,$xSDL_Rect,$num)
-  Local $xSDL_UpdateWindowSurfaceRects = DllCall($SDL,"int","SDL_UpdateWindowSurfaceRects","ptr",$win,"ptr",DllStructGetPtr($xSDL_Rect),"int",$num)
+  Local $xSDL_UpdateWindowSurfaceRects = DllCall($SDL,"int:cdecl","SDL_UpdateWindowSurfaceRects","ptr",$win,"ptr",DllStructGetPtr($xSDL_Rect),"int",$num)
    Return $xSDL_UpdateWindowSurfaceRects[0]
 EndFunc
 
 Func SDL_VideoInit($name)
-   Local $xSDL_VideoInit = DllCall($SDL,"int","SDL_VideoInit","ptr",$name)
+   Local $xSDL_VideoInit = DllCall($SDL,"int:cdecl","SDL_VideoInit","ptr",$name)
    Return $xSDL_VideoInit[0]
 EndFunc
 
@@ -1365,22 +1365,22 @@ Func SDL_DelHintCallback($name,$cb,$dat)
 EndFunc
 
 Func SDL_GetHint($name)
-   Local $xSDL_GetHint = DllCall($SDL,"ptr","SDL_GetHint","ptr",$name)
+   Local $xSDL_GetHint = DllCall($SDL,"ptr:cdecl","SDL_GetHint","ptr",$name)
    Return $xSDL_GetHint[0]
 EndFunc
 
 Func SDL_GetHintBoolean($name,$val)
-   Local $xSDL_GetHintBoolean = DllCall($SDL,"bool","SDL_GetHintBoolean","ptr",$name,"bool",$val)
+   Local $xSDL_GetHintBoolean = DllCall($SDL,"bool:cdecl","SDL_GetHintBoolean","ptr",$name,"bool",$val)
    Return $xSDL_GetHintBoolean[0]
 EndFunc
 
 Func SDL_SetHint($name,$val)
-   Local $xSDL_SetHint = DllCall($SDL,"bool","SDL_SetHint","ptr",$name,"ptr",$val)
+   Local $xSDL_SetHint = DllCall($SDL,"bool:cdecl","SDL_SetHint","ptr",$name,"ptr",$val)
    Return $xSDL_SetHint[0]
 EndFunc
 
 Func SDL_SetHintWithPriority($name,$val,$prio)
-   Local $xSDL_SetHintWithPriority = DllCall($SDL,"bool","SDL_SetHintWithPriority","ptr",$name,"ptr",$val,"ptr",$prio)
+   Local $xSDL_SetHintWithPriority = DllCall($SDL,"bool:cdecl","SDL_SetHintWithPriority","ptr",$name,"ptr",$val,"ptr",$prio)
    Return $xSDL_SetHintWithPriority[0]
 EndFunc
 
@@ -1390,12 +1390,12 @@ Func SDL_ClearError()
 EndFunc
 
 Func SDL_GetError()
-   Local $xSDL_GetError = DllCall($SDL,"ptr","SDL_GetError")
+   Local $xSDL_GetError = DllCall($SDL,"ptr:cdecl","SDL_GetError")
    Return $xSDL_GetError[0]
 EndFunc
 
 Func SDL_SetError($fmt,$x)
-   Local $xSDL_SetError = DllCall($SDL,"int","SDL_SetError","ptr",$fmt,"ptr",$x)
+   Local $xSDL_SetError = DllCall($SDL,"int:cdecl","SDL_SetError","ptr",$fmt,"ptr",$x)
    Return $xSDL_SetError[0]
 EndFunc
 
