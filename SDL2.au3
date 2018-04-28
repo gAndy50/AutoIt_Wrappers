@@ -1438,5 +1438,50 @@ Func SDL_HasAVX()
    Return $xSDL_HasAVX[0]
 EndFunc
 
+Func SDL_HasAVX2()
+   Local $xSDL_HasAVX = DllCall($SDL,"bool:cdecl","SDL_HasAVX2")
+   Return $xSDL_HasAVX[0]
+EndFunc
+
+Func SDL_HasAliVec()
+   Local $xSDL_HasAltiVec = DllCall($SDL,"bool:cdecl","SDL_HasAltiVec")
+   Return $xSDL_HasAltiVec[0]
+EndFunc
+
+Func SDL_HasMMX()
+   Local $xSDL_HasMMX = DllCall($SDL,"bool:cdecl","SDL_HasMMX")
+   Return $xSDL_HasMMX[0]
+EndFunc
+
+Func SDL_HasRDTSC()
+   Local $xSDL_HasRDTSC = DllCall($SDL,"bool:cdecl","SDL_HasRDTSC")
+   Return $xSDL_HasRDTSC[0]
+EndFunc
+
+Func SDL_HasSSE()
+   Local $xSDL_HasSSE = DllCall($SDL,"bool:cdecl","SDL_HasSSE")
+   Return $xSDL_HasSSE[0]
+EndFunc
+
+Func SDL_HasSSE2()
+   Local $xSDL_HasSSE2 = DllCall($SDL,"bool:cdecl","SDL_HasSSE2")
+   Return $xSDL_HasSSE2[0]
+EndFunc
+
+Func SDL_HasSSE3()
+   Local $xSDL_HasSSE3 = DllCall($SDL,"bool:cdecl","SDL_HasSSE3")
+   Return $xSDL_HasSSE3[0]
+EndFunc
+
+Func SDL_HasSSE41()
+   Local $xSDL_HasSSE41 = DllCall($SDL,"bool:cdecl","SDL_HasSSE41")
+   Return $xSDL_HasSSE41[0]
+EndFunc
+
+Func SDL_HasSSE42()
+   Local $xSDL_HasSSE42 = DllCall($SDL,"bool:cdecl","SDL_HasSSE42")
+   Return $xSDL_HasSSE42[0]
+EndFunc
+
 ;Cleanup
 DllClose($SDL)
