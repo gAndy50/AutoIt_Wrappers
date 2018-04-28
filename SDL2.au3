@@ -1568,6 +1568,286 @@ Func SDL_GetVersion($ver)
 EndFunc
 
 ;SDL Render
+Func SDL_CreateRenderer($win,$index,$flags)
+   Local $xSDL_CreateRenderer = DllCall($SDL,"ptr:cdecl","SDL_CreateRenderer","ptr",$win,"int",$index,"uint",$flags)
+   Return $xSDL_CreateRenderer[0]
+EndFunc
+
+Func SDL_CreateSoftwareRenderer($surf)
+   Local $xSDL_CreateSoftwareRenderer = DllCall($SDL,"ptr:cdecl","SDL_CreateSoftwareRenderer","ptr",$surf)
+   Return $xSDL_CreateSoftwareRenderer[0]
+EndFunc
+
+Func SDL_CreateTexture($ren,$format,$access,$w,$h)
+   Local $xSDL_CreateTexture = DllCall($SDL,"ptr:cdecl","SDL_CreateTexture","ptr",$ren,"uint",$format,"int",$access,"int",$w,"int",$h)
+   Return $xSDL_CreateTexture[0]
+EndFunc
+
+Func SDL_CreateTextureFromSurface($ren,$surf)
+   Local $xSDL_CreateTextureFromSurface = DllCall($SDL,"ptr:cdecl","SDL_CreateTextureFromSurface","ptr",$ren,"ptr",$surf)
+   Return $xSDL_CreateTextureFromSurface[0]
+EndFunc
+
+;Duplicate in the Render function list
+;Func SDL_CreateWindowAndRenderer($w,$h,$flags,$win,$ren)
+ ;  Local $xSDL_CreateWindowAndRenderer = DllCall($SDL,"int:cdecl","SDL_CreateWindowAndRenderer","int",$w,"int",$h,"uint",$flags,"ptr",$win,"ptr",$ren)
+  ; Return $xSDL_CreateWindowAndRenderer[0]
+;EndFunc
+
+Func SDL_DestroyRenderer($ren)
+   Local $xSDL_DestroyRenderer = DllCall($SDL,"none","SDL_DestroyRenderer","ptr",$ren)
+   Return $xSDL_DestroyRenderer[0]
+EndFunc
+
+Func SDL_DestroyTexture($tex)
+   Local $xSDL_DestroyTexture = DllCall($SDL,"none","SDL_DestroyTexture","ptr",$tex)
+   Return $xSDL_DestroyTexture[0]
+EndFunc
+
+Func SDL_GL_BindTexture($tex,$w,$h)
+   Local $xSDL_GL_BindTexture = DllCall($SDL,"int:cdecl","SDL_GL_BindTexture","ptr",$tex,"ptr",$w,"ptr",$h)
+   Return $xSDL_GL_BindTexture[0]
+EndFunc
+
+Func SDL_GL_UnbindTexture($tex)
+   Local $xSDL_GL_UnbindTexture = DllCall($SDL,"int:cdecl","SDL_GL_UnbindTexture","ptr",$tex)
+   Return $xSDL_GL_UnbindTexture[0]
+EndFunc
+
+Func SDL_GetNumRenderDrivers()
+   Local $xSDL_GetNumRenderDrivers = DllCall($SDL,"int:cdecl","SDL_GetNumRenderDrivers")
+   Return $xSDL_GetNumRenderDrivers[0]
+EndFunc
+
+Func SDL_GetRenderDrawBlendMode($ren,$mode)
+   Local $xSDL_GetRenderDrawBlendMode = DllCall($SDL,"int:cdecl","ptr",$ren,"ptr",$mode)
+   Return $xSDL_GetRenderDrawBlendMode[0]
+EndFunc
+
+Func SDL_GetRenderDrawColor($ren,$r,$g,$b,$a)
+   Local $xSDL_GetRenderDrawColor = DllCall($SDL,"int:cdecl","SDL_GetRenderDrawColor","ptr",$ren,"ptr",$r,"ptr",$g,"ptr",$b,"ptr",$a)
+   Return $xSDL_GetRenderDrawColor[0]
+EndFunc
+
+Func SDL_GetRenderDriverInfo($idx,$info)
+   Local $xSDL_GetRenderDriverInfo = DllCall($SDL,"int:cdecl","SDL_GetRenderDriverInfo","int",$idx,"ptr",$info)
+   Return $xSDL_GetRenderDriverInfo[0]
+EndFunc
+
+Func SDL_GetRenderTarget($ren)
+   Local $xSDL_GetRenderTarget = DllCall($SDL,"ptr:cdecl","SDL_GetRenderTarget","ptr",$ren)
+   Return $xSDL_GetRenderTarget[0]
+EndFunc
+
+Func SDL_GetRenderer($win)
+   Local $xSDL_GetRenderer = DllCall($SDL,"ptr:cdecl","SDL_GetRenderer","ptr",$win)
+   Return $xSDL_GetRenderer[0]
+EndFunc
+
+Func SDL_GetRendererInfo($ren,$info)
+   Local $xSDL_GetRendererInfo = DllCall($SDL,"int:cdecl","SDL_GetRendererInfo","ptr",$ren,"ptr",$info)
+   Return $xSDL_GetRendererInfo[0]
+EndFunc
+
+Func SDL_GetRendererOutputSize($ren,$w,$h)
+   Local $xSDL_GetRendererOutputSize = DllCall($SDL,"int:cdecl","SDL_GetRendererOutputSize","ptr",$ren,"ptr",$w,"ptr",$h)
+   Return $xSDL_GetRendererOutputSize[0]
+EndFunc
+
+Func SDL_GetTextureAlphaMod($tex,$al)
+   Local $xSDL_GetTextureAlphaMod = DllCall($SDL,"int:cdecl","SDL_GetTextureAlphaMod","ptr",$ren,"ptr",$al)
+   Return $xSDL_GetTextureAlphaMod[0]
+EndFunc
+
+Func SDL_GetTextureBlendMode($tex,$mode)
+   Local $xSDL_GetTextureBlendMode = DllCall($SDL,"int:cdecl","SDL_GetTextureBlendMode","ptr",$tex,"ptr",$mode)
+   Return $xSDL_GetTextureBlendMode[0]
+EndFunc
+
+Func SDL_GetTextureColorMod($tex,$r,$g,$b)
+   Local $xSDL_GetTextureColorMod = DllCall($SDL,"int:cdecl","SDL_GetTextureColorMod","ptr",$ren,"ptr",$r,"ptr",$g,"ptr",$b)
+   Return $xSDL_GetTextureColorMod[0]
+EndFunc
+
+Func SDL_LockTexture($tex,$xSDL_Rect,$pix,$pit)
+   Local $xSDL_LockTexture = DllCall($SDL,"int:cdecl","SDL_LockTexture","ptr",$tex,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",$pix,"ptr",$pit)
+   Return $xSDL_LockTexture[0]
+EndFunc
+
+Func SDL_QueryTexture($tex,$mat,$acc,$w,$h)
+   Local $xSDL_QueryTexture = DllCall($SDL,"int:cdecl","SDL_QueryTexture","ptr",$tex,"ptr",$mat,"ptr",$acc,"ptr",$w,"ptr",$h)
+   Return $xSDL_QueryTexture[0]
+EndFunc
+
+Func SDL_RenderClear($ren)
+   Local $xSDL_RenderClear = DllCall($SDL,"int:cdecl","SDL_RenderClear","ptr",$ren)
+   Return $xSDL_RenderClear[0]
+EndFunc
+
+Func SDL_RenderCopy($ren,$tex,$xSDL_Rect,$xSDL_Rect2)
+   Local $xSDL_RenderCopy = DllCall($SDL,"int:cdecl","SDL_RenderCopy","ptr",$ren,"ptr",$tex,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",DllStructGetPtr($xSDL_Rect2))
+   Return $xSDL_RenderCopy[0]
+EndFunc
+
+Func SDL_RenderCopyEx($ren,$tex,$xSDL_Rect,$xSDL_Rect2,$angle,$center,$flip)
+   Local $xSDL_RenderCopyEx = DllCall($SDL,"int:cdecl","SDL_RenderCopyEx","ptr",$ren,"ptr",$tex,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",DllStructGetPtr($xSDL_Rect2),"double",$angle,"ptr",$center,"ptr",$flip)
+   Return $xSDL_RenderCopyEx[0]
+EndFunc
+
+Func SDL_RenderDrawLine($ren,$x,$y,$x2,$y2)
+   Local $xSDL_RenderDrawLine = DllCall($SDL,"int:cdecl","ptr",$ren,"int",$x,"int",$y,"int",$x2,"int",$y2)
+   Return $xSDL_RenderDrawLine[0]
+EndFunc
+
+Func SDL_RenderDrawLines($ren,$pt,$count)
+   Local $xSDL_RenderDrawLines = DllCall($SDL,"int:cdecl","ptr",$ren,"ptr",$pt,"int",$count)
+   Return $xSDL_RenderDrawLines[0]
+EndFunc
+
+Func SDL_RenderDrawPoint($ren,$x,$y)
+   Local $xSDL_RenderDrawPoint = DllCall($SDL,"int:cdecl","ptr",$ren,"int",$x,"int",$y)
+   Return $xSDL_RenderDrawPoint[0]
+EndFunc
+
+Func SDL_RenderDrawPoints($ren,$pt,$count)
+   Local $xSDL_RenderDrawPoints = DllCall($SDL,"int:cdecl","ptr",$ren,"ptr",$pt,"int",$count)
+   Return $xSDL_RenderDrawPoints[0]
+EndFunc
+
+Func SDL_RenderDrawRect($ren,$xSDL_Rect)
+   Local $xSDL_RenderDrawRect = DllCall($SDL,"int:cdecl","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_RenderDrawRect[0]
+EndFunc
+
+Func SDL_RenderDrawRects($ren,$xSDL_Rect,$count)
+   Local $xSDL_RenderDrawRects = DllCall($SDL,"int:cdecl","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect),"int",$count)
+   Return $xSDL_RenderDrawRects[0]
+EndFunc
+
+Func SDL_RenderFillRect($ren,$xSDL_Rect)
+   Local $xSDL_RenderFillRect = DllCall($SDL,"int:cdecl","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_RenderFillRect[0]
+EndFunc
+
+Func SDL_RenderFillRects($ren,$xSDL_Rect,$count)
+   Local $xSDL_RenderFillRects = DllCall($SDL,"int:cdecl","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect),"int",$count)
+   Return $xSDL_RenderFillRects[0]
+EndFunc
+
+Func SDL_RenderGetClipRect($ren,$xSDL_Rect)
+   Local $xSDL_RenderGetClipRect = DllCall($SDL,"none","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_RenderGetClipRect[0]
+EndFunc
+
+Func SDL_RenderGetIntegerScale($ren)
+   Local $xSDL_RenderGetIntegerScale = DllCall($SDL,"bool:cdecl","SDL_RenderGetIntegerScale","ptr",$ren)
+   Return $xSDL_RenderGetIntegerScale[0]
+EndFunc
+
+Func SDL_RenderGetLogicalSize($ren,$w,$h)
+   Local $xSDL_RenderGetLogicalSize = DllCall($SDL,"none","SDL_RenderGetLogicalSize","ptr",$ren,"ptr",$w,"ptr",$h)
+   Return $xSDL_RenderGetLogicalSize[0]
+EndFunc
+
+Func SDL_RenderGetScale($ren,$x,$y)
+   Local $xSDL_RenderGetScale = DllCall($SDL,"none","SDL_RenderGetScale","ptr",$ren,"ptr",$x,"ptr",$y)
+   Return $xSDL_RenderGetScale[0]
+EndFunc
+
+Func SDL_RenderGetViewport($ren,$xSDL_Rect)
+   Local $xSDL_RenderGetViewport = DllCall($SDL,"none","SDL_RenderGetViewport","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_RenderGetViewport[0]
+EndFunc
+
+Func SDL_RenderIsClipEnabled($ren)
+   Local $xSDL_RenderIsClipEnabled = DllCall($SDL,"bool:cdecl","SDL_RenderIsClipEnabled","ptr",$ren)
+   Return $xSDL_RenderIsClipEnabled[0]
+EndFunc
+
+Func SDL_RenderPresent($ren)
+   Local $xSDL_RenderPresent = DllCall($SDL,"none","SDL_RenderPresent","ptr",$ren)
+   Return $xSDL_RenderPresent[0]
+EndFunc
+
+Func SDL_RenderReadPixels($ren,$xSDL_Rect,$mat,$pix,$pit)
+   Local $xSDL_RenderReadPixels = DllCall($SDL,"int:cdecl","SDL_RenderReadPixels","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect),"unit",$mat,"ptr",$pix,"int",$pit)
+   Return $xSDL_RenderReadPixels[0]
+EndFunc
+
+Func SDL_RenderSetClipRect($ren,$xSDL_Rect)
+   Local $xSDL_RenderSetClipRect = DllCall($SDL,"int:cdecl","SDL_RenderSetClipRect","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_RenderSetClipRect[0]
+EndFunc
+
+Func SDL_RenderSetIntegerScale($ren,$enable)
+   Local $xSDL_RenderSetIntegerScale = DllCall($SDL,"int:cdecl","SDL_RenderSetIntegerScale","ptr",$ren,"bool",$enable)
+   Return $xSDL_RenderSetIntegerScale[0]
+EndFunc
+
+Func SDL_RenderSetLogicalSize($ren,$w,$h)
+   Local $xSDL_RenderSetLogicalSize = DllCall($SDL,"int:cdecl","SDL_RenderSetLogicalSize","ptr",$ren,"int",$w,"int",$h)
+   Return $xSDL_RenderSetLogicalSize[0]
+EndFunc
+
+Func SDL_RenderSetScale($ren,$x,$y)
+   Local $xSDL_RenderSetScale = DllCall($SDL,"int:cdecl","SDL_RenderSetScale","ptr",$ren,"float",$x,"float",$y)
+   Return $xSDL_RenderSetScale[0]
+EndFunc
+
+Func SDL_RenderSetViewport($ren,$xSDL_Rect)
+   Local $xSDL_RenderSetViewport = DllCall($SDL,"int:cdecl","SDL_RenderSetViewport","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_RenderSetViewport[0]
+EndFunc
+
+Func SDL_RenderTargetSupported($ren)
+   Local $xSDL_RenderTargetSupported = DllCall($SDL,"bool:cdecl","SDL_RenderTargetSupported","ptr",$ren)
+   Return $xSDL_RenderTargetSupported[0]
+EndFunc
+
+Func SDL_SetRenderDrawBlendMode($ren,$mode)
+   Local $xSDL_SetRenderDrawBlendMode = DllCall($SDL,"int:cdecl","SDL_SetRenderDrawBlendMode","ptr",$ren,"ptr",$mode)
+   Return $xSDL_SetRenderDrawBlendMode[0]
+EndFunc
+
+Func SDL_SetRenderDrawColor($ren,$r,$g,$b,$a)
+   Local $xSDL_SetRenderDrawColor = DllCall($SDL,"int:cdecl","SDL_SetRenderDrawColor","ptr",$ren,"uint",$r,"uint",$g,"uint",$b,"uint",$a)
+   Return $xSDL_SetRenderDrawColor[0]
+EndFunc
+
+Func SDL_SetRenderTarget($ren,$tex)
+   Local $xSDL_SetRenderTarget = DllCall($SDL,"int:cdecl","SDL_SetRenderTarget","ptr",$ren,"ptr",$tex)
+   Return $xSDL_SetRenderTarget[0]
+EndFunc
+
+Func SDL_SetTextureAlphaMod($tex,$al)
+   Local $xSDL_SetTextureAlphaMod = DllCall($SDL,"int:cdecl","SDL_SetTextureAlphaMod","ptr",$tex,"uint",$al)
+   Return $xSDL_SetTextureAlphaMod[0]
+EndFunc
+
+Func SDL_SetTextureBlendMode($tex,$mode)
+   Local $xSDL_SetTextureBlendMode = DllCall($SDL,"int:cdecl","SDL_SetTextureBlendMode","ptr",$tex,"ptr",$mode)
+   Return $xSDL_SetTextureBlendMode[0]
+EndFunc
+
+Func SDL_SetTextureColorMod($tex,$r,$g,$b)
+   Local $xSDL_SetTextureColorMod = DllCall($SDL,"int:cdecl","SDL_SetTextureColorMod","ptr",$tex,"uint",$r,"uint",$g,"uint",$b)
+   Return $xSDL_SetTextureColorMod[0]
+EndFunc
+
+Func SDL_UnlockTexture($tex)
+   Local $xSDL_UnlockTexture = DllCall($SDL,"none","SDL_UnlockTexture","ptr",$tex)
+   Return $xSDL_UnlockTexture[0]
+EndFunc
+
+Func SDL_UpdateTexture($tex,$xSDL_Rect,$pix,$pit)
+   Local $xSDL_UpdateTexture = DllCall($SDL,"int:cdecl","SDL_UpdateTexture","ptr",$tex,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",$pix,"int",$pit)
+   Return $xSDL_UpdateTexture[0]
+EndFunc
+
+Func SDL_UpdateYUVTexture($tex,$xSDL_Rect,$yplane,$ypit,$uplane,$upit,$vplane,$vpit)
+   Local $xSDL_UpdateYUVTexture = DllCall($SDL,"int:cdelc","SDL_UpdateYUVTexture","ptr",$tex,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",$yplane,"int",$ypit,"ptr",$uplane,"int",$upit,"ptr",$vplane,"int",$vpit)
+   Return $xSDL_UpdateYUVTexture[0]
+EndFunc
 
 ;Get Platform
 Func SDL_GetPlatform()
