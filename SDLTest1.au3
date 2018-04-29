@@ -1,5 +1,7 @@
 #include <SDL2.au3>
 
+;This demo shows basic system info
+
 Global $giCpuCount, $giSystemRam, $g_3dnow, $g_sse,$g_sse2,$g_sse3,$g_sse4,$g_sse42
 
 $giCpuCount = SDL_GetCPUCount()
