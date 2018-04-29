@@ -2496,6 +2496,92 @@ Func SDL_StopTextInput()
    Return $xSDL_StopTextInput[0]
 EndFunc
 
+;Mouse Functions
+Func SDL_CaptureMouse($enable)
+   Local $xSDL_CaptureMouse = DllCall($SDL,"int:cdecl","SDL_CaptureMouse","bool",$enable)
+   Return $xSDL_CaptureMouse[0]
+EndFunc
+
+Func SDL_CreateColorCursor($surf,$x,$y)
+   Local $xSDL_CreateColorCursor = DllCall($SDL,"ptr:cdecl","SDL_CreateColorCursor","ptr",$surf,"int",$x,"int",$y)
+   Return $xSDL_CreateColorCursor[0]
+EndFunc
+
+Func SDL_CreateCursor($dat,$mas,$w,$h,$x,$y)
+   Local $xSDL_CreateCursor = DllCall($SDL,"ptr:cdecl","SDL_Createcursor","ptr",$dat,"ptr",$mas,"int",$w,"int",$h,"int",$x,"int",$y)
+   Return $xSDL_CreateCursor[0]
+EndFunc
+
+Func SDL_CreateSystemCursor($cur)
+   Local $xSDL_CreateSystemCursor = DllCall($SDL,"ptr:cdecl","SDL_CreateSystemCursor","ptr",$cur)
+   Return $xSDL_CreateSystemCursor[0]
+EndFunc
+
+Func SDL_FreeCursor($cur)
+   Local $xSDL_FreeCursor = DllCall($SDL,"none","SDL_FreeCursor","ptr",$cur)
+   Return $xSDL_FreeCursor[0]
+EndFunc
+
+Func SDL_GetCursor()
+   Local $xSDL_GetCursor = DllCall($SDL,"ptr:cdecl","SDL_GetCursor")
+   Return $xSDL_GetCursor[0]
+EndFunc
+
+Func SDL_GetDefaultCursor()
+   Local $xSDL_GetDefaultCursor = DllCall($SDL,"ptr:cdecl","SDL_GetDefaultCursor")
+   Return $xSDL_GetDefaultCursor[0]
+EndFunc
+
+Func SDL_GetGlobalMouseState($x,$y)
+   Local $xSDL_GetGlobalMouseState = DllCall($SDL,"uint:cdecl","SDL_GetGlobalMouseState","ptr",$x,"ptr",$y)
+   Return $xSDL_GetGlobalMouseState[0]
+EndFunc
+
+Func SDL_GetMouseFoucs()
+   Local $xSDL_GetMouseFocus = DllCall($SDL,"ptr:cdecl","SDL_GetMouseFocus")
+   Return $xSDL_GetMouseFocus[0]
+EndFunc
+
+Func SDL_GetMouseState($x,$y)
+   Local $xSDL_GetMouseState = DllCall($SDL,"uint:cdecl","SDL_GetMouseState","ptr",$x,"ptr",$y)
+   Return $xSDL_GetMouseState[0]
+EndFunc
+
+Func SDL_GetRelativeMouseMode()
+   Local $xSDL_GetRelativeMouseMod = DllCall($SDL,"bool:cdecl","SDL_GetRelativeMouseMode")
+   Return $xSDL_GetRelativeMouseMod[0]
+EndFunc
+
+Func SDL_GetRelativeMouseState($x,$y)
+   Local $xSDL_GetRelativeMouseState = DllCall($SDL,"uint:cdecl","SDL_GetRelativeMouseState","ptr",$x,"ptr",$y)
+   Return $xSDL_GetRelativeMouseState[0]
+EndFunc
+
+Func SDL_SetCursor($cur)
+   Local $xSDL_SetCursor = DllCall($SDL,"none","SDL_SetCursor","ptr",$cur)
+   Return $xSDL_SetCursor[0]
+EndFunc
+
+Func SDL_SetRelativeMouseMod($enable)
+   Local $xSDL_SetRelativeMouseMod = DllCall($SDL,"int:cdecl","SDL_SetRelativeMouseMod","bool",$enable)
+   Return $xSDL_SetRelativeMouseMod[0]
+EndFunc
+
+Func SDL_ShowCursor($tog)
+   Local $xSDL_ShowCursor = DllCall($SDL,"int:cdecl","SDL_ShowCursor","int",$tog)
+   Return $xSDL_ShowCursor[0]
+EndFunc
+
+Func SDL_WarpMouseGlobal($x,$y)
+   Local $xSDL_WarpMouseGlobal = DllCall($SDL,"int:cdecl","int",$x,"int",$y)
+   Return $xSDL_WarpMouseGlobal[0]
+EndFunc
+
+Func SDL_WarpMouseInWindow($win,$x,$y)
+   Local $xSDL_WarpMouseInWindow = DllCall($SDL,"none","SDL_WarpMouseInWindow","ptr",$win,"int",$x,"int",$y)
+   Return $xSDL_WarpMouseInWindow[0]
+EndFunc
+
 ;Get Platform
 Func SDL_GetPlatform()
    Local $xSDL_GetPlatform = DllCall($SDL,"ptr:cdecl","SDL_GetPlatform")
