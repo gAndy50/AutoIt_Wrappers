@@ -2582,6 +2582,122 @@ Func SDL_WarpMouseInWindow($win,$x,$y)
    Return $xSDL_WarpMouseInWindow[0]
 EndFunc
 
+;Joystick Functions
+Func SDL_JoystickClose($joy)
+   Local $xSDL_JoystickClose = DllCall($SDL,"none","SDL_JoystickClose","ptr",$joy)
+   Return $xSDL_JoystickClose[0]
+EndFunc
+
+Func SDL_JoystickCurrentPowerLevel($joy)
+   Local $xSDL_JoystickCurrentPowerLevel = DllCall($SDL,"ptr:cdecl","SDL_JoystickCurrentPowerLevel","ptr",$joy)
+   Return $xSDL_JoystickCurrentPowerLevel[0]
+EndFunc
+
+Func SDL_JoystickEventState($st)
+   Local $xSDL_JoystickEventState = DllCall($SDL,"int:cdecl","SDL_JoystickEventState","int",$st)
+   Return $xSDL_JoystickEventState[0]
+EndFunc
+
+Func SDL_JoystickFromInstanceID($joy)
+   Local $xSDL_JoystickFromInstanceID = DllCall($SDL,"ptr:cdecl","SDL_JoystickFromInstanceID","ptr",$joy)
+   Return $xSDL_JoystickFromInstanceID[0]
+EndFunc
+
+Func SDL_JoystickGetAttached($joy)
+   Local $xSDL_JoystickGetAttached = DllCall($SDL,"bool:cdecl","SDL_JoystickGetAttached","ptr",$joy)
+   Return $xSDL_JoystickGetAttached[0]
+EndFunc
+
+Func SDL_JoystickGetAxis($joy,$ax)
+   Local $xSDL_JoystickGetAxis = DllCall($SDL,"short:cdecl","SDL_JoystickGetAxis","ptr",$joy,"int",$ax)
+   Return $xSDL_JoystickGetAxis[0]
+EndFunc
+
+Func SDL_JoystickGetBall($joy,$ba,$x,$y)
+   Local $xSDL_JoystickGetBall = DllCall($SDL,"int:cdecl","SDL_JoystickGetBall","ptr",$joy,"int",$ba,"ptr",$x,"ptr",$y)
+   Return $xSDL_JoystickGetBall[0]
+EndFunc
+
+Func SDL_JoystickGetButton($joy,$btn)
+   Local $xSDL_JoystickGetButton = DllCall($SDL,"uint:cdecl","SDL_JoystickGetButton","ptr",$joy,"int",$btn)
+   Return $xSDL_JoystickGetButton[0]
+EndFunc
+
+Func SDL_JoystickGetDeviceGUID($dev)
+   Local $xSDL_JoystickGetDeviceGUID = DllCall($SDL,"ptr:cdecl","SDL_JoystickGetDeviceGUID","int",$dev)
+   Return $xSDL_JoystickGetDeviceGUID[0]
+EndFunc
+
+Func SDL_JoystickGetGUID($joy)
+   Local $xSDL_JoystickGetGUID = DllCall($SDL,"ptr:cdecl","SDL_JoystickGetGUID","ptr",$joy)
+   Return $xSDL_JoystickGetGUID[0]
+EndFunc
+
+Func SDL_JoystickGetGUIDFromString($sz)
+   Local $xSDL_JoystickGetGUIDFromString = DllCall($SDL,"ptr:cdecl","SDL_JoystickGetGUIDFromString","ptr",$sz)
+   Return $xSDL_JoystickGetGUIDFromString[0]
+EndFunc
+
+Func SDL_JoystickGetGUIDString($id,$ps,$cb)
+   Local $xSDL_JoystickGetGUIDString = DllCall($SDL,"none","SDL_JoystickGetGUIDString","ptr",$id,"ptr",$ps,"int",$cb)
+   Return $xSDL_JoystickGetGUIDString[0]
+EndFunc
+
+Func SDL_JoystickGetHat($joy,$hat)
+   Local $xSDL_JoystickGetHat = DllCall($SDL,"uint:cdecl","SDL_JoystickGetHat","ptr",$joy,"int",$hat)
+   Return $xSDL_JoystickGetHat[0]
+EndFunc
+
+Func SDL_JoystickInstanceID($joy)
+   Local $xSDL_JoystickInstanceID = DllCall($SDL,"ptr:cdecl","SDL_JoystickInstanceID","ptr",$joy)
+   Return $xSDL_JoystickInstanceID[0]
+EndFunc
+
+Func SDL_JoystickName($joy)
+   Local $xSDL_JoystickName = DllCall($SDL,"ptr:cdecl","SDL_JoystickName","ptr",$joy)
+   Return $xSDL_JoystickName[0]
+EndFunc
+
+Func SDL_JoystickNameForIndex($dev)
+   Local $xSDL_JoystickNameForIndex = DllCall($SDL,"ptr:cdecl","SDL_JoystickNameForIndex","int",$dev)
+   Return $xSDL_JoystickNameForIndex[0]
+EndFunc
+
+Func SDL_JoystickNumAxes($joy)
+   Local $xSDL_JoystickNumAxes = DllCall($SDL,"int:cdecl","SDL_JoystickNumAxes","ptr",$joy)
+   Return $xSDL_JoystickNumAxes[0]
+EndFunc
+
+Func SDL_JoystickNumBalls($joy)
+   Local $xSDL_JoystickNumBalls = DllCall($SDL,"int:cdecl","SDL_JoystickNumBalls","ptr",$joy)
+   Return $xSDL_JoystickNumBalls[0]
+EndFunc
+
+Func SDL_JoystickNumButtons($joy)
+   Local $xSDL_JoystickNumButtons = DllCall($SDL,"int:cdecl","SDL_JoystickNumButtons","ptr",$joy)
+   Return $xSDL_JoystickNumButtons[0]
+EndFunc
+
+Func SDL_JoystickNumHats($joy)
+   Local $xSDL_JoystickNumHats = DllCall($SDL,"int:cdecl","SDL_JoystickNumHats","ptr",$joy)
+   Return $xSDL_JoystickNumHats[0]
+EndFunc
+
+Func SDL_JoystickOpen($dev)
+   Local $xSDL_JoystickOpen = DllCall($SDL,"ptr:cdecl","SDL_JoystickOpen","int",$dev)
+   Return $xSDL_JoystickOpen[0]
+EndFunc
+
+Func SDL_JoystickUpdate()
+   Local $xSDL_JoystickUpdate = DllCall($SDL,"none","SDL_JoystickUpdate")
+   Return $xSDL_JoystickUpdate[0]
+EndFunc
+
+Func SDL_NumJoysticks()
+   Local $xSDL_NumJoysticks = DllCall($SDL,"int:cdecl","SDL_NumJoysticks")
+   Return $xSDL_NumJoysticks[0]
+EndFunc
+
 ;Get Platform
 Func SDL_GetPlatform()
    Local $xSDL_GetPlatform = DllCall($SDL,"ptr:cdecl","SDL_GetPlatform")
