@@ -19,7 +19,7 @@ Global Const $SDL_INIT_HAPTIC = 4096
 Global Const $SDL_INIT_GAMECONTROLLER = 8192
 Global Const $SDL_INIT_EVENTS = 16384
 Global Const $SDL_INIT_NOPARACHUTE = 1048576
-Global Const $SDL_INIT_EVERYTHING = $SDL_INIT_TIMER + $SDL_INIT_AUDIO + $SDL_INIT_VIDEO + $SDL_INIT_EVENTS + $SDL_INIT_JOYSTICK + $SDL_INIT_HAPTIC + $SDL_INIT_GAMECONTROLLER
+Global Const $SDL_INIT_EVERYTHING = BitOR($SDL_INIT_TIMER, $SDL_INIT_AUDIO, $SDL_INIT_VIDEO, $SDL_INIT_EVENTS, $SDL_INIT_JOYSTICK, $SDL_INIT_HAPTIC,$SDL_INIT_GAMECONTROLLER)
 
 ;SDL2 Assert Flags
 Global Enum $SDL_ASSERTION_RETRY, $SDL_ASSERTION_BREAK, $SDL_ASSERTION_ABORT, $SDL_ASSERTION_IGNORE, $SDL_ASSERTION_ALWAYS_IGNORE
@@ -83,7 +83,7 @@ Global Const $AUDIO_F32SYS = $AUDIO_F32LSB
 Global Const $SDL_AUDIO_ALLOW_FREQUENCY_CHANGE = 1
 Global Const $SDL_AUDIO_ALLOW_FORMAT_CHANGE = 2
 Global Const $SDL_AUDIO_ALLOW_CHANNELS_CHANGE = 4
-Global Const $SDL_AUDIO_ALLOW_ANY_CHANGE = $SDL_AUDIO_ALLOW_FREQUENCY_CHANGE + $SDL_AUDIO_ALLOW_FORMAT_CHANGE + $SDL_AUDIO_ALLOW_CHANNELS_CHANGE
+Global Const $SDL_AUDIO_ALLOW_ANY_CHANGE = BitOR($SDL_AUDIO_ALLOW_FREQUENCY_CHANGE,$SDL_AUDIO_ALLOW_FORMAT_CHANGE,$SDL_AUDIO_ALLOW_CHANNELS_CHANGE)
 
 Global Enum $SDL_AUDIO_STOPPED, $SDL_AUDIO_PLAYING, $SDL_AUDIO_PAUSED
 
@@ -945,8 +945,6 @@ Func SDL_WinRTRunApp($f,$r)
    Local $xSDL_WinRTRunApp = DllCall($SDL,"int:cdecl","SDL_WinRTRunApp","ptr",$f,"ptr",$r)
    Return $xSDL_WinRTRunApp[0]
 EndFunc
-
-;SDL Config Funcs
 
 ;SDL Window Funcs
 Func SDL_CreateWindow($title,$x,$y,$w,$h,$flags)
@@ -2282,6 +2280,140 @@ Func SDL_SetClipboardText($text)
 EndFunc
 
 ;SDL Event Functions
+Func SDL_AddEventWatch($filt,$dat)
+   Local $xSDL_AddEventWatch = DllCall($SDL,"none","SDL_AddEventWatch","ptr",$filt,"ptr",$dat)
+   Return $xSDL_AddEventWatch[0]
+EndFunc
+
+Func SDL_DelEventWatch($filt,$dat)
+   Local $xSDL_DelEventWatch = DllCall($SDL,"none","SDL_DelEventWatch","ptr",$filt,"ptr",$dat)
+   Return $xSDL_DelEventWatch[0]
+EndFunc
+
+Func SDL_EventState($type,$state)
+   Local $xSDL_EventState = DllCall($SDL,"uint:cdecl","SDL_EventState","uint",$type,"int",$state)
+   Return $xSDL_EventState[0]
+EndFunc
+
+Func SDL_FilterEvents($filt,$dat)
+   Local $xSDL_FilterEvents = DllCall($SDL,"none","SDL_FilterEvents","ptr",$filt,"ptr",$dat)
+   Return $xSDL_FilterEvents[0]
+EndFunc
+
+Func SDL_FlushEvent($type)
+   Local $xSDL_FlushEvent = DllCall($SDL,"none","SDL_FlushEvent","uint",$type)
+   Return $xSDL_FlushEvent[0]
+EndFunc
+
+Func SDL_FlushEvents($min,$max)
+   Local $xSDL_FlushEvents = DllCall($SDL,"none","SDL_FlushEvents","uint",$min,"uint",$max)
+   Return $xSDL_FlushEvents[0]
+EndFunc
+
+Func SDL_GetEventFilter($filt,$dat)
+   Local $xSDL_GetEventFilter = DllCall($SDL,"bool:cdecl","SDL_GetEventFilter","ptr",$filt,"ptr",$dat)
+   Return $xSDL_GetEventFilter[0]
+EndFunc
+
+Func SDL_GetEventState($type)
+   Local $xSDL_GetEventState = DllCall($SDL,"uint:cdecl","SDL_GetEventState","uint",$type)
+   Return $xSDL_GetEventState[0]
+EndFunc
+
+Func SDL_GetNumTouchDevices()
+   Local $xSDL_GetNumTouchDevices = DllCall($SDL,"int:cdecl","SDL_GetNumTouchDevices")
+   Return $xSDL_GetNumTouchDevices[0]
+EndFunc
+
+Func SDL_GetNumTouchFingers($touch)
+   Local $xSDL_GetNumTouchFingers = DllCall($SDL,"int:cdecl","SDL_GetNumTouchFingers","ptr",$touch)
+   Return $xSDL_GetNumTouchFingers[0]
+EndFunc
+
+Func SDL_GetTouchDevice($idx)
+   Local $xSDL_GetTouchDevice = DllCall($SDL,"ptr:cdecl","SDL_GetTouchDevice","int",$idx)
+   Return $xSDL_GetTouchDevice[0]
+EndFunc
+
+Func SDL_GetTouchFinger($touch,$idx)
+   Local $xSDL_GetTouchFinger = DllCall($SDL,"ptr:cdecl","SDL_GetTouchFinger","ptr",$touch,"int",$idx)
+   Return $xSDL_GetTouchFinger[0]
+EndFunc
+
+Func SDL_HasEvent($type)
+   Local $xSDL_HasEvent = DllCall($SDL,"bool:cdecl","SDL_HasEvent","uint",$type)
+   Return $xSDL_HasEvent[0]
+EndFunc
+
+Func SDL_HasEvents($min,$max)
+   Local $xSDL_HasEvents = DllCall($SDL,"bool:cdecl","SDL_HasEvents","uint",$min,"uint",$max)
+   Return $xSDL_HasEvents[0]
+EndFunc
+
+Func SDL_LoadDollarTemplates($touch,$src)
+   Local $xSDL_LoadDollarTemplates = DllCall($SDL,"int:cdecl","SDL_LoadDollarTemplates","ptr",$touch,"ptr",$src)
+   Return $xSDL_LoadDollarTemplates[0]
+EndFunc
+
+Func SDL_PeepEvents($evt,$num,$act,$min,$max)
+   Local $xSDL_PeepEvents = DllCall($SDL,"int:cdecl","SDL_PeepEvents","ptr",$evt,"int",$num,"ptr",$act,"uint",$min,"uint",$max)
+   Return $xSDL_PeepEvents[0]
+EndFunc
+
+Func SDL_PollEvent($evt)
+   Local $xSDL_PollEvent = DllCall($SDL,"int:cdecl","SDL_PollEvent","ptr",$evt)
+   Return $xSDL_PollEvent[0]
+EndFunc
+
+Func SDL_PumpEvents()
+   Local $xSDL_PumpEvents = DllCall($SDL,"none","SDL_PumpEvents")
+   Return $xSDL_PumpEvents[0]
+EndFunc
+
+Func SDL_PushEvent($evt)
+   Local $xSDL_PushEvent = DllCall($SDL,"int:cdecl","SDL_PushEvents","ptr",$evt)
+   Return $xSDL_PushEvent[0]
+EndFunc
+
+Func SDL_QuitRequested()
+   Local $xSDL_QuitRequested = DllCall($SDL,"bool:cdecl","SDL_QuitRequested")
+   Return $xSDL_QuitRequested[0]
+EndFunc
+
+Func SDL_RecordGesture($touch)
+   Local $xSDL_RecordGesture = DllCall($SDL,"int:cdecl","SDL_RecordGesture","ptr",$touch)
+   Return $xSDL_RecordGesture[0]
+EndFunc
+
+Func SDL_RegisterEvents($num)
+   Local $xSDL_RegisterEvents = DllCall($SDL,"uint:cdecl","SDL_RegisterEvents","int",$num)
+   Return $xSDL_RegisterEvents[0]
+EndFunc
+
+Func SDL_SaveAllDollarTemplates($src)
+   Local $xSDL_SaveAllDollarTemplates = DllCall($SDL,"int:cdecl","SDL_SaveAllDollarTemplates","ptr",$src)
+   Return $xSDL_SaveAllDollarTemplates[0]
+EndFunc
+
+Func SDL_SaveDollarTemplate($id,$dst)
+   Local $xSDL_SaveDollarTemplate = DllCall($SDL,"int:cdecl","SDL_SaveDollarTemplate","ptr",$id,"ptr",$dst)
+   Return $xSDL_SaveDollarTemplate[0]
+EndFunc
+
+Func SDL_SetEventFilter($filt,$dat)
+   Local $xSDL_SetEventFilter = DllCall($SDL,"none","SDL_SetEventFilter","ptr",$filt,"ptr",$dat)
+   Return $xSDL_SetEventFilter[0]
+EndFunc
+
+Func SDL_WaitEvent($evt)
+   Local $xSDL_WaitEvent = DllCall($SDL,"int:cdecl","SDL_WaitEvent","ptr",$evt)
+   Return $xSDL_WaitEvent[0]
+EndFunc
+
+Func SDL_WaitEventTimeout($evt,$out)
+   Local $xSDL_WaitEventTimeout = DllCall($SDL,"int:cdecl","SDL_WaitEventTimeout","ptr",$evt,"int",$out)
+   Return $xSDL_WaitEventTimeout[0]
+EndFunc
 
 ;Get Platform
 Func SDL_GetPlatform()
