@@ -2415,6 +2415,8 @@ Func SDL_WaitEventTimeout($evt,$out)
    Return $xSDL_WaitEventTimeout[0]
 EndFunc
 
+;Keyboard functions
+
 ;Get Platform
 Func SDL_GetPlatform()
    Local $xSDL_GetPlatform = DllCall($SDL,"ptr:cdecl","SDL_GetPlatform")
