@@ -1962,7 +1962,326 @@ Func SDL_UnionRect($xSDL_Rect,$xSDL_Rect2,$xSDL_Rect3)
    Return $xSDL_UnionRect[0]
 EndFunc
 
+;SDL RWops Functions
+
+Func SDL_AllocRW()
+   Local $xSDL_AllocRW = DllCall($SDL,"ptr:cdecl","SDL_AllocRW")
+   Return $xSDL_AllocRW[0]
+EndFunc
+
+Func SDL_FreeRW($rw)
+   Local $xSDL_FreeRW = DllCall($SDL,"none","SDL_FreeRW","ptr",$rw)
+   Return $xSDL_FreeRW[0]
+EndFunc
+
+Func SDL_RWFromConstMem($mem,$size)
+   Local $xSDL_RWFromConstMem = DllCall($SDL,"ptr:cdecl","SDL_RWFromConstMem","ptr",$mem,"int",$size)
+   Return $xSDL_RWFromConstMen[0]
+EndFunc
+
+Func SDL_RWFromFP($fp,$cls)
+   Local $xSDL_RWFromFP = DllCall($SDL,"ptr:cdecl","SDL_RWFromFP","ptr",$fp,"bool",$cls)
+   Return $xSDL_RWFromFP[0]
+EndFunc
+
+Func SDL_RWFromFile($file,$mode)
+   Local $xSDL_RWFromFile = DllCall($SDL,"ptr:cdecl","ptr",$fp,"ptr",$mode)
+   Return $xSDL_RWFromFile[0]
+EndFunc
+
+Func SDL_RWFromMem($mem,$size)
+   Local $xSDL_RWFromMem = DllCall($SDL,"ptr:cdecl","SDL_RWFromMem","ptr",$mem,"int",$size)
+   Return $xSDL_RWFromMen[0]
+EndFunc
+
+Func SDL_RWclose($ctx)
+   Local $xSDL_RWclose = DllCall($SDL,"int:cdecl","SDL_RWclose","ptr",$ctx)
+   Return $xSDL_RWclose[0]
+EndFunc
+
+Func SDL_RWread($ctx,$p,$size,$max)
+   Local $xSDL_RWread = DllCall($SDL,"ulong_ptr:cdecl","SDL_RWread","ptr",$ctx,"ptr",$p,"ulong_ptr",$size,"ulong_ptr",$max)
+   Return $xSDL_RWread[0]
+EndFunc
+
+Func SDL_RWseek($ctx,$off,$when)
+   Local $xSDL_Rwseek = DllCall($SDL,"int64:cdecl","SDL_RWseek","ptr",$ctx,"int64",$off,"int",$when)
+   Return $xSDL_RWseek[0]
+EndFunc
+
+Func SDL_RWsize($ctx)
+   Local $xSDL_RWsize = DllCall($SDL,"int64:cdecl","SDL_RWsize","ptr",$ctx)
+   Return $xSDL_RWsize[0]
+EndFunc
+
+Func SDL_RWtell($ctx)
+   Local $xSDL_RWtell = DllCall($SDL,"int64:cdecl","SDL_RWtell","ptr",$ctx)
+   Return $xSDL_RWtell[0]
+EndFunc
+
+Func SDL_RWwrite($ctx,$p,$size,$num)
+   Local $xSDL_RWwrite = DllCall($SDL,"ulong_ptr:cdecl","SDL_RWwrite","ptr",$ctx,"ptr",$p,"ulong_ptr",$size,"ulong_ptr",$num)
+   Return $xSDL_REwrite[0]
+EndFunc
+
+Func SDL_ReadBE16($src)
+   Local $xSDL_ReadBE16 = DllCall($SDL,"uint:cdecl","SDL_ReadBE16","ptr",$src)
+   Return $xSDL_ReadBE16[0]
+EndFunc
+
+Func SDL_ReadBE32($src)
+   Local $xSDL_ReadBE32 = DllCall($SDL,"uint:cdecl","SDL_ReadBE32","ptr",$src)
+   Return $xSDL_ReadBE32[0]
+EndFunc
+
+Func SDL_ReadBE64($src)
+   Local $xSDL_ReadBE64 = DllCall($SDL,"uint:cdecl","SDL_ReadBE64","ptr",$src)
+   Return $xSDL_ReadBE64[0]
+EndFunc
+
+Func SDL_ReadLE16($src)
+   Local $xSDL_ReadLE16 = DllCall($SDL,"uint:cdecl","SDL_ReadLE16","ptr",$src)
+   Return $xSDL_ReadLE16[0]
+EndFunc
+
+Func SDL_ReadLE32($src)
+   Local $xSDL_ReadLE32 = DllCall($SDL,"uint:cdecl","SDL_ReadLE32","ptr",$src)
+   Return $xSDL_ReadLE32[0]
+EndFunc
+
+Func SDL_ReadLE64($src)
+   Local $xSDL_ReadLE64 = DllCall($SDL,"uint:cdecl","SDL_ReadLE64","ptr",$src)
+   Return $xSDL_ReadLE64[0]
+EndFunc
+
+Func SDL_ReadU8($src)
+   Local $xSDL_ReadU8 = DllCall($SDL,"uint:cdecl","SDL_ReadU8","ptr",$src)
+   Return $xSDL_ReadU8[0]
+EndFunc
+
+Func SDL_WriteBE16($dst,$val)
+   Local $xSDL_WriteBE16 = DllCall($SDL,"ulong_ptr:cdecl","SDL_WriteBE16","ptr",$dst,"uint",$val)
+   Return $xSDL_WriteBE16[0]
+EndFunc
+
+Func SDL_WriteBE32($dst,$val)
+   Local $xSDL_WriteBE32 = DllCall($SDL,"ulong_ptr:cdecl","SDL_WriteBE32","ptr",$dst,"uint",$val)
+   Return $xSDL_WriteBE32[0]
+EndFunc
+
+Func SDL_WriteBE64($dst,$val)
+   Local $xSDL_WriteBE64 = DllCall($SDL,"ulong_ptr:cdecl","SDL_WriteBE64","ptr",$dst,"uint",$val)
+   Return $xSDL_WriteBE64[0]
+EndFunc
+
+Func SDL_WriteLE16($dst,$val)
+   Local $xSDL_WriteLE16 = DllCall($SDL,"ulong_ptr:cdecl","SDL_WriteLE16","ptr",$dst,"uint",$val)
+   Return $xSDL_WriteLE16[0]
+EndFunc
+
+Func SDL_WriteLE32($dst,$val)
+   Local $xSDL_WriteLE32 = DllCall($SDL,"ulong_ptr:cdecl","SDL_WriteLE32","ptr",$dst,"uint",$val)
+   Return $xSDL_WriteLE32[0]
+EndFunc
+
+Func SDL_WriteLE64($dst,$val)
+   Local $xSDL_WriteLE64 = DllCall($SDL,"ulong_ptr:cdecl","SDL_WriteLE64","ptr",$dst,"uint",$val)
+   Return $xSDL_WriteLE64[0]
+EndFunc
+
+Func SDL_WriteU8($dst,$val)
+   Local $xSDL_WriteU8 = DllCall($SDL,"ulong_ptr:cdecl","SDL_WriteU8","ptr",$dst,"uint",$val)
+   Return $xSDL_WriteU8[0]
+EndFunc
+
 ;Surface Functions
+Func SDL_BlitScaled($src,$xSDL_Rect,$dst,$xSDL_Rect2)
+   Local $xSDL_BlitScaled = DllCall($SDL,"int:cdecl","SDL_BlitScaled","ptr",$src,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",$dst,"ptr",DllStructGetPtr($xSDL_Rect2))
+   Return $xSDL_BlitScaled[0]
+EndFunc
+
+Func SDL_BlitSurface($src,$xSDL_Rect,$dst,$xSDL_Rect2)
+   Local $xSDL_BlitSurface = DllCall($SDL,"int:cdecl","SDL_BlitSurface","ptr",$src,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",$dst,"ptr",DllStructGetPtr($xSDL_Rect2))
+   Return $xSDL_BlitSurface[0]
+EndFunc
+
+Func SDL_ConvertPixels($w,$h,$mat,$src,$pit,$dst,$dst2,$pit2)
+   Local $xSDL_ConvertPixels = DllCall($SDL,"int:cdecl","SDL_ConvertPixels","int",$w,"int",$h,"uint",$mat,"ptr",$src,"int",$pit,"uint",$dst,"ptr",$dst2,"int",$pit2)
+   Return $xSDL_ConvertPixels[0]
+EndFunc
+
+Func SDL_ConvertSurface($src,$fmt,$flags)
+   Local $xSDL_ConvertSurface = DllCall($SDL,"ptr:cdecl","SDL_ConvertSurface","ptr",$src,"ptr",$fmt,"uint",$flags)
+   Return $xSDL_ConvertSurface[0]
+EndFunc
+
+Func SDL_ConvertSurfaceFormat($src,$pix,$flags)
+   Local $xSDL_ConvertSurfaceFormat = DllCall($SDL,"ptr:cdecl","SDL_ConvertSurfaceFormat","ptr",$src,"uint",$pix,"uint",$flags)
+   Return $xSDL_ConvertSurfaceFormat[0]
+EndFunc
+
+Func SDL_CreateRGBSurface($flags,$w,$h,$d,$rm,$gm,$bm,$am)
+   Local $xSDL_CreateRGBSurface = DllCall($SDL,"ptr:cdecl","SDL_CreateRGBSurface","uint",$flags,"int",$w,"int",$h,"int",$d,"uint",$rm,"uint",$gm,"uint",$bm,"uint",$am)
+   Return $xSDL_CreateRGBSurface[0]
+EndFunc
+
+Func SDL_CreateRGBSurfaceFrom($pix,$w,$h,$d,$rm,$gm,$bm,$am)
+   Local $xSDL_CreateRGBSurfaceFrom = DllCall($SDL,"ptr:cdecl","SDL_CreateRGBSurfaceFrom","ptr",$pix,"int",$w,"int",$h,"int",$d,"uint",$rm,"uint",$gm,"uint",$bm,"uint",$am)
+   Return $xSDL_CreateRGBSurfaceFrom[0]
+EndFunc
+
+Func SDL_CreateRGBSurfaceWithFormat($flags,$w,$h,$d,$mat)
+   Local $xSDL_CreateRGBSurfaceWithFormat = DllCall($SDL,"ptr:cdecl","SDL_CreateRGBSurfaceWithFormat","uint",$flags,"int",$w,"int",$h,"int",$d,"uint",$mat)
+   Return $xSDL_CreateRGBSurfaceWithFormat[0]
+EndFunc
+
+Func SDL_CreateRGBSurfaceWithFormatFrom($pix,$w,$h,$d,$pit,$mat)
+   Local $xSDL_CreateRGBSurfaceWithFormatFrom = DllCall($SDL,"ptr:cdecl","SDL_CreateRGBSurfaceWithFormatFrom","ptr",$pix,"int",$w,"int",$h,"int",$d,"int",$pit,"uint",$mat)
+   Return $xSDL_CreateRGBSurfaceWithFormatFrom[0]
+EndFunc
+
+Func SDL_FillRect($dst,$xSDL_Rect,$col)
+   Local $xSDL_FillRect = DllCall($SDL,"int:cdecl","SDL_FillRect","ptr",$dst,"ptr",DllStructGetPtr($xSDL_Rect),"uint",$col)
+   Return $xSDL_FillRect[0]
+EndFunc
+
+Func SDL_FillRects($dst,$xSDL_Rect,$count,$col)
+   Local $xSDL_FillRects = DllCall($SDL,"int:cdecl","SDL_FillRects","ptr",$dst,"ptr",DllStructGetPtr($xSDL_Rect),"int",$count,"uint",$col)
+   Return $xSDL_FillRects[0]
+EndFunc
+
+Func SDL_FreeSurface($surf)
+   Local $xSDL_FreeSurface = DllCall($SDL,"none","SDL_FreeSurface","ptr",$surf)
+   Return $xSDL_FreeSurface[0]
+EndFunc
+
+Func SDL_GetClipRect($surf,$xSDL_Rect)
+   Local $xSDL_GetClipRect = DllCall($SDL,"none","SDL_GetClipRect","ptr",$surf,"ptr",DllStructGetPtr($xSDL_Rect)
+   Return $xSDL_GetClipRect[0]
+EndFunc
+
+Func SDL_GetColorKey($surf,$key)
+   Local $xSDL_GetColorKey = DllCall($SDL,"int:cdecl","SDL_GetColorKey","ptr",$surf,"ptr",$key)
+   Return $xSDL_GetColorKey[0]
+EndFunc
+
+Func SDL_GetSurfaceAlphaMod($surf,$al)
+   Local $xSDL_GetSurfaceAlphaMod = DllCall($SDL,"int:cdecl","SDL_GetSurfaceAlphaMod","ptr",$surf,"ptr",$al)
+   Return $xSDL_GetSurfaceAlphaMod[0]
+EndFunc
+
+Func SDL_GetSurfaceBlendMode($surf,$blend)
+   Local $xSDL_GetSurfaceBlendMode = DllCall($SDL,"int:cdecl","SDL_GetSurfaceBlendMode","ptr",$surf,"ptr",$blend)
+   Return $xSDL_GetSurfaceBlendMode[0]
+EndFunc
+
+Func SDL_GetSurfaceColorMod($surf,$r,$g,$b)
+   Local $xSDL_GetSurfaceColorMod = DllCall($SDL,"int:cdecl","SDL_GetSurfaceColorMod","ptr",$surf,"ptr",$r,"ptr",$g,"ptr",$b)
+   Return $xSDL_GetSurfaceColorMod[0]
+EndFunc
+
+Func SDL_LoadBMP_RW($src,$xfree)
+   Local $xSDL_LoadBMP_RW = DllCall($SDL,"ptr:cdecl","SDL_LoadBMP_RW","ptr",$src,"int",$xfree)
+   Return $xSDL_LoadBMP_RW[0]
+EndFunc
+
+Func SDL_LoadBMP($file)
+   Return SDL_LoadBMP_RW(SDL_RW_FromFile($file,"rb"),1)
+EndFunc
+
+Func SDL_SaveBMP_RW($surf,$dst,$xfree)
+   Local $xSDL_SaveBMP_RW = DllCall($SDL,"int:cdecl","SDL_SaveBMP_RW","ptr",$surf,"ptr",$dst,"int",$xfree)
+   Return $xSDL_SaveBMP_RW[0]
+EndFunc
+
+Func SDL_SaveBMP($surf,$file)
+   Return SDL_SaveBMP_RW($surf,SDL_RWFromFile($file,"wb"),1)
+EndFunc
+
+Func SDL_LockSurface($surf)
+   Local $xSDL_LockSurface = DllCall($SDL,"int:cdecl","SDL_LockSurface","ptr",$surf)
+   Return $xSDL_LockSurface[0]
+EndFunc
+
+Func SDL_LowerBlit($src,$xSDL_Rect,$dst,$xSDL_Rect2)
+   Local $xSDL_LowerBlit = DllCall($SDL,"int:cdecl","SDL_LowerBlit","ptr",$surf,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",$dst,"ptr",DllStructGetPtr($xSDL_Rect2))
+   Return $xSDL_LowerBlit[0]
+EndFunc
+
+Func SDL_LowerBlitScaled($src,$xSDL_Rect,$dst,$xSDL_Rect2)
+   Local $xSDL_LowerBlitScaled = DllCall($SDL,"int:cdecl","SDL_LowerBlitScaled","ptr",$surf,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",$dst,"ptr",DllStructGetPtr($xSDL_Rect2))
+   Return $xSDL_LowerBlitScaled[0]
+EndFunc
+
+Func SDL_MUSTLOCK($surf)
+   Local $xSDL_MUSTLOCK = DllCall($SDL,"bool:cdecl","SDL_MUSTLOCK","ptr",$surf)
+   Return $xSDL_MUSTLOCK[0]
+EndFunc
+
+Func SDL_SetClipRect($surf,$xSDL_Rect)
+   Local $xSDL_SetClipRect = DllCall($SDL,"bool:cdecl","SDL_SetClipRect","ptr",$surf,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_SetClipRect[0]
+EndFunc
+
+Func SDL_SetColorKey($surf,$flag,$key)
+   Local $xSDL_SetColorKey = DllCall($SDL,"int:cdecl","SDL_SetColorKey","ptr",$surf,"int",$flag,"uint",$key)
+   Return $xSDL_SetColorKey[0]
+EndFunc
+
+Func SDL_SetSurfaceAlphaMod($surf,$al)
+   Local $xSDL_SetSurfaceAlphaMod = DllCall($SDL,"int:cdecl","SDL_SetSurfaceAlphaMod","ptr",$surf,"uint",$al)
+   Return $xSDL_SetSurfaceAlphaMod[0]
+EndFunc
+
+Func SDL_SetSurfaceBlendMode($surf,$mode)
+   Local $xSDL_SetSurfaceBlendMode = DllCall($SDL,"int:cdecl","SDL_SetSurfaceBlendMode","ptr",$surf,"ptr",$mode)
+   Return $xSDL_SetSurfaceBlendMode[0]
+EndFunc
+
+Func SDL_SetSurfaceColorMod($surf,$r,$g,$b)
+   Local $xSDL_SetSurfaceColorMod = DllCall($SDL,"int:cdecl","SDL_SetSurfaceColorMod","ptr",$surf,"uint",$r,"uint",$g,"uint",$b)
+   Return $xSDL_SetSurfaceColorMod[0]
+EndFunc
+
+Func SDL_SetSurfacePalette($surf,$pal)
+   Local $xSDL_SetSurfacePalette = DllCall($SDL,"int:cdecl","SDL_SetSurfacePalette","ptr",$surf,"ptr",$pal)
+   Return $xSDL_SetSurfacePalette[0]
+EndFunc
+
+Func SDL_SetSurfaceRLE($surf,$flag)
+   Local $xSDL_SetSurfaceRLE = DllCall($SDL,"int:cdecl","SDL_SetSurfaceRLE","ptr",$surf,"int",$flag)
+   Return $xSDL_SetSurfaceRLE[0]
+EndFunc
+
+Func SDL_UnlockSurface($surf)
+   Local $xSDL_UnlockSurface = DllCall($SDL,"none","SDL_UnlockSurface","ptr",$surf)
+   Return $xSDL_UnlockSurface[0]
+EndFunc
+
+;SYSWM Function
+;Duplicate?
+;Func SDL_GetWindowWMInfo($win,$info)
+ ;  Local $xSDL_GetWindowWMInfo = DllCall($SDL,"bool:cdecl","SDL_GetWindowWMInfo","ptr",$win,"ptr",$info)
+  ; Return $xSDL_GetWindowWMInfo[0]
+;EndFunc
+
+;Clibpoard functions
+Func SDL_GetClipboardText()
+   Local $xSDL_GetClipboardText = DllCall($SDL,"ptr:cdecl","SDL_GetClipboardText")
+   Return $xSDL_GetClipboardText[0]
+EndFunc
+
+Func SDL_HasClipboardText()
+   Local $xSDL_HasClipboardText = DllCall($SDL,"bool:cdecl","SDL_HasClipboardText")
+   Return $xSDL_HasClipboardText[0]
+EndFunc
+
+Func SDL_SetClipboardText($text)
+   Local $xSDL_SetClipboardText = DllCall($SDL,"int:cdecl","SDL_SetClipboardText","ptr",$text)
+   Return $xSDL_SetClipboardText[0]
+EndFunc
+
+;SDL Event Functions
 
 ;Get Platform
 Func SDL_GetPlatform()
