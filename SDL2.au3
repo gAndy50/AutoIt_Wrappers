@@ -2416,6 +2416,85 @@ Func SDL_WaitEventTimeout($evt,$out)
 EndFunc
 
 ;Keyboard functions
+Func SDL_GetKeyFromName($name)
+   Local $xSDL_GetKeyFromName = DllCall($SDL,"ptr:cdecl","SDL_GetKeyFromName","ptr",$name)
+   Return $xSDL_GetKeyFromName[0]
+EndFunc
+
+Func SDL_GetKeyFromScancode($code)
+   Local $xSDL_GetKeyFromScancode = DllCall($SDL,"ptr:cdecl","SDL_GetKeyFromScancode","ptr",$code)
+   Return $xSDL_GetKeyFromScancode[0]
+EndFunc
+
+Func SDL_GetKeyName($code)
+   Local $xSDL_GetKeyName = DllCall($SDL,"ptr:cdecl","SDL_GetKeyName","ptr",$code)
+   Return $xSDL_GetKeyName[0]
+EndFunc
+
+Func SDL_GetKeyboardFocus()
+   Local $xSDL_GetKeyboardFoucs = DllCall($SDL,"ptr:cdecl","SDL_GetKeyboardFocus")
+   Return $xSDL_GetKeyboardFocus[0]
+EndFunc
+
+Func SDL_GetKeyboardState($num)
+   Local $xSDL_GetKeyboardState = DllCall($SDL,"ptr:cdecl","SDL_GetKeyboardState","ptr",$num)
+   Return $xSDL_GetKeyboardState[0]
+EndFunc
+
+Func SDL_GetModState()
+   Local $xSDL_GetModState = DllCall($SDL,"ptr:cdecl","SDL_GetModState")
+   Return $xSDL_GetModState[0]
+EndFunc
+
+Func SDL_GetScancodeFromKey($key)
+   Local $xSDL_GetScancodeFromKey = DllCall($SDL,"ptr:cdecl","SDL_GetScancodeFromKey","ptr",$key)
+   Return $xSDL_GetScancodeFromKey[0]
+EndFunc
+
+Func SDL_GetScancodeFromName($name)
+   Local $xSDL_GetScancodeFromName = DllCall($SDL,"ptr:cdecl","SDL_GetScancodeFromName","ptr",$name)
+   Return $xSDL_GetScancodeFromName[0]
+EndFunc
+
+Func SDL_GetScancodeName($code)
+   Local $xSDL_GetScancodeName = DllCall($SDL,"ptr:cdecl","SDL_GetScancodeName","ptr",$code)
+   Return $xSDL_GetScancodeName[0]
+EndFunc
+
+Func SDL_HasScreenKeyboardSupport()
+   Local $xSDL_HasScreenKeyboardSupport = DllCall($SDL,"bool:cdecl","SDL_HasScreenKeyboardSupport")
+   Return $xSDL_HasScreenKeyboardSupport[0]
+EndFunc
+
+Func SDL_IsScreenKeyboardShown($win)
+   Local $xSDL_IsScreenKeyboardShown = DllCall($SDL,"bool:cdecl","SDL_IsScreenKeyboardShown","ptr",$win)
+   Return $xSDL_IsScreenKeyboardShown[0]
+EndFunc
+
+Func SDL_IsTextInputActive()
+   Local $xSDL_IsTextInputActive = DllCall($SDL,"bool:cdecl","SDL_IsTextInputActive")
+   Return $xSDL_IsTextInputActive[0]
+EndFunc
+
+Func SDL_SetModState($mod)
+   Local $xSDL_SetModState = DllCall($SDL,"none","SDL_SetModState","ptr",$mod)
+   Return $xSDL_SetModState[0]
+EndFunc
+
+Func SDL_SetTextInputRect($xSDL_Rect)
+   Local $xSDL_SetTextInputRect = DllCall($SDL,"none","SDL_SetTextInputRect","ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_SetTextInputRect[0]
+EndFunc
+
+Func SDL_StartTextInput()
+   Local $xSDL_StartTextInput = DllCall($SDL,"none","SDL_StartTextInput")
+   Return $xSDL_StartTextInput[0]
+EndFunc
+
+Func SDL_StopTextInput()
+   Local $xSDL_StopTextInput = DllCall($SDL,"none","SDL_StopTextInput")
+   Return $xSDL_StopTextInput[0]
+EndFunc
 
 ;Get Platform
 Func SDL_GetPlatform()
