@@ -914,7 +914,9 @@ EndFunc
 
 ;SDL Init Functions
 Func SDL_Init($flags)
+   $SDL = DllOpen("SDL2.dll")
    Local $xSDL_Init = DllCall($SDL,"uint:cdecl","SDL_Init","uint", $flags)
+   If @error Then Return SetError(1, @error, -1)
    Return $xSDL_Init[0]
 EndFunc
 
@@ -925,15 +927,18 @@ EndFunc
 
 Func SDL_Quit()
    $xSDL_Quit = DllCall($SDL,"none","SDL_Quit")
+   ;Return $xSDL_Quit[0]
    DllClose($SDL)
 EndFunc
 
 Func SDL_QuitSubSystem($flags)
    $xSDL_QuitSubSystem = DllCall($SDL,"none","SDL_QuitSubSystem","uint",$flags)
+   Return $xSDL_QuitSubSystem[0]
 EndFunc
 
 Func SDL_SetMainReady()
    $xSDL_SetMainReady = DllCall($SDL,"none","SDL_SetMainReady","")
+   Return $xSDL_SetMainReady[0]
 EndFunc
 
 Func SDL_WasInit($flags)
@@ -948,7 +953,8 @@ EndFunc
 
 ;SDL Window Funcs
 Func SDL_CreateWindow($title,$x,$y,$w,$h,$flags)
-   Local $xSDL_CreateWindow = DllCall($SDL,"ptr:cdecl","SDL_CreateWindow","ptr",$title,"int",$x,"int",$y,"int",$w,"int",$h,"uint",$flags)
+   Local $xSDL_CreateWindow = DllCall($SDL,"ptr:cdecl","SDL_CreateWindow","str",$title,"int",$x,"int",$y,"int",$w,"int",$h,"uint",$flags)
+   If @error Then Return SetError(1, @error, -1)
    Return $xSDL_CreateWindow[0]
 EndFunc
 
@@ -964,6 +970,7 @@ EndFunc
 
 Func SDL_DestroyWindow($win)
    $xSDL_DestroyWindow = DllCall($SDL,"none","SDL_DestroyWindow","ptr",$win)
+   If @error Then Return SetError(1, @error, -1)
    Return $xSDL_DestroyWindow[0]
 EndFunc
 
@@ -2814,6 +2821,194 @@ Func SDL_IsGameController($joy)
    Return $xSDL_IsGC[0]
 EndFunc
 
+;Force Feedback Functions
+
+Func SDL_HapticClose($hap)
+   Local $xSDL_HapticClose = DllCall($SDL,"none","SDL_HapticClose","ptr",$hap)
+   Return $xSDL_HapticClose[0]
+EndFunc
+
+Func SDL_HapticDestroyEffect($hap,$eft)
+   Local $xSDL_HapticDestroyEffect = DllCall($SDL,"none","SDL_HapticDestroyEffect","ptr",$hap,"int",$eft)
+   Return $xSDL_HapticDestroyEffect[0]
+EndFunc
+
+Func SDL_HapticEffectSupported($hap,$eft)
+   Local $xSDL_HapticEffectSupported = DllCall($SDL,"int:cdecl","SDL_HapticEffectSupported","ptr",$hap,"ptr",$eft)
+   Return $xSDL_HapticEffectSupported[0]
+EndFunc
+
+Func SDL_HapticGetEffectStatus($hap,$eft)
+   Local $xSDL_HapticGetEffectStatus = DllCall($SDL,"int:cdecl","SDL_HapticGetEffectStatus","ptr",$hap,"int",$eft)
+   Return $xSDL_HapticGetEffectStatus[0]
+EndFunc
+
+Func SDL_HapticIndex($hap)
+   Local $xSDL_HapticIndex = DllCall($SDL,"int:cdecl","SDL_HapticIndex","ptr",$hap)
+   Return $xSDL_HapticIndex[0]
+EndFunc
+
+Func SDL_HapticName($idx)
+   Local $xSDL_HapticName = DllCall($SDL,"ptr:cdecl","SDL_HapticName","int",$idx)
+   Return $xSDL_HapticName[0]
+EndFunc
+
+Func SDL_HapticNewEffect($hap,$eft)
+   Local $xSDL_HapticNewEffect = DllCall($SDL,"int:cdecl","SDL_HapticNewEffect","ptr",$hap,"ptr",$eft)
+   Return $xSDL_HapticNewEffect[0]
+EndFunc
+
+Func SDL_HapticNumAxes($hap)
+   Local $xSDL_HapticNumAxes = DllCall($SDL,"int:cdecl","SDL_HapticNumAxes","ptr",$hap)
+   Return $xSDL_HapticNumAxes[0]
+EndFunc
+
+Func SDL_HapticNumEffects($hap)
+   Local $xSDL_HapticNumEffects = DllCall($SDL,"int:cdecl","SDL_HapticNumEffects","ptr",$hap)
+   Return $xSDL_HapticNumEffects[0]
+EndFunc
+
+Func SDL_HapticNumEffectsPlaying($hap)
+   Local $xSDL_HapticNumEffectsPlaying = DllCall($SDL,"int:cdecl","SDL_HapticNumEffectsPlaying","ptr",$hap)
+   Return $xSDL_HapticNumEffectsPlaying[0]
+EndFunc
+
+Func SDL_HapticOpen($idx)
+   Local $xSDL_HapticOpen = DllCall($SDL,"ptr:cdecl","SDL_HapticOpen","int",$idx)
+   Return $xSDL_HapticOpen[0]
+EndFunc
+
+Func SD_HapticOpenFromJoystick($joy)
+   Local $xSDL_HapticOpenFromJoystick = DllCall($SDL,"ptr:cdecl","SDL_HapticOpenFromJoystick","ptr",$joy)
+   Return $xSDL_HapticOpenFromJoystick[0]
+EndFunc
+
+Func SDL_HapticOpenFromMouse()
+   Local $xSDL_HapticOpenFromMouse = DllCall($SDL,"ptr:cdecl","SDL_HapticOpenFromMouse")
+   Return $xSDL_HapticOpenFromMouse[0]
+EndFunc
+
+Func SDL_HapticOpened($idx)
+   Local $xSDL_HapticOpened = DllCall($SDL,"int:cdecl","SDL_HapticOpened","int",$idx)
+   Return $xSDL_HapticOpened[0]
+EndFunc
+
+Func SDL_HapticPause($hap)
+   Local $xSDL_HapticPause = DllCall($SDL,"int:cdecl","SDL_HapticPause","ptr",$hap)
+   Return $xSDL_HapticPause[0]
+EndFunc
+
+Func SDL_HapticQuery($hap)
+   Local $xSDL_HapticQuery = DllCall($SDL,"uint:cdecl","SDL_HapticQuery","ptr",$hap)
+   Return $xSDL_HapticQuery[0]
+EndFunc
+
+Func SDL_HapticRumbleInit($hap)
+   Local $xSDL_HapticRumbleInit = DllCall($SDL,"int:cdecl","SDL_HapticRumbleInit","ptr",$hap)
+   Return $xSDL_HapticRumbleInit[0]
+EndFunc
+
+Func SDL_HapticRumblePlay($hap,$str,$len)
+   Local $xSDL_HapticRumblePlay = DllCall($SDL,"int:cdecl","SDL_HapticRumblePlay","ptr",$hap,"float",$str,"uint",$len)
+   Return $xSDL_HapticRumblePlay[0]
+EndFunc
+
+Func SDL_HapticRumbleStop($hap)
+   Local $xSDL_HapticRumbleStop = DllCall($SDL,"int:cdecl","SDL_HapticRumbleStop","ptr",$hap)
+   Return $xSDL_HapticRumbleStop[0]
+EndFunc
+
+Func SDL_HapticRumbleSupported($hap)
+   Local $xSDL_HapticRumbleSupported = DllCall($SDL,"int:cdecl","SDL_HapticRumbleSupported","ptr",$hap)
+   Return $xSDL_HapticRumbleSupported[0]
+EndFunc
+
+Func SDL_HapticRunEffect($hap,$eft,$it)
+   Local $xSDL_HapticRunEffect = DllCall($SDL,"int:cdecl","SDL_HapticRunEffect","ptr",$hap,"int",$eft,"uint",$it)
+   Return $xSDL_HapticRunEffect[0]
+EndFunc
+
+Func SDL_HapticSetAutocenter($hap,$at)
+   Local $xSDL_HapticSetAutocenter = DllCall($SDL,"int:cdecl","SDL_HapticSetAutocenter","ptr",$hap,"int",$at)
+   Return $xSDL_HapticSetAutocenter[0]
+EndFunc
+
+Func SDL_HapticSetGain($hap,$gn)
+   Local $xSDL_HapticSetGain = DllCall($SDL,"int:cdecl","SDL_HapticSetGain","ptr",$hap,"int",$gn)
+   Return $xSDL_HapticSetGain[0]
+EndFunc
+
+Func SDL_HapticStopAll($hap)
+   Local $xSDL_HapticStopAll = DllCall($SDL,"int:cdecl","SDL_HapticStopAll","ptr",$hap)
+   Return $xSDL_HapticStopAll[0]
+EndFunc
+
+Func SDL_HapticStopEffect($hap,$eft)
+   Local $xSDL_HapticStopEffect = DllCall($SDL,"int:cdecl","SDL_HapticStopEffect","ptr",$hap,"int",$eft)
+   Return $xSDL_HapticStopEffect[0]
+EndFunc
+
+Func SDL_HapticUnpause($hap)
+   Local $xSDL_HapticUnpause = DllCall($SDL,"int:cdecl","SDL_HapticUnpause","ptr",$hap)
+   Return $xSDL_HapticUnpause[0]
+EndFunc
+
+Func SDL_HapticUpdateEffect($hap,$eft,$dat)
+   Local $xSDL_HapticUpdateEffect = DllCall($SDL,"int:cdecl","SDL_HapticUpdateEffect","ptr",$hap,"int",$eft,"ptr",$dat)
+   Return $xSDL_HapticUpdateEffect[0]
+EndFunc
+
+Func SDL_JoystickIsHaptic($joy)
+   Local $xSDL_JoystickIsHaptic = DllCall($SDL,"int:cdecl","SDL_JoystickIsHaptic","ptr",$joy)
+   Return $xSDL_JoystickIsHaptic[0]
+EndFunc
+
+Func SDL_MouseIsHaptic()
+   Local $xSDL_MouseIsHaptic = DllCall($SDL,"int:cdecl","SDL_MouseIsHaptic")
+   Return $xSDL_MouseIsHaptic[0]
+EndFunc
+
+Func SDL_NumHaptics()
+   Local $xSDL_NumHaptics = DllCall($SDL,"int:cdecl","SDL_NumHaptics")
+   Return $xSDL_NumHaptics[0]
+EndFunc
+
+;Timer Functions
+Func SDL_AddTimer($i,$cb,$par)
+   Local $xSDL_AddTimer = DllCall($SDL,"ptr:cdecl","SDL_AddTimer","uint",$i,"ptr",$cb,"ptr",$par)
+   Return $xSDL_AddTimer[0]
+EndFunc
+
+Func SDL_Delay($ms)
+   Local $xSDL_Delay = DllCall($SDL,"none","SDL_Delay","uint",$ms)
+   Return $xSDL_Delay[0]
+EndFunc
+
+Func SDL_GetPerformanceCounter()
+   Local $xSDL_GetPerformanceCounter = DllCall($SDL,"uint:cdecl","SDL_GetPerformanceCounter")
+   Return $xSDL_GetPerformanceCounter[0]
+EndFunc
+
+Func SDL_GetPerformanceFrequency()
+   Local $xSDL_GetPerformanceFrequency = DllCall($SDL,"uint:cdecl","SDL_GetPerformanceFrequency")
+   Return $xSDL_GetPerformanceFrequency[0]
+EndFunc
+
+Func SDL_GetTicks()
+   Local $xSDL_GetTicks = DllCall($SDL,"uint:cdecl","SDL_GetTicks")
+   Return $xSDL_GetTicks[0]
+EndFunc
+
+Func SDL_RemoveTimer($id)
+   Local $xSDL_RemoveTimer = DllCall($SDL,"bool:cdecl","SDL_RemoveTimer","ptr",$id)
+   Return $xSDL_RemoveTimer[0]
+EndFunc
+
+Func SDL_TICKS_PASSED($a,$b)
+   Local $xSDL_TICKS_PASSED = DllCall($SDL,"none","SDL_TICKS_PASSED","ptr",$a,"ptr",$b)
+   Return $xSDL_TICKS_PASSED[0]
+EndFunc
+
 ;Get Platform
 Func SDL_GetPlatform()
    Local $xSDL_GetPlatform = DllCall($SDL,"ptr:cdecl","SDL_GetPlatform")
@@ -2897,4 +3092,4 @@ Func SDL_HasSSE42()
 EndFunc
 
 ;Cleanup
-DllClose($SDL)
+;DllClose($SDL)
