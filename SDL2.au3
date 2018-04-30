@@ -2698,6 +2698,122 @@ Func SDL_NumJoysticks()
    Return $xSDL_NumJoysticks[0]
 EndFunc
 
+;GameController Functions
+Func SDL_GameControllerAddMapping($map)
+   Local $xSDL_GameControllerAddMapping = DllCall($SDL,"int:cdecl","SDL_GameControllerAddMapping","ptr",$map)
+   Return $xSDL_GameControllerAddMapping[0]
+EndFunc
+
+Func SDL_GameControllerAddMappingsFromFile($file)
+   Local $xSDL_GCAddMappingsFromFile = DllCall($SDL,"int:cdecl","SDL_GameControllerAddMappingsFromFile","ptr",$file)
+   Return $xSDL_GCAddMappingsFromFile[0]
+EndFunc
+
+Func SDL_GameControllerAddMappingsFromRW($src,$x)
+   Local $xSDL_GCAddMappingsFromRW = DllCall($SDL,"int:cdecl","SDL_GameControllerAddMappingsFromRW","ptr",$src,"int",$x)
+   Return $xSDL_GCAddMappingsFromRW[0]
+EndFunc
+
+Func SDL_GameControllerClose($gc)
+   Local $xSDL_GCClose = DllCall($SDL,"none","SDL_GameControllerClose","ptr",$gc)
+   Return $xSDL_GCClose[0]
+EndFunc
+
+Func SDL_GameControllerEventState($st)
+   Local $xSDL_GCEventState = DllCall($SDL,"int:cdecl","SDL_GameControllerEventState","int",$st)
+   Return $xSDL_GCEventState[0]
+EndFunc
+
+Func SDL_GameControllerFromInstanceID($gc)
+   Local $xSDL_GCFromInstanceID = DllCall($SDL,"ptr:cdecl","SDL_GameControllerFromInstanceID","ptr",$gc)
+   Return $xSDL_GCFromInstanceID[0]
+EndFunc
+
+Func SDL_GameControllerGetAttached($gc)
+   Local $xSDL_GameControllerGetAttached = DllCall($SDL,"bool:cdecl","SDL_GameControllerGetAttached","ptr",$gc)
+   Return $xSDL_GameControllerGetAttached[0]
+EndFunc
+
+Func SDL_GameControllerGetAxis($gc,$ax)
+   Local $xSDL_GCGetAxis = DllCall($SDL,"short:cdecl","SDL_GameControllerGetAxis","ptr",$gc,"ptr",$ax)
+   Return $xSDL_GCGetAxis[0]
+EndFunc
+
+Func SDL_GameControllerGetAxisFromString($sz)
+   Local $xSDL_GCGetAxisFromString = DllCall($SDL,"ptr:cdecl","SDL_GameControllerGetAxisFromString","ptr",$sz)
+   Return $xSDL_GCGetAxisFromString[0]
+EndFunc
+
+Func SDL_GameControllerGetBindForAxis($gc,$ax)
+   Local $xSDL_GCGetBindForAxis = DllCall($SDL,"ptr:cdecl","SDL_GameControllerGetBindForAxis","ptr",$gc,"ptr",$ax)
+   Return $xSDL_GCGetBindForAxis[0]
+EndFunc
+
+Func SDL_GameControllerButtonBind($gc,$btn)
+   Local $xSDL_GCButtonBind = DllCall($SDL,"ptr:cdecl","SDL_GameControllerButtonBind","ptr",$gc,"ptr",$btn)
+   Return $xSDL_GCButtonBind[0]
+EndFunc
+
+Func SDL_GameControllerGetButton($gc,$btn)
+   Local $xSDL_GCGetButton = DllCall($SDL,"uint:cdecl","SDL_GameControllerGetButton","ptr",$gc,"ptr",$btn)
+   Return $xSDL_GCGetButton[0]
+EndFunc
+
+Func SDL_GameControllerGetButtonFromString($sz)
+   Local $xSDL_GCGetButtonFromString = DllCall($SDL,"ptr:cdecl","SDL_GameControllerGetButtonFromString","ptr",$sz)
+   Return $xSDL_GCGetButtonFromString[0]
+EndFunc
+
+Func SDL_GameControllerGetJoystick($gc)
+   Local $xSDL_GCGetJoystick = DllCall($SDL,"ptr:cdecl","SDL_GameControllerGetJoystick","ptr",$gc)
+   Return $xSDL_GCGetJoystick[0]
+EndFunc
+
+Func SDL_GameControllerGetStringForAxis($sz)
+   Local $xSDL_GCGetStringForAxis = DllCall($SDL,"ptr:cdecl","SDL_GameControllerGetStringForAxis","ptr",$sz)
+   Return $xSDL_GCGetStringForAxis[0]
+EndFunc
+
+Func SDL_GameControllerGetStringForButton($sz)
+   Local $xSDL_GCGetStringForButton = DllCall($SDL,"ptr:cdecl","SDL_GameControllerGetStringForButton","ptr",$sz)
+   Return $xSDL_GCGetStringForButton[0]
+EndFunc
+
+Func SDL_GameControllerMapping($gc)
+   Local $xSDL_GCMapping = DllCall($SDL,"ptr:cdecl","SDL_GameControllerMapping","ptr",$gc)
+   Return $xSDL_GCMapping[0]
+EndFunc
+
+Func SDL_GameControllerMappingForGUID($joy)
+   Local $xSDL_GCMappingForGUID = DllCall($SDL,"ptr:cdecl","SDL_GameControllerMappingForGUID","ptr",$joy)
+   Return $xSDL_GCMappingForGUID[0]
+EndFunc
+
+Func SDL_GameControllerName($gc)
+   Local $xSDL_GameControllerName = DllCall($SDL,"ptr:cdecl","SDL_GameControllerName","ptr",$gc)
+   Return $xSDL_GameControllerName[0]
+EndFunc
+
+Func SDL_GameControllerNameForIndex($joy)
+   Local $xSDL_GameControllerNameForIndex = DllCall($SDL,"ptr:cdecl","SDL_GameControllerNameForIndex","int",$joy)
+   Return $xSDL_GameControllerNameForIndex[0]
+EndFunc
+
+Func SDL_GameControllerOpen($joy)
+   Local $xSDL_GCOpen = DllCall($SDL,"ptr:cdecl","SDL_GameControllerOpen","int",$joy)
+   Return $xSDL_GCOpen[0]
+EndFunc
+
+Func SDL_GameControllerUpdate()
+   Local $xSDL_GCUpdate = DllCall($SDL,"none","SDL_GameControllerUpdate")
+   Return $xSDL_GCUpdate[0]
+EndFunc
+
+Func SDL_IsGameController($joy)
+   Local $xSDL_IsGC = DllCall($SDL,"bool:cdecl","SDL_IsGameController","int",$joy)
+   Return $xSDL_IsGC[0]
+EndFunc
+
 ;Get Platform
 Func SDL_GetPlatform()
    Local $xSDL_GetPlatform = DllCall($SDL,"ptr:cdecl","SDL_GetPlatform")
