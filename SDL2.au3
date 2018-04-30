@@ -2973,6 +2973,158 @@ Func SDL_NumHaptics()
    Return $xSDL_NumHaptics[0]
 EndFunc
 
+;Audio functions
+
+Func SDL_AudioInit($name)
+   Local $xSDL_AudioInit = DllCall($SDL,"int:cdecl","SDL_AudioInit","ptr",$name)
+   Return $xSDL_AudioInit[0]
+EndFunc
+
+Func SDL_AudioQuit()
+   Local $xSDL_AudioQuit = DllCall($SDL,"none","SDL_AudioQuit")
+   Return $xSDL_AudioQuit[0]
+EndFunc
+
+Func SDL_BuildAudioCVT($cvt,$src,$src_chan,$src_rate,$dst,$dst_chan,$dst_rat)
+   Local $xSDL_BuildAudioCVT = DllCall($SDL,"int:cdecl","SDL_BuildAudioCVT","ptr",$cvt,"ptr",$src,"uint",$src_chan,"int",$src_rate,"ptr",$dst,"uint",$dst_chan,"int",$dst_rat)
+   Return $xSDL_BuildAudioCVT[0]
+EndFunc
+
+Func SD_ClearQueuedAudio($dev)
+   Local $xSDL_ClearQueuedAudio = DllCall($SDL,"none","SDL_ClearQueuedAudio","ptr",$dev)
+   Return $xSDL_ClearQueuedAudio[0]
+EndFunc
+
+Func SDL_CloseAudio()
+   Local $xSDL_CloseAudio = DllCall($SDL,"none","SDL_CloseAudio")
+   Return $xSDL_CloseAudio[0]
+EndFunc
+
+Func SDL_CloseAudioDevice($dev)
+   Local $xSDL_CloseAudioDevice = DllCall($SDL,"none","SDL_CloseAudioDevice","ptr",$dev)
+   Return $xSDL_CloseAudioDevice[0]
+EndFunc
+
+Func SDL_ConvertAudio($cvt)
+   Local $xSDL_ConvertAudio = DllCall($SDL,"int:cdecl","SDL_ConvertAudio","ptr",$cvt)
+   Return $xSDL_ConvertAudio[0]
+EndFunc
+
+Func SDL_DequeueAudio($dev,$dat,$len)
+   Local $xSDL_DequeueAudio = DllCall($SDL,"uint:cdecl","SDL_DequeueAudio","ptr",$dev,"ptr",$dat,"uint",$len)
+   Return $xSDL_DequeueAudio[0]
+EndFunc
+
+Func SDL_FreeWAV($buf)
+   Local $xSDL_FreeWAV = DllCall($SDL,"none","SDL_FreeWAV","ptr",$buf)
+   Return $xSDL_FreeWAV[0]
+EndFunc
+
+Func SDL_GetAudioDeviceName($idx,$iscap)
+   Local $xSDL_GetAudioDeviceName = DllCall($SDL,"ptr:cdecl","SDL_GetAudioDeviceName","int",$idx,"int",$iscap)
+   Return $xSDL_GetAudioDeviceName[0]
+EndFunc
+
+Func SDL_GetAudioDeviceStatus($aud)
+   Local $xSDL_GetAudioDeviceStatus = DllCall($SDL,"ptr:cdecl","SDL_GetAudioDeviceStatus","ptr",$aud)
+   Return $xSDL_GetAudioDeviceStatus[0]
+EndFunc
+
+Func SDL_GetAudioDriver($idx)
+   Local $xSDL_GetAudioDriver = DllCall($SDL,"ptr:cdecl","SDL_GetAudioDriver","int",$idx)
+   Return $xSDL_GetAudioDriver[0]
+EndFunc
+
+Func SDL_GetAudioStatus()
+   Local $xSDL_GetAudioStatus = DllCall($SDL,"ptr:cdecl","SDL_GetAudioStatus")
+   Return $xSDL_GetAudioStatus[0]
+EndFunc
+
+Func SDL_GetCurrentAudioDriver()
+   Local $xSDL_GetCurrentAudioDriver = DllCall($SDL,"ptr:cdecl","SDL_GetCurrentAudioDriver")
+   Return $xSDL_GetCurrentAudioDriver[0]
+EndFunc
+
+Func SDL_GetNumAudioDevices($iscap)
+   Local $xSDL_GetNumAudioDevices = DllCall($SDL,"int:cdecl","SDL_GetNumAudioDevices","int",$iscap)
+   Return $xSDL_GetNumAudioDevices[0]
+EndFunc
+
+Func SDL_GetNumAudioDrivers()
+   Local $xSDL_GetNumAudioDrivers = DllCall($SDL,"int:cdecl","SDL_GetNumAudioDrivers")
+   Return $xSDL_GetNumAudioDrivers[0]
+EndFunc
+
+Func SDL_GetQueuedAudioSize($dev)
+   Local $xSDL_GetQueuedAudioSize = DllCall($SDL,"uint:cdecl","SDL_GetQueuedAudioSize","ptr",$dev)
+   Return $xSDL_GetQueuedAudioSize[0]
+EndFunc
+
+Func SDL_LoadWAV($file,$spc,$buf,$len)
+   Local $xSDL_LoadWAV = DllCall($SDL,"ptr:cdecl","SDL_LoadWAV",SDL_RWFromFile($file,"rb"),1,"ptr",$spc,"ptr",$buf,"ptr",$len)
+   Return $xSDL_LoadWAV[0]
+EndFunc
+
+Func SDL_LoadWAV_RW($src,$xfree,$spec,$buf,$len)
+   Local $xSDL_LoadWAV_RW = DllCall($SDL,"ptr:cdecl","SDL_LoadWAV_RW","ptr",$src,"int",$xfree,"ptr",$spec,"ptr",$buf,"ptr",$len)
+   Return $xSDL_LoadWAV_RW[0]
+EndFunc
+
+Func SDL_LockAudio()
+   Local $xSDL_LockAudio = DllCall($SDL,"none","SDL_LockAudio")
+   Return $xSDL_LockAudio[0]
+EndFunc
+
+Func SDL_LockAudioDevice($aud)
+   Local $xSDL_LockAudioDevice = DllCall($SDL,"none","SDL_LockAudioDevice","ptr",$aud)
+   Return $xSDL_LockAudioDevice[0]
+EndFunc
+
+Func SDL_MixAudio($dst,$src,$len,$vol)
+   Local $xSDL_MixAudio = DllCall($SDL,"none","SDL_MixAudio","ptr",$dst,"ptr",$src,"uint",$len,"int",$vol)
+   Return $xSDL_MixAudio[0]
+EndFunc
+
+Func SDL_MixAudioFormat($dst,$src,$mat,$len,$vol)
+   Local $xSDL_MixAudioFormat = DllCall($SDL,"none","SDL_MixAudioFormat","ptr",$dst,"ptr",$src,"ptr",$mat,"uint",$len,"int",$vol)
+   Return $xSDL_MixAudioFormat[0]
+EndFunc
+
+Func SDL_OpenAudio($des,$obt)
+   Local $xSDL_OpenAudio = DllCall($SDL,"int:cdecl","SDL_OpenAudio","ptr",$des,"ptr",$obt)
+   Return $xSDL_OpenAudio[0]
+EndFunc
+
+Func SDL_OpenAudioDevice($dev,$iscap,$des,$obt,$all)
+   Local $xSDL_OpenAudioDevice = DllCall($SDL,"ptr:cdecl","SDL_OpenAudioDevice","ptr",$dev,"int",$iscap,"ptr",$des,"ptr",$obt,"int",$all)
+   Return $xSDL_OpenAudioDevice[0]
+EndFunc
+
+Func SDL_PauseAudio($pau)
+   Local $xSDL_PauseAudio = DllCall($SDL,"none","SDL_PauseAudio","int",$pau)
+   Return $xSDL_PauseAudio[0]
+EndFunc
+
+Func SDL_PauseAudioDevice($dev,$pau)
+   Local $xSDL_PauseAudioDevice = DllCall($SDL,"none","SDL_PauseAudioDevice","ptr",$dev,"int",$pau)
+   Return $xSDL_PauseAudioDevice[0]
+EndFunc
+
+Func SDL_QueueAudio($dev,$dat,$len)
+   Local $xSDL_QueueAudio = DllCall($SDL,"int:cdecl","SDL_QueueAudio","ptr",$dev,"ptr",$dat,"int",$len)
+   Return $xSDL_QueueAudio[0]
+EndFunc
+
+Func SDL_UnlockAudio()
+   Local $xSDL_UnlockAudio = DllCall($SDL,"none","SDL_UnlockAudio")
+   Return $xSDL_UnlockAudio[0]
+EndFunc
+
+Func SDL_UnlockAudioDevice($dev)
+   Local $xSDL_UnlockAudioDevice = DllCall($SDL,"none","SDL_UnlockAudioDevice","ptr",$dev)
+   Return $xSDL_UnlockAudioDevice[0]
+EndFunc
+
 ;Timer Functions
 Func SDL_AddTimer($i,$cb,$par)
    Local $xSDL_AddTimer = DllCall($SDL,"ptr:cdecl","SDL_AddTimer","uint",$i,"ptr",$cb,"ptr",$par)
