@@ -927,7 +927,7 @@ EndFunc
 
 Func SDL_Quit()
    $xSDL_Quit = DllCall($SDL,"none","SDL_Quit")
-   ;Return $xSDL_Quit[0]
+   Return $xSDL_Quit[0]
    DllClose($SDL)
 EndFunc
 
@@ -3123,6 +3123,148 @@ EndFunc
 Func SDL_UnlockAudioDevice($dev)
    Local $xSDL_UnlockAudioDevice = DllCall($SDL,"none","SDL_UnlockAudioDevice","ptr",$dev)
    Return $xSDL_UnlockAudioDevice[0]
+EndFunc
+
+;Thread functions
+Func SDL_CreateThread($fn,$nam,$dat)
+   Local $xSDL_CreateThread = DllCall($SDL,"ptr:cdecl","SDL_CreateThread","ptr",$fn,"ptr",$nam,"ptr",$dar)
+   Return $xSDL_CreateThread[0]
+EndFunc
+
+Func SDL_DetachThread($thr)
+   Local $xSDL_DetachThread = DllCall($SDL,"none","SDL_DetachThread","ptr",$thr)
+   Return $xSDL_DetachThread[0]
+EndFunc
+
+Func SDL_GetThreadID($thr)
+   Local $xSDL_GetThreadID = DllCall($SDL,"ptr:cdecl","SDL_GetThreadID","ptr",$thr)
+   Return $xSDL_GetThreadID[0]
+EndFunc
+
+Func SDL_GetThreadName($thr)
+   Local $xSDL_GetThreadName = DllCall($SDL,"ptr:cdecl","SDL_GetThreadName","ptr",$thr)
+   Return $xSDL_GetThreadName[0]
+EndFunc
+
+Func SDL_SetThreadPriority($pri)
+   Local $xSDL_SetThreadPriority = DllCall($SDL,"int:cdecl","SDL_SetThreadPriority","ptr",$pri)
+   Return $xSDL_SetThreadPriority[0]
+EndFunc
+
+Func SDL_TLSCreate()
+   Local $xSDL_TLSCreate = DllCall($SDL,"ptr:cdecl","SDL_TLSCreate")
+   Return $xSDL_TLSCreate[0]
+EndFunc
+
+Func SDL_TLSGet($id)
+   Local $xSDL_TLSGet = DllCall($SDL,"ptr:cdecl","SDL_TLSGet","ptr",$id)
+   Return $xSDL_TLSGet[0]
+EndFunc
+
+Func SDL_TLSSet($id,$val,$des)
+   Local $xSDL_TLSSet = DllCall($SDL,"int:cdecl","SDL_TLSSet","ptr",$id,"ptr",$val,"ptr",$des)
+   Return $xSDL_TLSSet[0]
+EndFunc
+
+Func SDL_ThreadID()
+   Local $xSDL_ThreadID = DllCall($SDL,"ptr:cdecl","SDL_ThreadID")
+   Return $xSDL_ThreadID[0]
+EndFunc
+
+Func SDL_WaitThread($thr,$st)
+   Local $xSDL_WaitThread = DllCall($SDL,"none","SDL_WaitThread","ptr",$thr,"ptr",$st)
+   Return $xSDL_WaitThread[0]
+EndFunc
+
+;Mutex functions
+Func SDL_CondBroadcast($con)
+   Local $xSDL_CondBroadcast = DllCall($SDL,"int:cdecl","SDL_CondBroadcast","ptr",$con)
+   Return $xSDL_CondBroadcast[0]
+EndFunc
+
+Func SDL_CondSignal($con)
+   Local $xSDL_CondSignal = DllCall($SDL,"int:cdecl","SDL_CondSignal","ptr",$con)
+   Return $xSDL_CondSignal[0]
+EndFunc
+
+Func SDL_CondWait($con,$mut)
+   Local $xSDL_CondWait = DllCall($SDL,"int:cdecl","SDL_CondWait","ptr",$con,"ptr",$mut)
+   Return $xSDL_CondWait[0]
+EndFunc
+
+Func SDL_CondWaitTimeout($con,$mut,$ms)
+   Local $xSDL_CondWaitTimeout = DllCall($SDL,"int:cdecl","SDL_CondWaitTimeout","ptr",$con,"ptr",$mut,"uint",$ms)
+   Return $xSDL_CondWaitTimeout[0]
+EndFunc
+
+Func SDL_CreateCond()
+   Local $xSDL_CreateCond = DllCall($SDL,"ptr:cdecl","SDL_CreateCond")
+   Return $xSDL_CreateCond[0]
+EndFunc
+
+Func SDL_CreateMutex()
+   Local $xSDL_CreateMutex = DllCall($SDL,"ptr:cdecl","SDL_CreateMutex")
+   Return $xSDL_CreateMutex[0]
+EndFunc
+
+Func SDL_CreateSemaphore($it)
+   Local $xSDL_CreateSemaphore = DllCall($SDL,"ptr:cdecl","SDL_CreateSemaphore","uint",$it)
+   Return $xSDL_CreateSemaphore[0]
+EndFunc
+
+Func SDL_DestroyCond($con)
+   Local $xSDL_DestroyCond = DllCall($SDL,"none","SDL_DestroyCond","ptr",$con)
+   Return $xSDL_DestroyCond[0]
+EndFunc
+
+Func SDL_DestroyMutex($mut)
+   Local $xSDL_DestroyMutex = DllCall($SDL,"none","SDL_DestroyMutex","ptr",$mut)
+   Return $xSDL_DestroyMutex[0]
+EndFunc
+
+Func SDL_DestroySemaphore($sem)
+   Local $xSDL_DestroySemaphore = DllCall($SDL,"none","SDL_DestroySemaphore","ptr",$sem)
+   Return $xSDL_DestroySemaphore[0]
+EndFunc
+
+Func SDL_LockMutex($mut)
+   Local $xSDL_LockMutex = DllCall($SDL,"int:cdecl","SDL_LockMutex","ptr",$mut)
+   Return $xSDL_LockMutex[0]
+EndFunc
+
+Func SDL_SemPost($sem)
+   Local $xSDL_SemPost = DllCall($SDL,"int:cdecl","SDL_SemPost","ptr",$sem)
+   Return $xSDL_SemPost[0]
+EndFunc
+
+Func SDL_SemTryWait($sem)
+   Local $xSDL_SemTryWait = DllCall($SDL,"int:cdecl","SDL_SemTryWait","ptr",$sem)
+   Return $xSDL_SemTryWait[0]
+EndFunc
+
+Func SDL_SemValue($sem)
+   Local $xSDL_SemValue = DllCall($SDL,"uint:cdecl","SDL_SemValue","ptr",$sem)
+   Return $xSDL_SemValue[0]
+EndFunc
+
+Func SDL_SemWait($sem)
+   Local $xSDL_SemWait = DllCall($SDL,"int:cdecl","SDL_SemWait","ptr",$sem)
+   Return $xSDL_SemWait[0]
+EndFunc
+
+Func SDL_SemWaitTimeout($sem,$ms)
+   Local $xSDL_SemWaitTimeout = DllCall($SDL,"int:cdecl","SDL_SemWaitTimeout","ptr",$sem,"uint",$ms)
+   Return $xSDL_SemWaitTimeout[0]
+EndFunc
+
+Func SDL_TryLockMutex($mut)
+   Local $xSDL_TryLockMutex = DllCall($SDL,"int:cdecl","SDL_TryLockMutex","ptr",$mut)
+   Return $xSDL_TryLockMutex[0]
+EndFunc
+
+Func SDL_UnlockMutex($mut)
+   Local $xSDL_UnlockMutex = DllCall($SDL,"int:cdecl","SDL_UnlockMutex","ptr",$mut)
+   Return $xSDL_UnlockMutex[0]
 EndFunc
 
 ;Timer Functions
