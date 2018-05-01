@@ -895,7 +895,7 @@ Global Enum $SDL_JOYSTICK_TYPE_UNKNOWN,$SDL_JOYSTICK_TYPE_GAMECONTROLLER,$SDL_JO
 Global Enum $SDL_JOYSTICK_POWER_UNKNOWN = -1,$SDL_JOYSTICK_POWER_EMPTY,$SDL_JOYSTICK_POWER_LOW,$SDL_JOYSTICK_POWER_MEDIUM,$SDL_JOYSTICK_POWER_FULL,$SDL_JOYSTICK_POWER_WIRED,$SDL_JOYSTICK_POWER_MAX
 
 ;Open the SDL2 DLL
-Global $SDL = ("SDL2.dll")
+Global $SDL = 0 ;("SDL2.dll")
 
 ;Check to make sure SDL2 DLL is there
 if $SDL = -1 Then
@@ -914,6 +914,8 @@ EndFunc
 
 ;SDL Init Functions
 Func SDL_Init($flags)
+   $SDL = DllOpen("SDL2.dll")
+   If @error Then Return SetError(1, @error, -1)
    Local $xSDL_Init = DllCall($SDL,"int:cdecl","SDL_Init","uint", $flags)
    If @error Then Return SetError(1, @error, -1)
    Return $xSDL_Init[0]
@@ -928,6 +930,7 @@ Func SDL_Quit()
    $xSDL_Quit = DllCall($SDL,"none:cdecl","SDL_Quit")
     If @error Then Return SetError(1, @error, -1)
    Return $xSDL_Quit[0]
+   DllClose($SDL)
 EndFunc
 
 Func SDL_QuitSubSystem($flags)
@@ -3266,7 +3269,70 @@ Func SDL_UnlockMutex($mut)
 EndFunc
 
 ;Atomic functions
+Func SDL_AtomicAdd($a,$v)
+   Local $xSDL_AtomicAdd = DllCall($SDL,"int:cdecl","SDL_AtomicAdd","ptr",$a,"int",$v)
+   Return $xSDL_AtomicAdd[0]
+EndFunc
 
+Func SDL_AtomicCAS($a,$old,$new)
+   Local $xSDL_AtomicCAS = DllCall($SDL,"bool:cdecl","SDL_AtomicCAS","ptr",$a,"int",$old,"int",$new)
+   Return $xSDL_AtomicCAS[0]
+EndFunc
+
+Func SDL_AtomicCASPtr($a,$old,$new)
+   Local $xSDL_AtomicCASPtr = DllCall($SDL,"bool:cdecl","SDL_AtomicCASPtr","ptr",$a,"ptr",$old,"ptr",$new)
+   Return $xSDL_AtomicCASPtr[0]
+EndFunc
+
+Func SDL_AtomicDecRef($a)
+   Local $xSDL_AtomicDecRef = DllCall($SDL,"bool:cdecl","SDL_AtomicDecRef","ptr",$a)
+   Return $xSDL_AtomicDecRef[0]
+EndFunc
+
+Func SDL_AtomicGet($a)
+   Local $xSDL_AtomicGet = DllCall($SDL,"int:cdecl","SDL_AtomicGet","ptr",$a)
+   Return $xSDL_AtomicGet[0]
+EndFunc
+
+Func SDL_AtomicGetPtr($a)
+   Local $xSDL_AtomicGetPtr = DllCall($SDL,"ptr:cdecl","SDL_AtomicGetPtr","ptr",$a)
+   Return $xSDL_AtomicGetPtr[0]
+EndFunc
+
+Func SDL_AtomicIncRef($a)
+   Local $xSDL_AtomicIncRef = DllCall($SDL,"none:cdecl","SDL_AtomicIncRef","ptr",$a)
+   Return $xSDL_AtomicIncRef[0]
+EndFunc
+
+Func SDL_AtomicLock($lock)
+   Local $xSDL_AtomicLock = DllCall($SDL,"none:cdecl","SDL_AtomicLock","ptr",$lock)
+   Return $xSDL_AtomicLock[0]
+EndFunc
+
+Func SDL_AtomicSet($a,$v)
+   Local $xSDL_AtomicSet = DllCall($SDL,"int:cdecl","SDL_AtomicSet","ptr",$a,"int",$v)
+   Return $xSDL_AtomicSet[0]
+EndFunc
+
+Func SDL_AtomicSetPtr($a,$v)
+   Local $xSDL_AtomicSetPtr = DllCall($SDL,"ptr:cdecl","SDL_AtomicSetPtr","ptr",$a,"ptr",$v)
+   Return $xSDL_AtomicSetPtr[0]
+EndFunc
+
+Func SDL_AtomicTryLock($lock)
+   Local $xSDL_AtomicTryLock = DllCall($SDL,"bool:cdecl","SDL_AtomicTryLock","ptr",$lock)
+   Return $xSDL_AtomicTryLock[0]
+EndFunc
+
+Func SDL_AtomicUnlock($lock)
+   Local $xSDL_AtomicUnlock = DllCall($SDL,"none:cdecl","SDL_AtomicUnlock","ptr",$lock)
+   Return $xSDL_AtomicUnlock[0]
+EndFunc
+
+Func SDL_CompilerBarrier()
+   Local $xSDL_CompilerBarrier = DllCall($SDL,"none:cdecl","SDL_CompilerBarrier")
+   Return $xSDL_CompilerBarrier[0]
+EndFunc
 
 ;Timer Functions
 Func SDL_AddTimer($i,$cb,$par)
@@ -3388,4 +3454,4 @@ Func SDL_HasSSE42()
 EndFunc
 
 ;Cleanup
-DllClose($SDL)
+;DllClose($SDL)
