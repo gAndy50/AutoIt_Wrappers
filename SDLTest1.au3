@@ -2,6 +2,8 @@
 
 ;This demo shows basic system info
 
+Local $x = SDL_Init($SDL_INIT_EVERYTHING)
+
 Global $giCpuCount, $giSystemRam, $g_3dnow, $g_sse,$g_sse2,$g_sse3,$g_sse4,$g_sse42
 
 $giCpuCount = SDL_GetCPUCount()
@@ -63,3 +65,5 @@ MsgBox( _
 	StringFormat("Has SSE41 = %i", $g_sse4) & @CRLF & _
 	StringFormat("Has SSE42 = %i", $g_sse42) _
     )
+
+SDL_Quit()

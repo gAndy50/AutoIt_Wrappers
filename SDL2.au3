@@ -2977,7 +2977,7 @@ EndFunc
 ;Audio functions
 
 Func SDL_AudioInit($name)
-   Local $xSDL_AudioInit = DllCall($SDL,"int:cdecl","SDL_AudioInit","ptr",$name)
+   Local $xSDL_AudioInit = DllCall($SDL,"int:cdecl","SDL_AudioInit","str",$name)
    Return $xSDL_AudioInit[0]
 EndFunc
 
@@ -3128,7 +3128,7 @@ EndFunc
 
 ;Thread functions
 Func SDL_CreateThread($fn,$nam,$dat)
-   Local $xSDL_CreateThread = DllCall($SDL,"ptr:cdecl","SDL_CreateThread","ptr",$fn,"ptr",$nam,"ptr",$dar)
+   Local $xSDL_CreateThread = DllCall($SDL,"ptr:cdecl","SDL_CreateThread","ptr",$fn,"str",$nam,"ptr",$dar)
    Return $xSDL_CreateThread[0]
 EndFunc
 
@@ -3333,6 +3333,35 @@ Func SDL_CompilerBarrier()
    Local $xSDL_CompilerBarrier = DllCall($SDL,"none:cdecl","SDL_CompilerBarrier")
    Return $xSDL_CompilerBarrier[0]
 EndFunc
+
+;FileSystem Path Functions
+Func SDL_GetBasePath()
+   Local $xSDL_GetBasePath = DllCall($SDL,"ptr:cdecl","SDL_GetBasePath")
+   Return $xSDL_GetBasePath[0]
+EndFunc
+
+Func SDL_GetPrefPath($org,$app)
+   Local $xSDL_GetPrefPath = DllCall($SDL,"ptr:cdecl","SDL_GetPrefPath","ptr",$org,"ptr",$app)
+   Return $SDL_GetPrefPath[0]
+EndFunc
+
+;Shared Object Loading Functions
+Func SDL_LoadFunction($han,$name)
+   Local $xSDL_LoadFunction = DllCall($SDL,"ptr:cdecl","SDL_LoadFunction","ptr",$han,"str",$name)
+   Return $xSDL_LoadFunction[0]
+EndFunc
+
+Func SDL_LoadObject($file)
+   Local $xSDL_LoadObject = DllCall($SDL,"ptr:cdecl","SDL_LoadObject","str",$file)
+   Return $xSDL_LoadObject[0]
+EndFunc
+
+Func SDL_UnloadObject($han)
+   Local $xSDL_UnloadObject = DllCall($SDL,"none:cdecl","SDL_UnloadObject","ptr",$han)
+   Return $xSDL_UnloadObject[0]
+EndFunc
+
+;Byte Order and Swapping Functions
 
 ;Timer Functions
 Func SDL_AddTimer($i,$cb,$par)
