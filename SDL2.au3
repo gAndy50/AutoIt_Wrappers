@@ -3362,6 +3362,315 @@ Func SDL_UnloadObject($han)
 EndFunc
 
 ;Byte Order and Swapping Functions
+Func SDL_Swap16($x)
+   Local $xSDL_Swap16 = DllCall($SDL,"uint:cdecl","SDL_Swap16","uint",$x)
+   Return $xSDL_Swap16[0]
+EndFunc
+
+Func SDL_Swap32($x)
+   Local $xSDL_Swap32 = DllCall($SDL,"uint:cdecl","SDL_Swap32","unit",$x)
+   Return $xSDL_Swap32[0]
+EndFunc
+
+Func SDL_Swap64($x)
+   Local $xSDL_Swap64 = DllCall($SDL,"uint:cdecl","SDL_Swap64","uint",$x)
+   Return $xSDL_Swap64[0]
+EndFunc
+
+Func SDL_SwapBE16($x)
+   Local $xSDL_SwapBE16 = DllCall($SDL,"uint:cdecl","SDL_SwapBE16","uint",$x)
+   Return $xSDL_SwapBE16[0]
+EndFunc
+
+Func SDL_SwapBE32($x)
+   Local $xSDL_SwapBE32 = DllCall($SDL,"uint:cdecl","SDL_SwapBE32","uint",$x)
+   Return $xSDL_SwapBE32[0]
+EndFunc
+
+Func SDL_SwapBE64($x)
+   Local $xSDL_SwapBE64 = DllCall($SDL,"uint:cdecl","SDL_SwapBE64","uint",$x)
+   Return $xSDL_SwapBE64[0]
+EndFunc
+
+Func SDL_SwapFloat($x)
+   Local $xSDL_SwapFloat = DllCall($SDL,"float:cdecl","SDL_SwapFloat","float",$x)
+   Return $xSDL_SwapFloat[0]
+EndFunc
+
+Func SDL_SwapFloatBE($x)
+   Local $xSDL_SwapFloatBE = DllCall($SDL,"float:cdecl","SDL_SwapFloatBE","float",$x)
+   Return $xSDL_SwapFloatBE[0]
+EndFunc
+
+Func SDL_SwapFloatLE($x)
+   Local $xSDL_SwapFloatLE = DllCall($SDL,"float:cdecl","SDL_SwapFloatLE","float",$x)
+   Return $xSDL_SwapFloatLE[0]
+EndFunc
+
+Func SDL_SwapLE16($x)
+   Local $xSDL_SwapLE16 = DllCall($SDL,"uint:cdecl","SDL_SwapLE16","uint",$x)
+   Return $xSDL_SwapLE16[0]
+EndFunc
+
+Func SDL_SwapLE32($x)
+   Local $xSDL_SwapLE32 = DllCall($SDL,"uint:cdecl","SDL_SwapLE32","uint",$x)
+   Return $xSDL_SwapLE32[0]
+EndFunc
+
+Func SDL_SwapLE64($x)
+   Local $xSDL_SwapLE64 = DllCall($SDL,"uint:cdecl","SDL_SwapLE64","uint",$x)
+   Return $xSDL_SwapLE64[0]
+EndFunc
+
+;Bit Manipulation Function
+Func SDL_MostSignificantBitIndex32($x)
+   Local $xSDL_MSBI32 = DllCall($SDL,"int:cdecl","SDL_MostSignificantBitIndex32","uint",$x)
+   Return $xSDL_MSBI32[0]
+EndFunc
+
+;Power Manage Function
+Func SDL_GetPowerInfo($sec,$pct)
+   Local $xSDL_GetPowerInfo = DllCall($SDL,"ptr:cdecl","SDL_GetPowerInfo","ptr",$sec,"ptr",$pct)
+   Return $xSDL_GetPowerInfo[0]
+EndFunc
+
+;Platform Specific Functions
+Func SDL_AndroidGetActivity()
+   Local $xSDL_AndroidGetActivity = DllCall($SDL,"ptr:cdecl","SDL_AndroidGetActivity")
+   Return $xSDL_AndroidGetActivity[0]
+EndFunc
+
+Func SDL_AndroidGetExternalStoragePath()
+   Local $xSDL_AGESP = DllCall($SDL,"str:cdecl","SDL_AndroidGetExternalStoragePath")
+   Return $xSDL_AGESP[0]
+EndFunc
+
+Func SDL_AndroidGetExternalStorageState()
+   Local $xSDL_AGESS = DllCall($SDL,"int:cdecl","SDL_AndroidGetExternalStorageState")
+   Return $xSDL_AGESS[0]
+EndFunc
+
+Func SDL_AndroidGetInternalStoragePath()
+   Local $xSDL_AGISP = DllCall($SDL,"str:cdecl","SDL_AndroidGetInternalStoragePath")
+   Return $xSDL_AGISP[0]
+EndFunc
+
+Func SDL_AndroidGetJNIEnv()
+   Local $xSDL_AGJE = DllCall($SDL,"ptr:cdecl","SDL_AndroidGetJNIEnv")
+   Return $xSDL_AGJE[0]
+EndFunc
+
+Func SDL_DXGIGetOutputInfo($dis,$adp,$out)
+   Local $xSDL_DGOI = DllCall($SDL,"bool:cdecl","SDL_DXGIGetOutputInfo","int",$dis,"ptr",$adp,"ptr",$out)
+   Return $xSDL_DGOI[0]
+EndFunc
+
+Func SDL_Direct3D9GetAdapterIndex($dis)
+   Local $xSDL_D3GAI = DllCall($SDL,"int:cdecl","SDL_Direct3D9GetAdapterIndex","int",$dis)
+   Return $xSDL_D3GAI[0]
+EndFunc
+
+Func SDL_RenderGetD3D9Device($ren)
+   Local $xSDL_RGDD = DllCall($SDL,"ptr:cdecl","SDL_RenderGetD3D9Device","ptr",$ren)
+   Return $xSDL_RGDD[0]
+EndFunc
+
+Func SDL_SetWindowMessageHook($msg,$dat)
+   Local $xSDL_SWMH = DllCall($SDL,"none:cdecl","SDL_SetWindowMessageHook","ptr",$msg,"ptr",$dat)
+   Return $xSDL_SWMH[0]
+EndFunc
+
+Func SDL_WinRTGetFSPathUNICODE($path)
+   Local $xSDL_WRGFPU = DllCall($SDL,"wchar:cdecl","SDL_WinRTGetFSPathUNICODE","str",$path)
+   Return $xSDL_WRGFPU[0]
+EndFunc
+
+Func SDL_WinRTGetFSPathUTF8($path)
+   Local $xSDL_WRGFPU = DllCall($SDL,"str:cdecl","SDL_WinRTGetFSPathUTF8","str",$path)
+   Return $xSDL_WRGFPU[0]
+EndFunc
+
+Func SDL_iPhoneSetAnimationCallback($win,$int,$cb,$cb2)
+   Local $xSDL_iPSAC = DllCall($SDL,"int:cdecl","SDL_iPhoneSetAnimationCallback","ptr",$win,"int",$int,"ptr",$cb,"ptr",$cb2)
+   Return $xSDL_iPSAC[0]
+EndFunc
+
+Func SDL_iPhoneSetEventPump($enable)
+   Local $xSDL_iPSEP = DllCall($SDL,"none:cdecl","SDL_iPhoneSetEventPump","bool",$enable)
+   Return $xSDL_iPSEP[0]
+EndFunc
+
+;SDL STD Functions
+Func SDL_acos($x)
+   Local $xSDL_acos = DllCall($SDL,"double:cdecl","SDL_acos","double",$x)
+   Return $xSDL_acos[0]
+EndFunc
+
+Func SDL_acosf($x)
+   Local $xSDL_acosf = DllCall($SDL,"float:cdecl","SDL_acosf","float",$x)
+   Return $xSDL_acosf[0]
+EndFunc
+
+Func SDL_asin($x)
+   Local $xSDL_asin = DllCall($SDL,"double:cdecl","SDL_asin","double",$x)
+   Return $xSDL_asin[0]
+EndFunc
+
+Func SDL_asinf($x)
+   Local $xSDL_asinf = DllCall($SDL,"float:cdecl","SDL_asinf","float",$x)
+   Return $xSDL_asinf[0]
+EndFunc
+
+Func SDL_atan($x)
+   Local $xSDL_atan = DllCall($SDL,"double:cdecl","SDL_atan","double",$x)
+   Return $xSDL_atan[0]
+EndFunc
+
+Func SDL_atanf($x)
+   Local $xSDL_atanf = DllCall($SDL,"float:cdecl","SDL_atanf","float",$x)
+   Return $xSDL_atanf[0]
+EndFunc
+
+Func SDL_atan2($x,$y)
+   Local $xSDL_atan2 = DllCall($SDL,"double:cdecl","double",$x,"double",$y)
+   Return $xSDL_atan2[0]
+EndFunc
+
+Func SDL_atan2f($x,$y)
+   Local $xSDL_atan2f = DllCall($SDL,"float:cdecl","float",$x,"float",$y)
+   Return $xSDL_atan2f[0]
+EndFunc
+
+Func SDL_ceil($x)
+   Local $xSDL_ceil = DllCall($SDL,"double:cdecl","SDL_ceil","double",$x)
+   Return $xSDL_ceil[0]
+EndFunc
+
+Func SDL_ceilf($x)
+   Local $xSDL_ceilf = DllCall($SDL,"float:cdecl","SDL_ceilf","float",$x)
+   Return $xSDL_ceilf[0]
+EndFunc
+
+Func SDL_copysign($x,$y)
+   Local $xSDL_copysign = DllCall($SDL,"double:cdecl","SDL_copysign","double",$x,"double",$y)
+   Return $xSDL_copysign[0]
+EndFunc
+
+Func SDL_copysignf($x,$y)
+   Local $xSDL_copysignf = DllCall($SDL,"float:cdecl","SDL_copysignf","float",$x,"float",$y)
+   Return $xSDL_copysignf[0]
+EndFunc
+
+Func SDL_cos($x)
+   Local $xSDL_cos = DllCall($SDL,"double:cdecl","SDL_cos","double",$x)
+   Return $xSDL_cos[0]
+EndFunc
+
+Func SDL_cosf($x)
+   Local $xSDL_cosf = DllCall($SDL,"float:cdecl","SDL_cosf","float",$x)
+   Return $xSDL_cosf[0]
+EndFunc
+
+Func SDL_fabs($x)
+   Local $xSDL_fabs = DllCall($SDL,"double:cdecl","SDL_fabs","double",$x)
+   Return $xSDL_fabs[0]
+EndFunc
+
+Func SDL_fabsf($x)
+   Local $xSDL_fabsf = DllCall($SDL,"float:cdecl","SDL_fabsf","float",$x)
+   Return $xSDL_fabsf[0]
+EndFunc
+
+Func SDL_floor($x)
+   Local $xSDL_floor = DllCall($SDL,"double:cdecl","SDL_floor","double",$x)
+   Return $xSDL_floor[0]
+EndFunc
+
+Func SDL_floorf($x)
+   Local $xSDL_floorf = DllCall($SDL,"float:cdecl","SDL_floorf","float",$x)
+   Return $xSDL_floorf[0]
+EndFunc
+
+Func SDL_mod($x,$y)
+   Local $xSDL_mod = DllCall($SDL,"double:cdecl","SDL_mod","double",$x,"double",$y)
+   Return $xSDL_mod[0]
+EndFunc
+
+Func SDL_modf($x,$y)
+   Local $xSDL_modf = DllCall($SDL,"float:cdecl","SDL_modf","float",$x,"float",$y)
+   Return $xSDL_modf[0]
+EndFunc
+
+;Dulicate?
+;Func SDL_log($x)
+ ;  Local $xSDL_log = DllCall($SDL,"double:cdecl","SDL_log","double",$x)
+  ; Return $xSDL_log[0]
+;EndFunc
+
+Func SDL_logf($x)
+   Local $xSDL_logf = DllCall($SDL,"float:cdecl","SDL_logf","float",$x)
+   Return $xSDL_logf[0]
+EndFunc
+
+Func SDL_log10($x)
+   Local $xSDL_log10 = DllCall($SDL,"double:cdecl","SDL_log10","double",$x)
+   Return $xSDL_log10[0]
+EndFunc
+
+Func SDL_log10f($x)
+   Local $xSDL_Log10f = DllCall($SDL,"float:cdecl","SDL_log10f","float",$x)
+   Return $xSDL_Log10f[0]
+EndFunc
+
+Func SDL_pow($x,$y)
+   Local $xSDL_pow = DllCall($SDL,"double:cdecl","SDL_pow","double",$x,"double",$y)
+   Return $xSDL_pow[0]
+EndFunc
+
+Func SDL_powf($x,$y)
+   Local $xSDL_powf = DllCall($SDL,"float:cdecl","SDL_powf","float",$x,"float",$y)
+   Return $xSDL_powf[0]
+EndFunc
+
+Func SDL_scalbn($x,$y)
+   Local $xSDL_scalbn = DllCall($SDL,"double:cdecl","SDL_scalbn","double",$x,"int",$y)
+   Return $xSDL_scalbn[0]
+EndFunc
+
+Func SDL_scalbnf($x,$y)
+   Local $xSDL_scalbnf = DllCall($SDL,"float:cdecl","SDL_scalbnf","float",$x,"int",$y)
+   Return $xSDL_scalbnf[0]
+EndFunc
+
+Func SDL_sin($x)
+   Local $xSDL_sin = DllCall($SDL,"double:cdecl","SDL_sin","double",$x)
+   Return $xSDL_sin[0]
+EndFunc
+
+Func SDL_sinf($x)
+   Local $xSDL_sinf = DllCall($SDL,"float:cdecl","SDL_sinf","float",$x)
+   Return $xSDL_sinf[0]
+EndFunc
+
+Func SDL_sqrt($x)
+   Local $xSDL_sqrt = DllCall($SDL,"double:cdecl","SDL_sqrt","double",$x)
+   Return $xSDL_sqrt[0]
+EndFunc
+
+Func SDL_sqrtf($x)
+   Local $xSDL_sqrtf = DllCall($SDL,"float:cdecl","SDL_sqrtf","float",$x)
+   Return $xSDL_sqrtf[0]
+EndFunc
+
+Func SDL_tan($x)
+   Local $xSDL_tan = DllCall($SDL,"double:cdecl","SDL_tan","double",$x)
+   Return $xSDL_tan[0]
+EndFunc
+
+Func SDL_tanf($x)
+   Local $xSDL_tanf = DllCall($SDL,"float:cdecl","SDL_tanf","float",$x)
+   Return $xSDL_tanf[0]
+EndFunc
 
 ;Timer Functions
 Func SDL_AddTimer($i,$cb,$par)
