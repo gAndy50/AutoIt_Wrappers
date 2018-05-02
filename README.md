@@ -1,4 +1,4 @@
-# AuotIt_Wrappers
+# AutoIt_Wrappers
 Repository for AutoIt Wrappers
 
 Wrappers:
