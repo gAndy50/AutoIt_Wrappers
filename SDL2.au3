@@ -894,6 +894,7 @@ Global Enum $SDL_JOYSTICK_TYPE_UNKNOWN,$SDL_JOYSTICK_TYPE_GAMECONTROLLER,$SDL_JO
 
 Global Enum $SDL_JOYSTICK_POWER_UNKNOWN = -1,$SDL_JOYSTICK_POWER_EMPTY,$SDL_JOYSTICK_POWER_LOW,$SDL_JOYSTICK_POWER_MEDIUM,$SDL_JOYSTICK_POWER_FULL,$SDL_JOYSTICK_POWER_WIRED,$SDL_JOYSTICK_POWER_MAX
 
+
 ;Sensor flags
 Global Const SDL_DISPLAYEVENT = 336
 Global Const SDL_SENSOREVENT = 4608
@@ -3795,6 +3796,78 @@ EndFunc
 Func SDL_HasSSE42()
    Local $xSDL_HasSSE42 = DllCall($SDL,"bool:cdecl","SDL_HasSSE42")
    Return $xSDL_HasSSE42[0]
+EndFunc
+
+;Sensor functions
+
+Func SDL_NumSensors()
+   Local $xSDL_NumSensors = DllCall($SDL,"int:cdecl","SDL_NumSensors")
+   Return $xSDL_NumSensors[0]
+EndFunc
+
+Func SDL_SensorGetDeviceName($dev)
+   Local $xSDL_SensorGetDeviceName = DllCall($SDL,"ptr:cdecl","SDL_SensorGetDeviceName","int",$dev)
+   Return $xSDL_SensorGetDeviceName[0]
+EndFunc
+
+Func SDL_SensorGetDeviceType($dev)
+   Local $xSDL_SensorGetDeviceType = DllCall($SDL,"ptr:cdecl","SDL_SensorGetDeviceType","int",$dev)
+   Return $xSDL_SensorGetDeviceType[0]
+EndFunc
+
+Func SDL_SensorGetDeviceNonPortableType($dev)
+   Local $xSDL_SensorGetDeviceNonPortableType($SDL,"ptr:cdecl","SDL_SensorGetDeviceNonPortableType","int",$dev)
+   Return $xSDL_SensorGetDeviceNonPortableType[0]
+EndFunc
+
+Func SDL_SensorGetDeviceInstanceID($dev)
+   Local $xSDL_SensorGetDeviceInstanceID($SDL,"ptr:cdecl","SDL_SensorGetDeviceInstanceID","int",$dev)
+   Return $xSDL_SensorGetDeviceInstanceID[0]
+EndFunc
+
+Func SDL_SensorOpen($dev)
+   Local $xSDL_SensorOpen($SDL,"ptr:cdecl","SDL_SensorOpen","int",$dev)
+   Return $xSDL_SensorOpen[0]
+EndFunc
+
+Func SDL_SensorFromInstanceID($dev)
+   Local $xSDL_SensorFromInstanceID($SDL,"ptr:cdecl","SDL_SensorFromInstanceID","ptr",$dev)
+   Return $xSDL_SensorFromInstanceID[0]
+EndFunc
+
+Func SDL_SensorGetName($dev)
+   Local $xSDL_SensorGetName($SDL,"ptr:cdecl","SDL_SensorGetName","ptr",$dev)
+   Return $xSDL_SensorGetName[0]
+EndFunc
+
+Func SDL_SensorGetType($dev)
+   Local $xSDL_SensorGetType($SDL,"ptr:cdecl","SDL_SensorGetType","ptr",$dev)
+   Return $xSDL_SensorGetType[0]
+EndFunc
+
+Func SDL_SensorGetNonPortableType($dev)
+   Local $xSDL_SensorGetNonPortableType($SDL,"ptr:cdecl","SDL_SensorGetNonPortableType","ptr",$dev)
+   Return $xSDL_SensorGetNonPortableType[0]
+EndFunc
+
+Func SDL_SensorGetInstanceID($dev)
+   Local $xSDL_SensorGetInstanceID($SDL,"ptr:cdecl","SDL_SensorGetInstanceID","ptr",$dev)
+   Return $xSDL_SensorGetInstanceID[0]
+EndFunc
+
+Func SDL_SensorGetData($dev,$dev2,$dev3)
+   Local $xSDL_SensorGetData($SDL,"ptr:cdecl","SDL_SensorGetData","ptr",$dev,"ptr",$dev2,"float",$dev3)
+   Return $xSDL_SensorGetData[0]
+EndFunc
+
+Func SDL_SensorClose()
+   Local $xSDL_SensorClose($SDL,"SDL_SensorClose")
+   Return $xSDL_SensorClose[0]
+EndFunc
+
+Func SDL_SensorUpdate()
+   Local $xSDL_SensorUpdate($SDL,"SDL_SensorUpdate")
+   Return $xSDL_SensorUpdate[0]
 EndFunc
 
 ;Cleanup
