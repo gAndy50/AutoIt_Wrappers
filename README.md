@@ -3,6 +3,7 @@ Repository for AutoIt Wrappers
 
 Wrappers:
 Currently wrapped SDL2. Version of SDL2 is 2.0.8
+Wrapped Sigil 0.9.0
 
 ABOUT:
 
@@ -32,6 +33,23 @@ SDL_Delay(3000)
 SDL_DestroyWindow($win)
 
 SDL_Quit()
+```
+
+SIGIL EXAMPLE:
+```AutoIt
+#include <Sigil.au3>
+
+Local $w = 640, $h = 480
+Local $true = 1, $false = 0
+
+slWindow($w,$h,"Sigil Window",$false)
+
+While Not slShouldClose()
+
+   slRender()
+WEnd
+
+slClose()
 ```
 
 LICENSE:
