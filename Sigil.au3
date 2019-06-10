@@ -102,13 +102,14 @@ Global $Sigil = 0
 
 ;Load Sigil DLL
 if $Sigil = -1 Then
-   MsgBox($MB_SYSTEMMODAL,"Error","Failed to load Sigil.dll!\n")
+   MsgBox($MB_SYSTEMMODAL,"Error","Failed to load sigil.dll!\n")
 EndIf
 
 ;Window Functions
 Func slWindow($width,$height,$title,$fullscr)
-   $xslWindow = DllCall($Sigil,"none:cdecl","slWindow","int",$width,"int",$height,"str",$title,"int",$fullscr)
-   Return $xslWindow[0]
+   $Sigil = DllOpen("sigil.dll")
+   Local $xslWindow = DllCall($Sigil,"none:cdecl","slWindow","int",$width,"int",$height,"str",$title,"int",$fullscr)
+   ;Return $xslWindow[0]
 EndFunc
 
 Func slShowCursor($show)
@@ -118,7 +119,7 @@ EndFunc
 
 Func slClose()
    $xslClose = DllCall($Sigil,"none:cdecl","slClose")
-   Return $xslClose[0]
+   ;Return $xslClose[0]
    DllClose($Sigil)
 EndFunc
 
@@ -130,7 +131,7 @@ EndFunc
 ;Key Function
 Func slGetKey($key)
    $xslGetKey = DllCall($Sigil,"int:cdecl","slGetKey","int",$key)
-   Return $xslGeyKey[0]
+   Return $xslGetKey[0]
 EndFunc
 
 ;Mouse Functions
@@ -163,49 +164,49 @@ EndFunc
 ;Render Functions
 Func slRender()
    $xslRender = DllCall($Sigil,"none:cdecl","slRender")
-   Return $xslRender[0]
+   ;Return $xslRender[0]
 EndFunc
 
 ;Color Functions
 Func slSetBackColor($r,$g,$b) ;r = red, g = green, b = blue
    $xlSetBackColor = DllCall($Sigil,"none:cdecl","slSetBackColor","double",$r,"double",$g,"double",$b)
-   Return $xslSetBackColor[0]
+   ;Return $xslSetBackColor[0]
 EndFunc
 
 Func slSetForeColor($r,$g,$b) ;r = red, g = green, b = blue
    $xslSetForeColor = DllCall($Sigil,"none:cdecl","setSetForeColor","double",$r,"double",$g,"double",$b)
-   Return $xslSetForeColor[0]
+   ;Return $xslSetForeColor[0]
 EndFunc
 
 Func slSetAdditiveBlend($blend)
    $xslSetAdditiveBlend = DllCall($Sigil,"none:cdecl","slSetAdditiveBlend","int",$blend)
-   Return $xslSetAdditiveBlend[0]
+   ;Return $xslSetAdditiveBlend[0]
 EndFunc
 
 ;Transformation Functions
 Func slPush()
    $xslPush = DllCall($Sigil,"none:cdecl","slPush")
-   Return $xslPush[0]
+   ;Return $xslPush[0]
 EndFunc
 
 Func slPop()
    $xslPop = DllCall($Sigil,"none:cdecl","slPop")
-   Return $xslPop[0]
+   ;Return $xslPop[0]
 EndFunc
 
 Func slTranslate($x,$y)
    $xslTranslate = DllCall($Sigil,"none:cdecl","slTranslate","double",$x,"double",$y)
-   Return $xslTranslate[0]
+   ;Return $xslTranslate[0]
 EndFunc
 
 Func slRotate($angle)
    $xslRotate = DllCall($Sigil,"none:cdecl","slRotate","double",$angle)
-   Return $xslRotate[0]
+   ;Return $xslRotate[0]
 EndFunc
 
 Func slScale($x,$y)
    $xslScale = DllCall($Sigil,"none:cdecl","slScale","double",$x,"double",$y)
-   Return $xslScale[0]
+   ;Return $xslScale[0]
 EndFunc
 
 ;Texture Loading Function
@@ -232,7 +233,7 @@ EndFunc
 
 Func slSoundPause($snd)
    $xslSoundPause = DllCall($Sigil,"none:cdecl","slSoundPause","int",$snd)
-   Return $xslSoundPause[0]
+   ;Return $xslSoundPause[0]
 EndFunc
 
 Func slSoundStop($snd)
@@ -242,17 +243,17 @@ EndFunc
 
 Func slSoundPauseAll()
    $xslSoundPauseAll = DllCall($Sigil,"none:cdecl","slSoundPauseAll")
-   Return $xslSoundPauseAll[0]
+   ;Return $xslSoundPauseAll[0]
 EndFunc
 
 Func slSoundResumeAll()
    $xslSoundResumeAll = DllCall($Sigil,"none:cdecl","slSoundResumeAll")
-   Return $xslSoundResumeAll[0]
+   ;Return $xslSoundResumeAll[0]
 EndFunc
 
 Func slSoundStopAll()
    $xslSoundStopAll = DllCall($Sigil,"none:cdecl","slSoundStopAll")
-   Return $xslSoundStopAll[0]
+   ;Return $xslSoundStopAll[0]
 EndFunc
 
 Func slSoundPlaying($snd)
@@ -268,73 +269,73 @@ EndFunc
 ;Shape Functions
 Func slTriangleFill($x,$y,$width,$height)
    $xslTriangleFill = DllCall($Sigil,"none:cdecl","slTriangleFill","double",$x,"double",$y,"double",$width,"double",$height)
-   Return $xslTriangleFill[0]
+   ;Return $xslTriangleFill[0]
 EndFunc
 
 Func slTriangleOutline($x,$y,$width,$height)
    $xslTriangleOutline = DllCall($Sigil,"none:cdecl","slTriangleOutline","double",$x,"double",$y,"double",$width,"double",$height)
-   Return $xslTriangleOutline[0]
+   ;Return $xslTriangleOutline[0]
 EndFunc
 
 Func slRectangleFill($x,$y,$width,$height)
    $xlRectangleFill = DllCall($Sigil,"none:cdecl","slRectangleFill","double",$x,"double",$y,"double",$width,"double",$height)
-   Return $xslRectangleFill[0]
+   ;Return $xslRectangleFill[0]
 EndFunc
 
 Func slRectangleOutline($x,$y,$width,$height)
    $xslRectangleOutline = DllCall($Sigil,"none:cdecl","slRectangleOutline","double",$x,"double",$y,"double",$width,"double",$height)
-   Return $xslRectangleOutline[0]
+   ;Return $xslRectangleOutline[0]
 EndFunc
 
 Func slCircleFill($x,$y,$radius,$numvert)
    $xslCircleFill = DllCall($Sigil,"none:cdecl","slCircleFill","double",$x,"double",$y,"double",$radus,"int",$numvert)
-   Return $xslCircleFill[0]
+   ;Return $xslCircleFill[0]
 EndFunc
 
 Func slCircleOutline($x,$y,$radius,$numvert)
    $xslCircleOutline = DllCall($Sigil,"none:cdecl","slCircleOutline","double",$x,"double",$y,"double",$radius,"int",$numvert)
-   Return $xslCircleOutline[0]
+   ;Return $xslCircleOutline[0]
 EndFunc
 
 Func slSemiCircleFill($x,$y,$radius,$numvert,$degree)
    $xslSemiCircleFill = DllCall($Sigil,"none:cdecl","slSemiCircleFill","double",$x,"double",$y,"double",$radius,"int",$numvert,"double",$degree)
-   Return $xslSemiCircleFill[0]
+   ;Return $xslSemiCircleFill[0]
 EndFunc
 
 Func slSemiCircleOutline($x,$y,$radius,$numvert,$degree)
    $xslSemiCircleOutline = DllCall($Sigil,"none:cdecl","slSemiCircleOutline","double",$x,"double",$y,"double",$radius,"int",$numvert,"double",$degree)
-   Return $xslSemiCircleOutline[0]
+   ;Return $xslSemiCircleOutline[0]
 EndFunc
 
 Func slPoint($x,$y)
    $xslPoint = DllCall($Sigil,"none:cdecl","slPoint","double",$x,"double",$y)
-   Return $xslPoint[0]
+   ;Return $xslPoint[0]
 EndFunc
 
 Func slLine($x,$y,$x2,$y2)
    $xslLine = DllCall($Sigil,"none:cdecl","slLine","double",$x,"double",$y,"double",$x2,"double",$y2)
-   Return $xslLine[0]
+   ;Return $xslLine[0]
 EndFunc
 
 Func slSetSpriteTiling($x,$y)
    $xslSetSpriteTiling = DllCall($Sigil,"none:cdecl","slSetSpriteTiling","double",$x,"double",$y)
-   Return $xslSetSpriteTiling[0]
+   ;Return $xslSetSpriteTiling[0]
 EndFunc
 
 Func slSetSpriteScroll($x,$y)
    $xslSetSpriteScroll = DllCall($Sigil,"none:cdecl","slSetSpriteScroll","double",$x,"double",$y)
-   Return $xslSetSpriteScroll[0]
+   ;Return $xslSetSpriteScroll[0]
 EndFunc
 
 Func slSprite($tex,$x,$y,$width,$height)
    $xslSprite = DllCall($Sigil,"none:cdecl","slSprite","int",$tex,"double",$x,"double",$y,"double",$width,"double",$height)
-   Return $xslSprite[0]
+   ;Return $xslSprite[0]
 EndFunc
 
 ;Text Functions
 Func slSetTextAlign($align)
    $xslSetTextAlign = DllCall($Sigil,"none:cdecl","slSetTextAlign","int",$align)
-   Return $xslSetTextAlign[0]
+   ;Return $xslSetTextAlign[0]
 EndFunc
 
 Func slGetTextWidth($text)
@@ -354,10 +355,10 @@ EndFunc
 
 Func slSetFont($font,$size)
    $xslSetFont = DllCall($Sigil,"none:cdecl","slSetFont","int",$font,"int",$size)
-   Return $xslSetFont[0]
+   ;Return $xslSetFont[0]
 EndFunc
 
 Func slText($x,$y,$text)
    $xslText = DllCall($Sigil,"none:cdecl","slText","double",$x,"double",$y,"str",$text)
-   Return $xslText[0]
+  ; Return $xslText[0]
 EndFunc
