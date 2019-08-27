@@ -450,7 +450,7 @@ Global Const $SDL_SCANCODE_APP2 = 284
 
 Global Const $SDL_NUM_SCANCODES = 512
 
-;Note dlecared as enum in the C code, but using consts here
+;Note declared as enum in the C code, but using consts here
 Global Const $SDLK_UNKNOWN = 0
 Global Const $SDLK_RETURN = 1
 Global Const $SDLK_ESCAPE = 2
@@ -781,7 +781,7 @@ Global Const $SDL_TOUCH_MOUSEID = -1
 ;SDL version flags
 Global Const $SDL_MAJOR_VERSION = 2
 Global Const $SDL_MINOR_VERSION = 0
-Global Const $SDL_PATCHLEVEL = 8
+Global Const $SDL_PATCHLEVEL = 10
 
 ;Window flags Cont.
 Global Const $SDL_WINDOWPOS_UNDEFINED_MASK = 536805376
@@ -896,10 +896,10 @@ Global Enum $SDL_JOYSTICK_POWER_UNKNOWN = -1,$SDL_JOYSTICK_POWER_EMPTY,$SDL_JOYS
 
 
 ;Sensor flags
-Global Const SDL_DISPLAYEVENT = 336
-Global Const SDL_SENSOREVENT = 4608
+Global Const $SDL_DISPLAYEVENT = 336
+Global Const $SDL_SENSOREVENT = 4608
 
-Global Const SDL_STANDARD_GRAVITY = 9.80665
+Global Const $SDL_STANDARD_GRAVITY = 9.80665
 
 ;Open the SDL2 DLL
 Global $SDL = 0 ;("SDL2.dll")
@@ -936,18 +936,18 @@ EndFunc
 Func SDL_Quit()
    $xSDL_Quit = DllCall($SDL,"none:cdecl","SDL_Quit")
     If @error Then Return SetError(1, @error, -1)
-   Return $xSDL_Quit[0]
+   ;Return $xSDL_Quit[0]
    DllClose($SDL)
 EndFunc
 
 Func SDL_QuitSubSystem($flags)
    $xSDL_QuitSubSystem = DllCall($SDL,"none:cdecl","SDL_QuitSubSystem","uint",$flags)
-   Return $xSDL_QuitSubSystem[0]
+   ;Return $xSDL_QuitSubSystem[0]
 EndFunc
 
 Func SDL_SetMainReady()
    $xSDL_SetMainReady = DllCall($SDL,"none:cdecl","SDL_SetMainReady","")
-   Return $xSDL_SetMainReady[0]
+   ;Return $xSDL_SetMainReady[0]
 EndFunc
 
 Func SDL_WasInit($flags)
@@ -979,7 +979,7 @@ EndFunc
 
 Func SDL_DestroyWindow($win)
    $xSDL_DestroyWindow = DllCall($SDL,"none:cdecl","SDL_DestroyWindow","ptr",$win)
-   Return $xSDL_DestroyWindow[0]
+   ;Return $xSDL_DestroyWindow[0]
 EndFunc
 
 Func SDL_DisableScreenSaver()
@@ -1108,6 +1108,11 @@ EndFunc
 Func SDL_GetDisplayName($display)
   Local $xSDL_GetDisplayName = DllCall($SDL,"ptr:cdecl","SDL_GetDisplayName","int",$display)
    Return $xSDL_GetDisplayName[0]
+EndFunc
+
+Func SDL_GetDisplayOrientation($display)
+   Local $xSDL_GetDisplayOrientation = DllCall($SDL,"ptr:cdecl","SDL_GetDisplayOrientation","int",$display)
+   Return $xSDL_GetDisplayOrientation[0]
 EndFunc
 
 Func SDL_GetDisplayUsableBounds($display,$xSDL_Rect)
@@ -1857,6 +1862,67 @@ Func SDL_UpdateTexture($tex,$xSDL_Rect,$pix,$pit)
    Return $xSDL_UpdateTexture[0]
 EndFunc
 
+;SDL Render Float Functions
+Func SDL_RenderDrawPointF($ren,$x,$y)
+   Local $xSDL_RenderDrawPointF = DllCall($SDL,"int:cdecl","SDL_RenderDrawPointF","ptr",$ren,"float",$x,"float",$y)
+   Return $xSDL_RenderDrawPointF[0]
+EndFunc
+
+Func SDL_RenderDrawPointsF($ren,$pts,$count)
+   Local $xSDL_RenderDrawPointsF = DllCall($SDL,"int:cdecl","SDL_RenderDrawPointsF","ptr",$ren,"ptr",$pts,"int",$count)
+   Return $xSDL_RenderDrawPointsF[0]
+EndFunc
+
+Func SDL_RenderDrawLineF($ren,$x1,$y1,$x2,$y2)
+   Local $xSDL_RenderDrawLineF = DllCall($SDL,"int:cdecl","SDL_RenderDrawLineF","ptr",$ren,"float",$x1,"float",$y1,"float",$x2,"float",$y2)
+   Return $xSDL_RendrDrawLineF[0]
+EndFunc
+
+Func SDL_RenderDrawLinesF($ren,$pts,$count)
+   Local $xSDL_RenderDrawLinesF = DllCall($SDL,"int:cdecl","SDL_RenderDrawLinesF","ptr",$ren,"ptr",$pts,"int",$count)
+   Return $xSDL_RenderDrawLinesF[0]
+EndFunc
+
+Func SDL_RenderDrawRectF($ptr,$xSDL_Rect)
+   Local $xSDL_RenderDrawRectF = DllCall($SDL,"int:cdecl","SDL_RenderDrawRectF","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_RenderDrawRectF[0]
+EndFunc
+
+Func SDL_RenderDrawRectsF($ren,$pts,$count)
+   Local $xSDL_RenderDrawRectsF = DllCall($SDL,"int:cdecl","SDL_RenderDrawRectsF","ptr",$ren,"ptr",$pts,"int",$count)
+   Return $xSDL_RenderDrawRectsF[0]
+EndFunc
+
+Func SDL_RenderFillRectF($ren,$xSDL_Rect)
+   Local $xSDL_RenderFillRectF = DllCall($SDL,"int:cdecl","SDL_RenderFillRectF","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_RenderFillRectF[0]
+EndFunc
+
+Func SDL_RenderFillRectsF($ren,$xSDL_Rect)
+   Local $xSDL_RenderFillRectsF = DllCall($SDL,"int:cdecl","SDL_RenderFillRectsF","ptr",$ren,"ptr",DllStructGetPtr($xSDL_Rect))
+   Return $xSDL_RenderFillRectsF[0]
+EndFunc
+
+Func SDL_RenderCopyF($ren,$tex,$xSDL_Rect,$xSDL_Rect1)
+   Local $xSDL_RenderCopyF = DllCall($SDL,"int:cdecl","SDL_RenderCopyF","ptr",$ren,"ptr",$tex,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",DllStructGetPtr($xSDL_Rect1))
+   Return $xSDL_RenderCopyF[0]
+EndFunc
+
+Func SDL_RenderCopyExF($ren,$tex,$SDL_Rect,$SDL_Rect1,$angle,$center,$flip)
+   Local $xSDL_RenderCopyExF = DllCall($SDL,"int:cdecl","SDL_RenderCopyExF","ptr",$ren,"ptr",$tex,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",DllStructGetPtr($xSDL_Rect1),"double",$angle,"ptr",$center,"uint",$flip)
+   Return $xSDL_RenderCopyExF[0]
+EndFunc
+
+;Func SDL_RenderSetIntegerScale($ren,$x)
+;   Local $xSDL_RenderSetIntegerScale = DllCall($SDL,"int:cdecl","SDL_RenderSetIntegerScale","ptr",$ren,"bool",$x)
+;   Return $xSDL_RenderSetIntegerScale[0]
+;EndFunc
+
+Func SDL_RenderFlush($ren)
+   Local $xSDL_RenderFlush = DllCall($SDL,"int:cdecl","SDL_RenderFlush","ptr",$ren)
+   Return $xSDL_RenderFlush[0]
+EndFunc
+
 Func SDL_UpdateYUVTexture($tex,$xSDL_Rect,$yplane,$ypit,$uplane,$upit,$vplane,$vpit)
    Local $xSDL_UpdateYUVTexture = DllCall($SDL,"int:cdelc","SDL_UpdateYUVTexture","ptr",$tex,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",$yplane,"int",$ypit,"ptr",$uplane,"int",$upit,"ptr",$vplane,"int",$vpit)
    Return $xSDL_UpdateYUVTexture[0]
@@ -2107,6 +2173,10 @@ Func SDL_WriteU8($dst,$val)
    Return $xSDL_WriteU8[0]
 EndFunc
 
+Func SDL_LoadFile_RW($src,$size,$xfr)
+   Local $xSDL_LoadFile_RW = DllCall($SDL,"none:cdecl","SDL_LoadFile_RW","ptr",$src,"ptr",$size,"int",$xfr)
+EndFunc
+
 ;Surface Functions
 Func SDL_BlitScaled($src,$xSDL_Rect,$dst,$xSDL_Rect2)
    Local $xSDL_BlitScaled = DllCall($SDL,"int:cdecl","SDL_BlitScaled","ptr",$src,"ptr",DllStructGetPtr($xSDL_Rect),"ptr",$dst,"ptr",DllStructGetPtr($xSDL_Rect2))
@@ -2271,6 +2341,47 @@ Func SDL_UnlockSurface($surf)
    Return $xSDL_UnlockSurface[0]
 EndFunc
 
+Func SDL_HasColorKey($x)
+   Local $xSDL_HasColorKey = DllCall($SDL,"bool:cdecl","SDL_HasColorKey","ptr",$x)
+   Return $xSDL_HasColorKey[0]
+EndFunc
+
+Func SDL_UpperBlit($xSDL_Rect,$xSDL_Rect1,$xSDL_Rect2,$xSDL_Rect3)
+   Local $xSDL_UpperBlit = DllCall($SDL,"int:cdecl","SDL_UpperBlit","ptr",DllStructGetPtr($xSDL_Rect),"ptr",DllStructGetPtr($xSDL_Rect1),"ptr",DllStructGetPtr($xSDL_REct2),"ptr",DllStructGetPtr($xSDL_Rect3))
+   Return $xSDL_UpperBlit[0]
+EndFunc
+
+Func SDL_UpperBlitScaled($xSDL_Rect,$xSDL_Rect1,$xSDL_Rect2,$xSDL_Rect3)
+   Local $xSDL_UpperBlitScaled = DllCall($SDL,"int:cdecl","SDL_UpperBlitScaled","ptr",DllStructGetPtr($xSDL_Rect),"ptr",DllStructGetPtr($xSDL_Rect1),"ptr",DllStructGetPtr($xSDL_Rect2),"ptr",DllStructGetPtr($xSDL_Rect3))
+   Return $xSDL_UpperBlitScaled[0]
+EndFunc
+
+Func SDL_SetYUVConversionMode($x)
+   Local $xSDL_SetYUVConversionMode = DllCall($SDL,"none:cdecl","SDL_SetYUVConversionMode","ptr",$x)
+   ;Return $xSDL_SetYUVConversionMode[0]
+EndFunc
+
+Func SDL_GetYUVConversionMode()
+   Local $xSDL_GetYUVConversionMode = DllCall($SDL,"ptr:cdecl","SDL_GetYUVConversionMode")
+   Return $xSDL_GetYUVConversionMode[0]
+EndFunc
+
+;Func SDL_CreateRGBSurfaceWithFormat($flags,$w,$h,$d,$format)
+ ;  Local $xSDL_CreateRGBSurfaceWithFormat = DllCall($SDL,"ptr:cdecl","SDL_CreateRGBSurfaceWithFormat","uint",$flags,"int",$w,"int",$h,"int",$d,"uint",$format)
+  ; Return $xSDL_CreateRGBSurfaceWithFormat[0]
+;EndFunc
+
+;Func SDL_CreateRGBSurfaceFrom($pix,$w,$h,$d,$p,$r,$g,$b,$a)
+ ;  Local $xSDL_CreateRGBSurfaceFrom = DllCall($SDL,"ptr:cdecl","SDL_CreateRGBSurfaceFrom","ptr",$pix,"int",$w,"int",$h,"int",$d,"int",$p,"uint",$r,"uint",$g,"uint",$b,"uint",$a)
+  ; Return $xSDL_CreateRGBSurfaceFrom[0]
+;EndFunc
+
+;FileSystem Paths Functions
+;Func SDL_GetBasePath()
+ ;  Local $xSDL_GetBasePath = DllCall($SDL,"ptr:cdecl","SDL_GetBasePath")
+ ;  Return $xSDL_GetBasePath[0]
+;EndFunc
+
 ;SYSWM Function
 ;Duplicate?
 ;Func SDL_GetWindowWMInfo($win,$info)
@@ -2428,6 +2539,11 @@ EndFunc
 Func SDL_WaitEventTimeout($evt,$out)
    Local $xSDL_WaitEventTimeout = DllCall($SDL,"int:cdecl","SDL_WaitEventTimeout","ptr",$evt,"int",$out)
    Return $xSDL_WaitEventTimeout[0]
+EndFunc
+
+Func SDL_GetTouchDeviceType($x)
+   Local $xSDL_GetTouchDeviceType = DllCall($SDL,"ptr:cdecl","SDL_GetTouchDeviceType","ptr",$x)
+   Return $xSDL_GetTouchDeviceType[0]
 EndFunc
 
 ;Keyboard functions
@@ -2711,6 +2827,54 @@ EndFunc
 Func SDL_NumJoysticks()
    Local $xSDL_NumJoysticks = DllCall($SDL,"int:cdecl","SDL_NumJoysticks")
    Return $xSDL_NumJoysticks[0]
+EndFunc
+
+Func SDL_JoystickGetDevicePlayerIndex($idx)
+   Local $xSDL_JoystickGetDevicePlayerIndex = DllCall($SDL,"int:cdecl","SDL_JoystickGetDevicePlayerIndex","int",$idx)
+   Return $xSDL_JoystickGetDevicePlayerIndex[0]
+EndFunc
+
+Func SDL_JoystickGetDeviceVendor($idx)
+   Local $xSDL_JoystickGetDeviceVendor = DllCall($SDL,"uint:cdecl","SDL_JoystickGetDeviceVendor","int",$idx)
+   Return $xSDL_JoystickGetDeviceVendor[0]
+EndFunc
+
+Func SDL_JoystickGetDeviceProduct($idx)
+   Local $xSDL_JoystickGetDeviceProduct = DllCall($SDL,"uint:cdecl","SDL_JoystickGetDeviceProduct","int",$idx)
+   Return $xSDL_JoystickGetDeviceProduct[0]
+EndFunc
+
+Func SDL_JoystickGetDeviceProductVersion($idx)
+   Local $xSDL_JoystickGetDeviceProductVersion = DllCall($SDL,"uint:cdecl","SDL_JoystickGetDeviceProductVersion","int",$idx)
+   Return $xSDL_JoystickGetDeviceProductVersion[0]
+EndFunc
+
+Func SDL_JoystickGetProduct($joy)
+   Local $xSDL_JoystickGetProduct = DllCall($SDL,"uint:cdecl","SDL_JoystickGetProduct","ptr",$joy)
+   Return $xSDL_JoystickGetProduct[0]
+EndFunc
+
+Func SDL_JoystickGetProductVersion($joy)
+   Local $xSDL_JoystickGetProductVersion = DllCall($SDL,"unint:cdecl","SDL_JoystickGetProductVersion","ptr",$joy)
+   Return $xSDL_JoystickGetProductVersion[0]
+EndFunc
+
+Func SDL_JoystickGetAxisInitialState($joy,$axis,$state)
+   Local $xSDL_JoystickGetAxisInitialState = DllCall($SDL,"bool:cdecl","SDL_JoystickGetAxisInitialState","ptr",$joy,"int",$axis,"ptr",$state)
+   Return $xSDL_JoystickGetAxisInitialState[0]
+EndFunc
+
+Func SDL_LockJoysticks()
+   Local $xSDL_LockJoysticks = DllCall($SDL,"none:cdecl","SDL_LockJoysticks")
+EndFunc
+
+Func SDL_UnlockJoysticks()
+   Local $xSDL_UnlockJoysticks = DllCall($SDL,"none:cdecl","SDL_UnlockJoysticks")
+EndFunc
+
+func SDL_JoystickRumble($joy,$low,$high,$dur)
+   Local $xSDL_JoystickRumble = DllCall($SDL,"int:cdecl","SDL_JoystickRumble","ptr",$joy,"uint",$low,"uint",$high,"uint",$dur)
+   Return $xSDL_JoystickRumble[0]
 EndFunc
 
 ;GameController Functions
