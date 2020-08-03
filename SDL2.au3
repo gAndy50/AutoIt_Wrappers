@@ -1928,6 +1928,16 @@ Func SDL_UpdateYUVTexture($tex,$xSDL_Rect,$yplane,$ypit,$uplane,$upit,$vplane,$v
    Return $xSDL_UpdateYUVTexture[0]
 EndFunc
 
+Func SDL_SetTextureScaleMode($tex,$mode)
+   Local $xSDL_SetTextureScaleMode = DllCall($SDL,"int:cdecl","SDL_SetTextureUpdateScaleMode","ptr",$tex,"uint",$mode)
+   Return $xSDL_SetTextureScaleMode[0]
+EndFunc
+
+Func SDL_GetTextureScaleMode($tex,$mode)
+   Local $xSDL_GetTextureScaleMode = DllCall($SDL,"int:cdecl","SDL_GetTextureScaleMode","ptr",$tex,"ptr",$mode)
+   Return $xSDL_GetTextureScaleMode[0]
+EndFunc
+
 ;Pixel Functions
 
 Func SDL_AllocFormat($pix)
