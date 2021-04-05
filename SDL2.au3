@@ -3,7 +3,7 @@
 ; Wrapper by: Andy P.  ;
 ;Icy Viking Games      ;
 ;For AutoIt3           ;
-;Copyright (c) 2020    ;
+;Copyright (c) 2021    ;
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;SDL 2 Flags - Note Hex values are converted to decimal values
