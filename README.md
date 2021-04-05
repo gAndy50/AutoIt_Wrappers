@@ -2,7 +2,7 @@
 Repository for AutoIt Wrappers
 
 # Wrappers Wrapped
-* Currently wrapped SDL2. Version of SDL2 is 2.0.10,
+* Currently wrapped SDL2. Version of SDL2 is 2.0.10
 * Wrapped Sigil 0.9.0
 * Wrapped GLFW 3
 
