@@ -6,12 +6,12 @@ Repository for AutoIt Wrappers
 * Wrapped Sigil 0.9.0
 * Wrapped GLFW 3
 
-ABOUT:
+# ABOUT:
 
 These are a collection of wrappers for the AutoIt programming language. Note this uses version 3 of AutoIt. These are mainly a collection of
 wrappers for multimedia libraries such as SDL. 
 
-EXAMPLE: Basic usage of how to use the SDL2 wrapper.  
+# EXAMPLE: Basic usage of how to use the SDL2 wrapper.  
 ```AutoIt
 #include <SDL2.au3>
 
@@ -36,7 +36,7 @@ SDL_DestroyWindow($win)
 SDL_Quit()
 ```
 
-SIGIL EXAMPLE:
+# SIGIL EXAMPLE:
 ```AutoIt
 #include <Sigil.au3>
 
@@ -53,7 +53,7 @@ WEnd
 slClose()
 ```
 
-LICENSE:
+# LICENSE:
 
 This software is provided as-is. There is no warranty for this software. You use this software
 at your own risk. You may not hold the developers of the wrapper, or the AutoIt
