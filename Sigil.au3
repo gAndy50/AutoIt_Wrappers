@@ -4,7 +4,7 @@
 ;Icy Viking Games					  ;;
 ;AutoIt Version 3					  ;;
 ;Sigil Version 0.9.0				  ;;
-;Copyright (c) 2020					  ;;
+;Copyright (c) 2021					  ;;
 ;Contact/Paypal g_andy <at> live.com  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
