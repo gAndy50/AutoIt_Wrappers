@@ -2887,6 +2887,48 @@ func SDL_JoystickRumble($joy,$low,$high,$dur)
    Return $xSDL_JoystickRumble[0]
 EndFunc
 
+;Joystick Functions from SDL 2.0.12
+Func SDL_JoystickFromPlayerIndex($joy)
+   Local $xSDL_JoystickFromPlayerIndex = DllCall("uint:cdecl","SDL_JoystickFromPlayerIndex","int",$joy)
+   Return $xSDL_JoystickFromPlayerIndex[0]
+EndFunc
+
+Func SDL_JoystickSetPlayerIndex($joy,$idx)
+   $xSDL_JoystickSetPlayerIndex = DllCall("none:cdecl","SDL_JoystickSetPlayerIndex","ptr",$joy,"int",$idx)
+EndFunc
+
+;Virtual Joystick Functions from SDL 2.0.14
+Func SDL_JoystickAttachVirtual($joy,$nax,$btns,$hats)
+   $xSDL_JoystickAttachVirtual = DllCall("int:cdecl","SDL_JoystickAttachVirtual","uint",$joy,"int",$nax,"int",$btns,"int",$hats)
+   Return $xSDL_JoystickAttachVirtual[0]
+EndFunc
+
+Func SDL_JoystickDetachVirtual($joy)
+   $xSDL_JoystickDetachVirtual = DllCall("int:cdecl","SDL_JoystickDetachVirtual","int",$joy)
+   Return $xSDL_JoystickDetachVirtual[0]
+EndFunc
+
+Func SDL_JoystickIsVirtual($joy)
+   $xSDL_JoystickIsVirtual = DllCall("bool:cdecl","SDL_JoystickIsVirtual","int",$joy)
+   Return $xSDL_JoystickIsVirtual[0]
+EndFunc
+
+Func SDL_JoystickSetVirtualAxis($x,$x2,$x3)
+   $xSDL_JoystickSetVirtualAxis = DllCall("int:cdecl","SDL_JoystickSetVirtualAxis","ptr",$x,"int",$x2,"uint",$x3)
+   Return $xSDL_JoystickSetVirtualAxis[0]
+EndFunc
+
+Func SDL_JoystickSetVirtualButton($p,$i,$ui)
+   $xSDL_JoystickSetVirtualButton = DllCall("int:cdecl","SDL_JoystickSetVirtualButton","ptr",$p,"int",$i,"uint",$ui)
+   Return $xSDL_JoystickSetVirtualButton[0]
+EndFunc
+
+Func SDL_JoystickSetVirtualHat($p,$i,$ui)
+   $xSDL_JoystickSetVirtualHat = DllCall("int:cdecl","SDL_JoystickSetVirtualHat","ptr",$p,"int",$i,"uint",$ui)
+   Return $xSDL_JoystickSetVirtualHat[0]
+EndFunc
+
+
 ;GameController Functions
 Func SDL_GameControllerAddMapping($map)
    Local $xSDL_GameControllerAddMapping = DllCall($SDL,"int:cdecl","SDL_GameControllerAddMapping","ptr",$map)
@@ -3002,6 +3044,28 @@ Func SDL_IsGameController($joy)
    Local $xSDL_IsGC = DllCall($SDL,"bool:cdecl","SDL_IsGameController","int",$joy)
    Return $xSDL_IsGC[0]
 EndFunc
+
+;More GameController Funcs (2.0.12)
+Func SDL_GameControllerTypeForIndex($g)
+   Local $xSDL_GameControllerTypeForIndex = DllCall($SDL,"uint:cdecl","SDL_GameControllerTypeForIndex","int",$g)
+   Return $xSDL_GameControllerTypeForIndex[0]
+EndFunc
+
+Func SDL_GameControllerGetType($g)
+   Local $xSDL_GameControllerGetType = DllCall("uint:cdecl","SDL_GameControllerGetType","ptr",$g)
+   Return $xSDL_GameControllerGetType[0]
+EndFunc
+
+Func SDL_GameControllerFromPlayerIndex($g)
+   Local $xSDL_GameControllerFromPlayerIndex = DllCall("uint:cdecl","SDL_GameControllerFromPlayrIndex","int",$g)
+   Return $xSDL_GameControllerFromPlayerIndex[0]
+EndFunc
+
+Func SDL_GameControllerSetPlayerIndex($g,$i)
+   Local $xSDL_GameControllerSetPlayerIndex = DllCall("none:cdecl","SDL_GameControllerSetPlayerIndex","ptr",$g,"int",$i)
+EndFunc
+
+
 
 ;Force Feedback Functions
 
@@ -3305,6 +3369,67 @@ EndFunc
 Func SDL_UnlockAudioDevice($dev)
    Local $xSDL_UnlockAudioDevice = DllCall($SDL,"none:cdecl","SDL_UnlockAudioDevice","ptr",$dev)
    Return $xSDL_UnlockAudioDevice[0]
+EndFunc
+
+;Audiostream Functions
+
+Func SDL_NewAudioStream($p,$ui,$i,$p2,$ui2,$p3,$i)
+   Local $xSDL_NewAudioStream = DllCall($SDL,"ptr:cdecl","SDL_NewAudioStream","ptr",$p,"uint",$ui,"int",$i,"ptr",$p2,"uint",$ui2,"ptr",$p3,"int",$i)
+   Return $xSDL_NewAudioStream[0]
+EndFunc
+
+Func SDL_AudioStreamPut($p,$p2,$i)
+   Local $xSDL_AudioStreamPut = DllCall($SDL,"int:cdecl","SDL_AudioStreamPut","ptr",$p,"ptr",$p2,"int",$i)
+   Return $xSDL_AudioStreamPut[0]
+EndFunc
+
+Func SDL_AudioStreamGet($p,$p2,$i)
+   Local $xSDL_AudioStreamGet = DllCall($SDL,"int:cdecl","SDL_AudioStreamGet","ptr",$p,"ptr",$p2,"int",$i)
+   Return $xSDL_AudioStreamGet[0]
+EndFunc
+
+Func SDL_AudioStreamAvailable($p)
+   Local $xSDL_AudioStreamAvailable = DllCall($SDL,"int:cdecl","SDL_AudioStreamAvailable","ptr",$p)
+   Return $xSDL_AudioStreamAvailable[0]
+EndFunc
+
+Func SDL_AudioStreamFlush($p)
+   Local $xSDL_AudioStreamFlush = DllCall($SDL,"int:cdecl","SDL_AudioStreamFlush","ptr",$p)
+   Return $xSDL_AudioStreamFlush[0]
+EndFunc
+
+Func SDL_AudioStreamClear($p)
+   Local $xSDL_AudioStreamClear = DllCall($SDL,"none:cdecl","SDL_AudioStreamClear","ptr",$p)
+EndFunc
+
+Func SDL_FreeAudioStream($p)
+   Local $xSDL_FreeAudioStream = DllCall($SDL,"none:cdecl","SDL_FreeAudioStream","ptr",$p)
+EndFunc
+
+;SDL Memory Functions
+
+Func SDL_GetMemoryFunctions($p,$p2,$p3,$p4)
+   Local $xSDL_GetMemoryFunctions = DllCall($SDL,"none:cdecl","SDL_GetMemoryFunctions","ptr",$p,"ptr",$p2,"ptr",$p3,"ptr",$p4)
+EndFunc
+
+Func SDL_SetMemoryFunctions($p,$p2,$p3,$p4)
+   Local $xSDL_SetMemoryFunctions = DllCall($SDL,"int:cdecl","SDL_SetMemoryFunctions","ptr",$p,"ptr",$p2,"ptr",$p3,"ptr",$p4)
+   Return $xSDL_SetMemoryFunctions[0]
+EndFunc
+
+Func SDL_GetNumAllocations()
+   Local $xSDL_GetNumAllocations = DllCall($SDL,"int:cdecl","SDL_GetNumAllocations")
+   Return $xSDL_GetNumAllocations[0]
+EndFunc
+
+Func SDL_getenv($p)
+   Local $xSDL_getenv = DllCall($SDL,"ptr:cdecl","SDL_getenv","ptr",$p)
+   Return $xSDL_getenv[0]
+EndFunc
+
+Func SDL_setenv($p,$p2,$i)
+   Local $xSDL_setenv = DllCall($SDL,"int:cdecl","SDL_setenv","ptr",$p,"ptr",$p2,"int",$i)
+   Return $xSDL_setenv[0]
 EndFunc
 
 ;Thread functions
@@ -3970,6 +4095,26 @@ EndFunc
 Func SDL_HasSSE42()
    Local $xSDL_HasSSE42 = DllCall($SDL,"bool:cdecl","SDL_HasSSE42")
    Return $xSDL_HasSSE42[0]
+EndFunc
+
+Func SDL_HasNEON()
+   Local $xSDL_HasNEON = DllCall($SDL,"bool:cdecl","SDL_HasNEON")
+   Return $xSDL_HasNEON[0]
+EndFunc
+
+Func SDL_HasAVX512F()
+   Local $xSDL_HasAVX512F = DllCall($SDL,"bool:cdecl","SDL_HasAVX512F")
+   Return $xSDL_HasAVXF512[0]
+EndFunc
+
+Func SDL_IsTablet()
+   Local $xSDL_IsTablet = DllCall($SDL,"bool:cdecl","SDL_IsTablet")
+   Return $xSDL_IsTablet[0]
+EndFunc
+
+Func SDL_HasARMSIMD()
+   Local $xSDL_HasARMSIMD = DllCall($SDL,"bool:cdecl","SDL_HasARMSIMD")
+   Return $xSDL_HasARMSIMD[0]
 EndFunc
 
 ;Sensor functions
