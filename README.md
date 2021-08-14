@@ -1,15 +1,16 @@
 # AutoIt Wrappers
-Repository for AutoIt Wrappers
+Repository for AutoIt Wrappers. These are wrappers for AutoIt 3 and above.
 
 # Wrappers Wrapped
 * Currently wrapped SDL2. Version of SDL2 is 2.0.14
 * Wrapped Sigil 0.9.0
 * Wrapped GLFW 3
+* Wrapped SoLoud
 
 # ABOUT:
 
 These are a collection of wrappers for the AutoIt programming language. Note this uses version 3 of AutoIt. These are mainly a collection of
-wrappers for multimedia libraries such as SDL. 
+wrappers for multimedia libraries such as SDL and GFLW. 
 
 # EXAMPLE: Basic usage of how to use the SDL2 wrapper.  
 ```AutoIt
