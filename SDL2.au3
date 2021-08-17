@@ -894,6 +894,18 @@ Global Enum $SDL_JOYSTICK_TYPE_UNKNOWN,$SDL_JOYSTICK_TYPE_GAMECONTROLLER,$SDL_JO
 
 Global Enum $SDL_JOYSTICK_POWER_UNKNOWN = -1,$SDL_JOYSTICK_POWER_EMPTY,$SDL_JOYSTICK_POWER_LOW,$SDL_JOYSTICK_POWER_MEDIUM,$SDL_JOYSTICK_POWER_FULL,$SDL_JOYSTICK_POWER_WIRED,$SDL_JOYSTICK_POWER_MAX
 
+Global Const $SDL_CONTROLLER_TYPE_UNKNOWN = 0
+Global Const $SDL_CONTROLLER_TYPE_XBOX360 = 1
+Global Const $SDL_CONTROLLER_TYPE_XBOXONE = 2
+Global Const $SDL_CONTROLLER_TYPE_PS3 = 3
+Global Const $SDL_CONTROLLER_TYPE_PS4 = 4
+Global Const $SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_PRO = 5
+Global Const $SDL_CONTROLLER_TYPE_VIRTUAL = 6
+Global Const $SDL_CONTROLLER_TYPE_PS5 = 7
+Global Const $SDL_CONTROLLER_TYPE_AMAZON_LUNA = 8
+Global Const $SDL_CONTROLLER_TYPE_GOOGLE_STADIA = 9
+
+Global Enum $SDL_FLASH_CANCEL = 0, $SDL_FLASH_BRIEFLY,$SDL_FLASH_UNTIL_FOCUSED
 
 ;Sensor flags
 Global Const $SDL_DISPLAYEVENT = 336
@@ -3373,8 +3385,8 @@ EndFunc
 
 ;Audiostream Functions
 
-Func SDL_NewAudioStream($p,$ui,$i,$p2,$ui2,$p3,$i)
-   Local $xSDL_NewAudioStream = DllCall($SDL,"ptr:cdecl","SDL_NewAudioStream","ptr",$p,"uint",$ui,"int",$i,"ptr",$p2,"uint",$ui2,"ptr",$p3,"int",$i)
+Func SDL_NewAudioStream($p,$ui,$i,$p2,$ui2,$p3,$i2)
+   Local $xSDL_NewAudioStream = DllCall($SDL,"ptr:cdecl","SDL_NewAudioStream","ptr",$p,"uint",$ui,"int",$i,"ptr",$p2,"uint",$ui2,"ptr",$p3,"int",$i2)
    Return $xSDL_NewAudioStream[0]
 EndFunc
 
@@ -4135,58 +4147,107 @@ Func SDL_SensorGetDeviceType($dev)
 EndFunc
 
 Func SDL_SensorGetDeviceNonPortableType($dev)
-   Local $xSDL_SensorGetDeviceNonPortableType($SDL,"ptr:cdecl","SDL_SensorGetDeviceNonPortableType","int",$dev)
+   Local $xSDL_SensorGetDeviceNonPortableType = DllCall($SDL,"ptr:cdecl","SDL_SensorGetDeviceNonPortableType","int",$dev)
    Return $xSDL_SensorGetDeviceNonPortableType[0]
 EndFunc
 
 Func SDL_SensorGetDeviceInstanceID($dev)
-   Local $xSDL_SensorGetDeviceInstanceID($SDL,"ptr:cdecl","SDL_SensorGetDeviceInstanceID","int",$dev)
+   Local $xSDL_SensorGetDeviceInstanceID = DllCall($SDL,"ptr:cdecl","SDL_SensorGetDeviceInstanceID","int",$dev)
    Return $xSDL_SensorGetDeviceInstanceID[0]
 EndFunc
 
 Func SDL_SensorOpen($dev)
-   Local $xSDL_SensorOpen($SDL,"ptr:cdecl","SDL_SensorOpen","int",$dev)
+   Local $xSDL_SensorOpen = DllCall($SDL,"ptr:cdecl","SDL_SensorOpen","int",$dev)
    Return $xSDL_SensorOpen[0]
 EndFunc
 
 Func SDL_SensorFromInstanceID($dev)
-   Local $xSDL_SensorFromInstanceID($SDL,"ptr:cdecl","SDL_SensorFromInstanceID","ptr",$dev)
+   Local $xSDL_SensorFromInstanceID = DllCall($SDL,"ptr:cdecl","SDL_SensorFromInstanceID","ptr",$dev)
    Return $xSDL_SensorFromInstanceID[0]
 EndFunc
 
 Func SDL_SensorGetName($dev)
-   Local $xSDL_SensorGetName($SDL,"ptr:cdecl","SDL_SensorGetName","ptr",$dev)
+   Local $xSDL_SensorGetName = DllCall($SDL,"ptr:cdecl","SDL_SensorGetName","ptr",$dev)
    Return $xSDL_SensorGetName[0]
 EndFunc
 
 Func SDL_SensorGetType($dev)
-   Local $xSDL_SensorGetType($SDL,"ptr:cdecl","SDL_SensorGetType","ptr",$dev)
+   Local $xSDL_SensorGetType = DllCall($SDL,"ptr:cdecl","SDL_SensorGetType","ptr",$dev)
    Return $xSDL_SensorGetType[0]
 EndFunc
 
 Func SDL_SensorGetNonPortableType($dev)
-   Local $xSDL_SensorGetNonPortableType($SDL,"ptr:cdecl","SDL_SensorGetNonPortableType","ptr",$dev)
+   Local $xSDL_SensorGetNonPortableType = DllCall($SDL,"ptr:cdecl","SDL_SensorGetNonPortableType","ptr",$dev)
    Return $xSDL_SensorGetNonPortableType[0]
 EndFunc
 
 Func SDL_SensorGetInstanceID($dev)
-   Local $xSDL_SensorGetInstanceID($SDL,"ptr:cdecl","SDL_SensorGetInstanceID","ptr",$dev)
+   Local $xSDL_SensorGetInstanceID = DllCall($SDL,"ptr:cdecl","SDL_SensorGetInstanceID","ptr",$dev)
    Return $xSDL_SensorGetInstanceID[0]
 EndFunc
 
 Func SDL_SensorGetData($dev,$dev2,$dev3)
-   Local $xSDL_SensorGetData($SDL,"ptr:cdecl","SDL_SensorGetData","ptr",$dev,"ptr",$dev2,"float",$dev3)
+   Local $xSDL_SensorGetData = DllCall($SDL,"ptr:cdecl","SDL_SensorGetData","ptr",$dev,"ptr",$dev2,"float",$dev3)
    Return $xSDL_SensorGetData[0]
 EndFunc
 
 Func SDL_SensorClose()
-   Local $xSDL_SensorClose($SDL,"SDL_SensorClose")
+   Local $xSDL_SensorClose = DllCall($SDL,"ptr:cdecl","SDL_SensorClose")
    Return $xSDL_SensorClose[0]
 EndFunc
 
 Func SDL_SensorUpdate()
-   Local $xSDL_SensorUpdate($SDL,"SDL_SensorUpdate")
+   Local $xSDL_SensorUpdate = DllCall($SDL,"ptr:cdecl","SDL_SensorUpdate")
    Return $xSDL_SensorUpdate[0]
+EndFunc
+
+;SDL 2.0.16 Functions
+Func SDL_FlashWindow($win,$op)
+   Local $xSDL_FlashWindow = DllCall($SDL,"ptr:cdecl","SDL_FlashWindow","ptr",$win,"uint",$op)
+   Return $xSDL_FlashWindow[0]
+EndFunc
+
+Func SDL_GetAudioDeviceSpec($id,$iscap,$spec)
+   Local $xSDL_GetAudioDeviceSpec = DllCall($SDL,"ptr:cdecl","SDL_GetAudioDeviceSpec","int",$id,"int",$iscap,"ptr",$spec)
+   Return $xSDL_GetAudioDeviceSpec[0]
+EndFunc
+
+Func SDL_SetWindowAlwaysOnTop($win,$on)
+   Local $xSDL_SetWindowAlwaysOnTop = DllCall($SDL,"none:cdecl","SDL_SetWindowAlwaysOnTop","ptr",$win,"bool",$on)
+EndFunc
+
+Func SDL_SetWindowKeyboardGrab($win,$grab)
+   Local $xSDL_SetWindowKeyboardGrab = DllCall($SDL,"none:cdecl","SDL_SetWindowKeyboardGrab","ptr",$win,"bool",$grab)
+EndFunc
+
+Func SDL_SoftStretchLinear($src,$srcr,$dst,$dstr)
+   Local $xSDL_SoftStretchLinear = DllCall($SDL,"int:cdecl","SDL_SoftStretchLinear","ptr",$src,"ptr",$srcr,"ptr",$dst,"ptr",$dstr)
+   Return $xSDL_SoftStretchLinear[0]
+EndFunc
+
+Func SDL_UpdateNVTexture($tex,$rect,$ypl,$ypit,$upl,$upit)
+   Local $xSDL_UpdateNVTexture = DllCall($SDL,"int:cdecl","SDL_UpdateNVTexture","ptr",$tex,"ptr",$rect,"ptr",$ypl,"int",$ypit,"int",$upl,"int",$upit)
+   Return $xSDL_UpdateNVTexture[0]
+EndFunc
+
+Func SDL_RenderGetD3D11Device($ren)
+   Local $xSDL_RenderGetD3D11Device = DllCall($SDL,"ptr:cdecl","SDL_RenderGetD3D11Device","ptr",$ren)
+   Return $xSDL_RenderGetD3D11Device[0]
+EndFunc
+
+Func SDL_GameControllerSendEffect($gc,$dat,$size)
+   Local $xSDL_GameControllerSendEffect = DllCall($SDL,"int:cdecl","SDL_GameControllerSendEffect","ptr",$gc,"ptr",$dat,"int",$size)
+   Return $xSDL_GameControllerSendEffect[0]
+EndFunc
+
+Func SDL_GameControllerGetSensorDataRate($gc,$sen)
+   Local $xSDL_GameControllerGetSensorDataRate = DllCall($SDL,"float:cdecl","SDL_GameControllerGetSensorDataRate","ptr",$gc,"uint",$sen)
+   Return $xSDL_GameControllerGetSensorDataRate[0]
+EndFunc
+
+Func SDL_JoystickSendEffect($joy,$dat,$size)
+   Local $xSDL_JoystickSendEffect = DllCall($SDL,"ptr:cdecl","SDL_JoystickSendEffect","ptr",$joy,"ptr",$dat,"int",$size)
+   Return $xSDL_JoystickSendEffect[0]
 EndFunc
 
 ;Cleanup
