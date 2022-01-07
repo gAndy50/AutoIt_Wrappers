@@ -3,7 +3,7 @@
 ; Wrapper by: Andy P.  ;
 ;Icy Viking Games      ;
 ;For AutoIt3           ;
-;Copyright (c) 2021    ;
+;Copyright (c) 2022    ;
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
 #include-once
