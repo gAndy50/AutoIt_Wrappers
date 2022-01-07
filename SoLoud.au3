@@ -2,7 +2,7 @@
 ;SoLoud AutoIt Wrapper   ;
 ;Written By Andy P.      ;
 ;Icy Viking Games		 ;
-;Copyright (c) 2021		 ;
+;Copyright (c) 2022		 ;
 ;AutoIt3				 ;
 ;Soloud 202002			 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
